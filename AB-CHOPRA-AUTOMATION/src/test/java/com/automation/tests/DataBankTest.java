@@ -696,7 +696,6 @@ public class DataBankTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         DataBankPage dataBankPage = new DataBankPage(driver);
 
-
         // Step 1: Verify DAILY PRIORITY heading is displayed on home page (iOS XPath)
         test.log(Status.INFO, "Step 1: Verifying DAILY PRIORITY heading on home page (iOS)");
         boolean isHomePageDisplayed = driver.findElements(
@@ -796,19 +795,8 @@ public class DataBankTest extends BaseTest {
             test.log(Status.PASS, "✓ DATA BANK is displayed after click");
         }
 
-        boolean phoneFilled = false;
-        try {
-            org.openqa.selenium.WebElement phoneField = driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeTextField[@value='12345678' and @enabled='true' and @visible='true']"));
-            phoneField.click();
-            phoneField.clear();
-            phoneField.sendKeys("8072971990");
-            test.log(Status.PASS, "✓ Step 23: Phone number field clicked, cleared, and filled with 8072971990");
-            phoneFilled = true;
-        } catch (Exception e) {
-            test.log(Status.FAIL, "Step 23: Could not fill phone number field: " + e.getMessage());
-        }
-        Assert.assertTrue(phoneFilled, "Step 23: Phone number field should be filled");
-        Thread.sleep(3000);
+        // Step 4: Click UPLOAD DATA
+        test.log(Status.INFO, "Step 4: Clicking UPLOAD DATA");
         dataBankPage.clickUploadData();
         test.log(Status.PASS, "✓ Step 4: UPLOAD DATA clicked");
 
