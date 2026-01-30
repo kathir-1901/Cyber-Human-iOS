@@ -1,7 +1,9 @@
+
 package com.automation.pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
@@ -17,6 +19,7 @@ import java.util.regex.Pattern;
 import java.util.List;
 
 public class DataBankPage {
+
     private AppiumDriver driver;
     private WebDriverWait wait;
 
@@ -59,7 +62,7 @@ public class DataBankPage {
 
     private final String shippingMethodXpath = "//XCUIElementTypeStaticText[@name=\"Shipping Method\"]";
     private final String proceedToPaymentButtonXpath = "//XCUIElementTypeButton[@name=\"PROCEED TO PAYMENT\"]";
-    private final String closeSheetXpath = "//XCUIElementTypeApplication[@name=\"AB Chopra\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeScrollView";
+    private final String closeSheetXpath = "//XCUIElementTypeButton[@name=\"UIButton.Close\"]";
     private final String paymentErrorDialogXpath = "//XCUIElementTypeStaticText[@name=\"PAYMENT ERROR\"]";
     private final String paymentErrorMessageXpath = "//XCUIElementTypeStaticText[@name=\"Please try again later.\"]";
     private final String retryPaymentButtonXpath = "//XCUIElementTypeStaticText[@name=\"Retry Payment\"]";
@@ -93,31 +96,44 @@ public class DataBankPage {
     private final String deviceLinkedMessageXpath = "//XCUIElementTypeStaticText[@name=\"Your device has been successfully linked.\"]";
 
     // Test Case 4 - Specific Steps
+    // Test Case 4 - Step 4: Click REPORTS
     private final String reportsXpath = "//XCUIElementTypeStaticText[@name=\"REPORTS\"]";
+    // Step 5: Click BLOOD REPORT and verify page
     private final String bloodReportXpath = "//XCUIElementTypeStaticText[@name=\"BLOOD REPORT\"]";
+    // Step 16: Click DNA REPORT and verify page
     private final String dnaReportXpath = "//XCUIElementTypeStaticText[@name=\"DNA REPORT\"]";
+    // Step 20: Click DEVICE REPORT and verify page
     private final String deviceReportXpath = "//XCUIElementTypeStaticText[@name=\"DEVICE REPORT\"]";
-    private final String uploadReportButtonCase4Xpath = "//XCUIElementTypeButton[@name=\"UPLOAD REPORT\"]";
-    private final String uploadDataPageXpath = "//XCUIElementTypeStaticText[@name=\"UPLOAD DATA\"]";
-    private final String epigeneticMappingButtonXpath = "//XCUIElementTypeButton[@name=\"EPIGENETIC MAPPING\"]";
-    private final String packagesAndPricingPageXpath = "//XCUIElementTypeStaticText[@name=\"PACKAGES & PRICING\"]";
-    private final String backButtonXpath = "//XCUIElementTypeButton";
-
-    // Test Case 4 - Priority Filter Steps (New Steps 6-13)
+    // Step 6: Priority filters
     private final String highPriorityButtonXpath = "//XCUIElementTypeStaticText[@name=\"HIGH PRIORITY\"]";
     private final String mediumPriorityButtonXpath = "//XCUIElementTypeStaticText[@name=\"MEDIUM PRIORITY\"]";
     private final String lowPriorityButtonXpath = "//XCUIElementTypeStaticText[@name=\"LOW PRIORITY\"]";
+    // Step 7: RENAL dropdown
     private final String renalDropdownXpath = "//XCUIElementTypeImage[@name=\"RENAL\"]";
-    // XPath for verification
+    // Step 8: Creatinine High Priority
     private final String creatinineHighPriorityXpath = "//XCUIElementTypeImage[@name=\"CREATININE High Priority\"]";
+    // Step 9: Bun Medium Priority
     private final String bunMediumPriorityXpath = "//XCUIElementTypeImage[@name=\"BUN Medium Priority\"]";
+    // Step 10: Bun/creatinine Low Priority
     private final String bunCreatinineLowPriorityXpath = "//XCUIElementTypeImage[@name=\"BUN/CREATININE Low Priority\"]";
-    private final String egfrMediumPriorityXpath = "//XCUIElementTypeImage[@name=\"EGFR Medium Priority\"]";
-    // XPath for second click in step 12 (simpler - just the name)
+    // Step 12: Priority items for deselect
     private final String bunSimpleXpath = "//XCUIElementTypeImage[@name=\"BUN\"]";
     private final String creatinineSimpleXpath = "//XCUIElementTypeImage[@name=\"CREATININE\"]";
     private final String bunCreatinineSimpleXpath = "//XCUIElementTypeImage[@name=\"BUN/CREATININE\"]";
+    private final String egfrMediumPriorityXpath = "//XCUIElementTypeImage[@name=\"EGFR Medium Priority\"]";
     private final String egfrSimpleXpath = "//XCUIElementTypeImage[@name=\"EGFR\"]";
+    // Step 13: Swipe up once
+    private final String swipeUpScrollViewXpath = "//XCUIElementTypeApplication[@name=\"AB Chopra\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeScrollView";
+    // Step 14: Click back button once
+    private final String backButtonXpath = "//XCUIElementTypeButton";
+    // Step 15, 19: Click REPORTS again (reuse reportsXpath)
+    // Step 17: PURCHASE button
+    private final String purchaseButtonXpath = "//XCUIElementTypeButton[@name=\"PURCHASE\"]";
+    // Step 17: PACKAGES & PRICING page
+    private final String packagesAndPricingPageXpath = "//XCUIElementTypeStaticText[@name=\"PACKAGES & PRICING\"]";
+    // Step 18: Click back button twice
+    private final String backButtonTwiceXpath = "//XCUIElementTypeApplication[@name=\"AB Chopra\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeButton";
+    // Step 6-13: All other XPaths for priority and verification updated as above.
 
     // ==================== COMMON STEP 3 ====================
 
@@ -333,7 +349,7 @@ public class DataBankPage {
     public void clickOkButton() {
         try {
             WebElement okButton = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(okButtonXpath)));
+                ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name='OK']")));
             okButton.click();
             System.out.println("✓ Clicked 'OK' button");
         } catch (TimeoutException e) {
@@ -348,100 +364,59 @@ public class DataBankPage {
      */
     public void uploadCorrectFormatFile() {
         try {
-            // Wait for file picker to open
-            Thread.sleep(3000);
+            // Wait for iOS Files picker to open
+            Thread.sleep(2000);
+            System.out.println("✓ Step 12: iOS Files picker opened");
 
-            System.out.println("✓ Step 12: Navigating Android file picker to select PDF file");
-
-            // Click on the menu/hamburger icon to show storage options (if needed)
+            // 1. Detect and tap "iCloud Drive" or tap "Browse" then "iCloud Drive"
+            boolean iCloudTapped = false;
             try {
-                WebElement menuButton = wait.until(
-                        ExpectedConditions.elementToBeClickable(
-                                By.xpath("//android.widget.ImageButton[@content-desc='Show roots']")));
-                menuButton.click();
-                Thread.sleep(1000);
-                System.out.println("  - Opened storage menu");
-            } catch (Exception e) {
-                System.out.println("  - Storage menu already open or not needed");
-            }
-
-            // Select "Internal storage" or device name
-            try {
-                WebElement internalStorage = wait.until(
-                        ExpectedConditions.elementToBeClickable(
-                                By.xpath(
-                                        "//android.widget.TextView[contains(@text, 'Internal') or contains(@text, '24116RNC1I')]")));
-                internalStorage.click();
-                Thread.sleep(1000);
-                System.out.println("  - Selected Internal storage");
-            } catch (Exception e) {
-                System.out.println("  - Already in Internal storage");
-            }
-
-            // Strategy 1: Try to navigate via Document → Download path
-            boolean foundViaDocumentPath = false;
-            try {
-                WebElement documentFolder = wait.until(
-                        ExpectedConditions.elementToBeClickable(
-                                By.xpath(
-                                        "//android.widget.TextView[contains(@text, 'Documents') or @text='Documents']")));
-                documentFolder.click();
-                Thread.sleep(1000);
-                System.out.println("  - Opened Document folder");
-
-                // Navigate to Download subfolder inside Document
-                WebElement downloadFolder = wait.until(
-                        ExpectedConditions
-                                .elementToBeClickable(By.xpath("//android.widget.TextView[@text='Download']")));
-                downloadFolder.click();
-                Thread.sleep(1000);
-                System.out.println("  - Opened Download subfolder");
-                foundViaDocumentPath = true;
-
+                WebElement iCloud = wait.until(ExpectedConditions.elementToBeClickable(
+                    MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeCell' AND (label CONTAINS 'iCloud Drive' OR name CONTAINS 'iCloud Drive')")));
+                iCloud.click();
+                System.out.println("✓ Step 12: Tapped 'iCloud Drive'");
+                iCloudTapped = true;
             } catch (TimeoutException e) {
-                System.out.println("  - Document folder path not available, trying alternative...");
-            }
-
-            // Strategy 2: If Document path failed, try Download folder directly (like JPEG
-            // upload)
-            if (!foundViaDocumentPath) {
+                // Try tapping Browse, then iCloud Drive
                 try {
-                    WebElement downloadFolder = wait.until(
-                            ExpectedConditions
-                                    .elementToBeClickable(By.xpath("//android.widget.TextView[@text='Download']")));
-                    downloadFolder.click();
+                    WebElement browse = wait.until(ExpectedConditions.elementToBeClickable(
+                        MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND (label CONTAINS 'Browse' OR name CONTAINS 'Browse')")));
+                    browse.click();
+                    System.out.println("✓ Step 12: Tapped 'Browse'");
                     Thread.sleep(1000);
-                    System.out.println("  - Opened Download folder directly");
-
-                    // Try clicking Download again (nested structure)
-                    try {
-                        WebElement downloadFolderAgain = wait.until(
-                                ExpectedConditions
-                                        .elementToBeClickable(By.xpath("//android.widget.TextView[@text='Download']")));
-                        downloadFolderAgain.click();
-                        Thread.sleep(1000);
-                        System.out.println("  - Opened Download folder again");
-                    } catch (Exception nested) {
-                        System.out.println("  - Single Download folder (no nesting)");
-                    }
-                } catch (TimeoutException e2) {
-                    System.out.println("  - Download folder also not found, will try to find PDF directly");
+                    WebElement iCloud = wait.until(ExpectedConditions.elementToBeClickable(
+                        MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeCell' AND (label CONTAINS 'iCloud Drive' OR name CONTAINS 'iCloud Drive')")));
+                    iCloud.click();
+                    System.out.println("✓ Step 12: Tapped 'iCloud Drive' after Browse");
+                    iCloudTapped = true;
+                } catch (TimeoutException | InterruptedException e2) {
+                    throw new RuntimeException("Could not find 'iCloud Drive' or 'Browse' in Files picker", e2);
                 }
             }
 
-            // Select the PDF file
-            WebElement pdfFile = wait.until(
-                    ExpectedConditions.elementToBeClickable(
-                            By.xpath(
-                                    "//android.widget.TextView[contains(@text, 'PM0140.pdf') or @text='PM0140.pdf']")));
-            pdfFile.click();
-            Thread.sleep(1000);
-            System.out.println("✓ Step 12: Selected PDF file - PM0140.pdf from Document/Download folder");
+            // 2. Open the "Appium" folder (label CONTAINS, no scrolling)
+            try {
+                WebElement appiumFolder = wait.until(ExpectedConditions.elementToBeClickable(
+                    MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeCell' AND (label CONTAINS 'Appium' OR name CONTAINS 'Appium')")));
+                appiumFolder.click();
+                System.out.println("✓ Step 12: Opened 'Appium' folder");
+            } catch (TimeoutException e) {
+                throw new RuntimeException("Appium folder not found in iCloud Drive", e);
+            }
 
+            // 3. Select the PDF file containing 'PM0140' (case-insensitive, no scrolling)
+            try {
+                WebElement pdfFile = wait.until(ExpectedConditions.elementToBeClickable(
+                    MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeCell' AND ((label CONTAINS[c] 'PM0140') OR (name CONTAINS[c] 'PM0140'))")));
+                pdfFile.click();
+                System.out.println("✓ Step 12: Selected file containing 'PM0140'");
+            } catch (TimeoutException e) {
+                throw new RuntimeException("File containing 'PM0140' not found in Appium folder", e);
+            }
         } catch (InterruptedException e) {
-            throw new RuntimeException("Thread interrupted during PDF file upload in Step 12", e);
+            throw new RuntimeException("Thread interrupted during iOS file picker step 12", e);
         } catch (TimeoutException e) {
-            throw new RuntimeException("Failed to navigate file picker or select PDF file in Step 12", e);
+            throw new RuntimeException("Failed to select PM0140.pdf in iOS file picker step 12", e);
         }
     }
 
@@ -453,24 +428,20 @@ public class DataBankPage {
      */
     public String validateUploadSuccessfulDialog() {
         try {
-            // Verify UPLOAD SUCCESSFUL dialog is displayed
+            // Wait for UPLOAD SUCCESSFUL dialog (exact xpath)
             WebElement uploadSuccessDialog = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(uploadSuccessfulDialogXpath)));
-
+                ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='UPLOAD SUCCESSFUL']")));
             if (uploadSuccessDialog.isDisplayed()) {
                 System.out.println("✓ Step 13: UPLOAD SUCCESSFUL dialog is displayed");
             } else {
                 throw new RuntimeException("UPLOAD SUCCESSFUL dialog is not displayed");
             }
-
-            // Capture the success message
+            // Capture the success message (exact xpath)
             WebElement successMessage = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(uploadSuccessMessageXpath)));
-
-            String message = successMessage.getAttribute("content-desc");
+                ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='Your document has been successfully uploaded.']")));
+            String message = successMessage.getText();
             System.out.println("✓ Step 14: Success message captured: " + message);
             return message;
-
         } catch (TimeoutException e) {
             throw new RuntimeException("Failed to validate UPLOAD SUCCESSFUL dialog in Step 13/14", e);
         }
@@ -482,22 +453,19 @@ public class DataBankPage {
      */
     public void clickRemoveAndVerifyAreYouSureDialog() {
         try {
-            // Click remove button
+            // Click remove button (exact xpath)
             WebElement removeButton = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(removeButtonXpath)));
+                ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeApplication[@name='AB Chopra']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeImage[2]")));
             removeButton.click();
             System.out.println("✓ Step 16: Clicked remove button");
-
-            // Verify ARE YOU SURE? dialog is displayed
+            // Verify ARE YOU SURE? dialog is displayed (exact xpath)
             WebElement areYouSureDialog = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(areYouSureDialogXpath)));
-
+                ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='ARE YOU SURE?']")));
             if (areYouSureDialog.isDisplayed()) {
                 System.out.println("✓ Step 16: ARE YOU SURE? dialog is displayed");
             } else {
                 throw new RuntimeException("ARE YOU SURE? dialog is not displayed");
             }
-
         } catch (TimeoutException e) {
             throw new RuntimeException("Failed to click remove button or verify ARE YOU SURE? dialog in Step 16", e);
         }
@@ -509,22 +477,19 @@ public class DataBankPage {
      */
     public void clickYesAndVerifyDeleteSuccessfulDialog() {
         try {
-            // Click YES button
+            // Click YES button (exact xpath)
             WebElement yesButton = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(yesButtonXpath)));
+                ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name='YES']")));
             yesButton.click();
             System.out.println("✓ Step 17: Clicked YES button");
-
-            // Verify DELETE SUCCESSFUL dialog is displayed
+            // Verify DELETE SUCCESSFUL dialog is displayed (exact xpath)
             WebElement deleteSuccessDialog = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(deleteSuccessfulDialogXpath)));
-
+                ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='DELETE SUCCESSFUL']")));
             if (deleteSuccessDialog.isDisplayed()) {
                 System.out.println("✓ Step 17: DELETE SUCCESSFUL dialog is displayed");
             } else {
                 throw new RuntimeException("DELETE SUCCESSFUL dialog is not displayed");
             }
-
         } catch (TimeoutException e) {
             throw new RuntimeException("Failed to click YES button or verify DELETE SUCCESSFUL dialog in Step 17", e);
         }
@@ -538,14 +503,12 @@ public class DataBankPage {
      */
     public String captureDeleteSuccessMessage() {
         try {
-            // Capture the success message
+            // Capture the success message (exact xpath)
             WebElement successMessage = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(deleteSuccessMessageXpath)));
-
-            String message = successMessage.getAttribute("content-desc");
+                ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='Your report has been successfully removed.']")));
+            String message = successMessage.getText();
             System.out.println("✓ Step 18: Delete success message captured: " + message);
             return message;
-
         } catch (TimeoutException e) {
             throw new RuntimeException("Failed to capture delete success message in Step 18", e);
         }
@@ -848,13 +811,13 @@ public class DataBankPage {
         try {
             // Click UPLOAD REPORT button
             WebElement uploadReportButton = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(uploadReportButtonCase4Xpath)));
+                    ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name=\"UPLOAD REPORT\"]")));
             uploadReportButton.click();
             System.out.println("✓ Step 6: Clicked 'UPLOAD REPORT' button");
 
             // Verify UPLOAD DATA page is displayed
             WebElement uploadDataPage = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(uploadDataPageXpath)));
+                    ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name=\"UPLOAD DATA\"]")));
 
             if (uploadDataPage.isDisplayed()) {
                 System.out.println("✓ Step 6: Verified 'UPLOAD DATA' page is displayed");
@@ -875,13 +838,13 @@ public class DataBankPage {
         try {
             // Click EPIGENETIC MAPPING button
             WebElement epigeneticMappingButton = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(epigeneticMappingButtonXpath)));
+                    ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name=\"EPIGENETIC MAPPING\"]")));
             epigeneticMappingButton.click();
             System.out.println("✓ Step 10: Clicked 'EPIGENETIC MAPPING' button");
 
             // Verify PACKAGES & PRICING page is displayed
             WebElement packagesPage = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(packagesAndPricingPageXpath)));
+                    ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name=\"PACKAGES & PRICING\"]")));
 
             if (packagesPage.isDisplayed()) {
                 System.out.println("✓ Step 10: Verified 'PACKAGES & PRICING' page is displayed");
@@ -1011,19 +974,26 @@ public class DataBankPage {
             // Wait for UI to update after filter click
             Thread.sleep(1000);
 
-            // Verify Creatinine High Priority is displayed
-            WebElement creatinineHighPriority = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(creatinineHighPriorityXpath)));
-
-            if (creatinineHighPriority.isDisplayed()) {
-                System.out.println("✓ Verified 'Creatinine High Priority' is displayed");
-            } else {
-                throw new RuntimeException("Creatinine High Priority is not displayed");
+            // Find any XCUIElementTypeImage with name or label containing 'CREATININE' and 'High Priority'
+            List<WebElement> images = driver.findElements(By.xpath("//XCUIElementTypeImage"));
+            boolean found = false;
+            for (WebElement el : images) {
+                String name = el.getAttribute("name");
+                String label = el.getAttribute("label");
+                if ((name != null && name.replace("\\n", " ").toLowerCase().contains("creatinine") && name.toLowerCase().contains("high priority")) ||
+                    (label != null && label.replace("\\n", " ").toLowerCase().contains("creatinine") && label.toLowerCase().contains("high priority"))) {
+                    System.out.println("[FOUND] XCUIElementTypeImage with name: '" + name + "', label: '" + label + "'");
+                    found = true;
+                    break;
+                }
             }
+            if (!found) {
+                throw new RuntimeException("No XCUIElementTypeImage found with 'CREATININE' and 'High Priority' in name or label after clicking HIGH PRIORITY");
+            }
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Failed to click HIGH PRIORITY", e);
         } catch (InterruptedException e) {
             throw new RuntimeException("Thread interrupted during HIGH PRIORITY verification", e);
-        } catch (TimeoutException e) {
-            throw new RuntimeException("Failed to click HIGH PRIORITY or verify Creatinine High Priority", e);
         }
     }
 
@@ -1042,11 +1012,20 @@ public class DataBankPage {
             // Wait for UI to update after filter click
             Thread.sleep(1000);
 
-            // Verify Bun Medium Priority is displayed
-            WebElement bunMediumPriority = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(bunMediumPriorityXpath)));
-
-            if (bunMediumPriority.isDisplayed()) {
+            // Try to find element by name or label with newline
+            String bunMediumPriorityXpathNewline = "//XCUIElementTypeImage[contains(@name, 'BUN') and contains(@name, 'Medium Priority')]";
+            List<WebElement> candidates = driver.findElements(By.xpath(bunMediumPriorityXpathNewline));
+            WebElement bunMediumPriority = null;
+            for (WebElement el : candidates) {
+                String name = el.getAttribute("name");
+                String label = el.getAttribute("label");
+                if ((name != null && name.replaceAll("\\s+"," ").trim().equalsIgnoreCase("BUN Medium Priority")) ||
+                    (label != null && label.replaceAll("\\s+"," ").trim().equalsIgnoreCase("BUN Medium Priority"))) {
+                    bunMediumPriority = el;
+                    break;
+                }
+            }
+            if (bunMediumPriority != null && bunMediumPriority.isDisplayed()) {
                 System.out.println("✓ Verified 'Bun Medium Priority' is displayed");
             } else {
                 throw new RuntimeException("Bun Medium Priority is not displayed");
@@ -1073,11 +1052,20 @@ public class DataBankPage {
             // Wait for UI to update after filter click
             Thread.sleep(1000);
 
-            // Verify Bun/creatinine Low Priority is displayed
-            WebElement bunCreatinineLowPriority = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(bunCreatinineLowPriorityXpath)));
-
-            if (bunCreatinineLowPriority.isDisplayed()) {
+            // Try to find element by name or label with newline
+            String bunCreatinineLowPriorityXpathNewline = "//XCUIElementTypeImage[contains(@name, 'BUN/CREATININE') and contains(@name, 'Low Priority')]";
+            List<WebElement> candidates = driver.findElements(By.xpath(bunCreatinineLowPriorityXpathNewline));
+            WebElement bunCreatinineLowPriority = null;
+            for (WebElement el : candidates) {
+                String name = el.getAttribute("name");
+                String label = el.getAttribute("label");
+                if ((name != null && name.replaceAll("\\s+"," ").trim().equalsIgnoreCase("BUN/CREATININE Low Priority")) ||
+                    (label != null && label.replaceAll("\\s+"," ").trim().equalsIgnoreCase("BUN/CREATININE Low Priority"))) {
+                    bunCreatinineLowPriority = el;
+                    break;
+                }
+            }
+            if (bunCreatinineLowPriority != null && bunCreatinineLowPriority.isDisplayed()) {
                 System.out.println("✓ Verified 'Bun/creatinine Low Priority' is displayed");
             } else {
                 throw new RuntimeException("Bun/creatinine Low Priority is not displayed");
@@ -1095,55 +1083,51 @@ public class DataBankPage {
      */
     public void clickPriorityItemsTwice() {
         try {
-            // Click Bun Medium Priority twice
-            WebElement bunMediumPriority = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(bunMediumPriorityXpath)));
-            bunMediumPriority.click();
-            System.out.println("✓ Clicked 'Bun Medium Priority' (1st time)");
-            Thread.sleep(1000); // 1 second wait
-            bunMediumPriority = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(bunSimpleXpath)));
-            bunMediumPriority.click();
-            System.out.println("✓ Clicked 'Bun' (2nd time)");
+            // Helper to robustly click by name/label only (no xpath)
+            java.util.function.Consumer<String> clickByNameOnly = (name) -> {
+                try {
+                    WebElement el = null;
+                    String imgXpath = "//XCUIElementTypeImage";
+                    for (WebElement candidate : driver.findElements(By.xpath(imgXpath))) {
+                        String n = candidate.getAttribute("name");
+                        String l = candidate.getAttribute("label");
+                        if ((n != null && n.replaceAll("\\s+"," ").trim().equalsIgnoreCase(name)) ||
+                            (l != null && l.replaceAll("\\s+"," ").trim().equalsIgnoreCase(name))) {
+                            el = candidate;
+                            break;
+                        }
+                    }
+                    if (el == null) throw new RuntimeException("Element not found: " + name);
+                    el.click();
+                    System.out.println("✓ Clicked '" + name + "'");
+                } catch (Exception e) {
+                    throw new RuntimeException("Failed to click '" + name + "'", e);
+                }
+            };
 
-            Thread.sleep(1000); // 1 second wait
+            // 1st: Bun Medium Priority, then Bun
+            clickByNameOnly.accept("BUN Medium Priority");
+            Thread.sleep(1000);
+            clickByNameOnly.accept("BUN");
+            Thread.sleep(1000);
 
-            // Click Creatinine High Priority twice
-            WebElement creatinineHighPriority = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(creatinineHighPriorityXpath)));
-            creatinineHighPriority.click();
-            System.out.println("✓ Clicked 'Creatinine High Priority' (1st time)");
-            Thread.sleep(1000); // 1 second wait
-            creatinineHighPriority = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(creatinineSimpleXpath)));
-            creatinineHighPriority.click();
-            System.out.println("✓ Clicked 'Creatinine' (2nd time)");
+            // 2nd: Creatinine High Priority, then Creatinine
+            clickByNameOnly.accept("CREATININE High Priority");
+            Thread.sleep(1000);
+            clickByNameOnly.accept("CREATININE");
+            Thread.sleep(1000);
 
-            Thread.sleep(1000); // 1 second wait
+            // 3rd: Bun/creatinine Low Priority, then Bun/creatinine
+            clickByNameOnly.accept("BUN/CREATININE Low Priority");
+            Thread.sleep(1000);
+            clickByNameOnly.accept("BUN/CREATININE");
+            Thread.sleep(1000);
 
-            // Click Bun/creatinine Low Priority twice
-            WebElement bunCreatinineLowPriority = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(bunCreatinineLowPriorityXpath)));
-            bunCreatinineLowPriority.click();
-            System.out.println("✓ Clicked 'Bun/creatinine Low Priority' (1st time)");
-            Thread.sleep(1000); // 1 second wait
-            bunCreatinineLowPriority = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(bunCreatinineSimpleXpath)));
-            bunCreatinineLowPriority.click();
-            System.out.println("✓ Clicked 'Bun/creatinine' (2nd time)");
-
-            Thread.sleep(1000); // 1 second wait
-
-            // Click Egfr Medium Priority twice
-            WebElement egfrMediumPriority = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(egfrMediumPriorityXpath)));
-            egfrMediumPriority.click();
-            System.out.println("✓ Clicked 'Egfr Medium Priority' (1st time)");
-            Thread.sleep(1000); // 1 second wait
-            egfrMediumPriority = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.xpath(egfrSimpleXpath)));
-            egfrMediumPriority.click();
-            System.out.println("✓ Clicked 'Egfr' (2nd time)");
+            // 4th: Egfr Medium Priority, then Egfr
+            clickByNameOnly.accept("EGFR Medium Priority");
+            Thread.sleep(1000);
+            clickByNameOnly.accept("EGFR");
+            Thread.sleep(1000);
 
         } catch (InterruptedException e) {
             throw new RuntimeException("Thread interrupted during priority items clicks", e);
@@ -1316,18 +1300,18 @@ public class DataBankPage {
      */
     public void clickDateOfBirth() {
         try {
-            System.out.println("Step 13: Clicking DOB field using stable instance(15) selector...");
+            System.out.println("Step 13: Clicking DOB field using iOS XPath selector...");
             hideKeyboard();
             Thread.sleep(1000);
 
+            // Use iOS locator from README: //XCUIElementTypeOther[@name="dd/mm/yyyy"]
             WebElement dobField = wait.until(ExpectedConditions.elementToBeClickable(
-                    AppiumBy.androidUIAutomator("new UiSelector().className(\"android.view.View\").instance(15)")));
-
+                By.xpath("//XCUIElementTypeOther[@name='dd/mm/yyyy']")));
             dobField.click();
-            System.out.println("✓ Step 13: DOB field clicked (Instance 15)");
+            System.out.println("✓ Step 13: DOB field clicked (iOS XPath)");
 
         } catch (Exception e) {
-            throw new RuntimeException("CRITICAL: Failed Step 13 DOB click: " + e.getMessage(), e);
+            throw new RuntimeException("CRITICAL: Failed Step 13 DOB click (iOS): " + e.getMessage(), e);
         }
     }
 
@@ -1426,34 +1410,28 @@ public class DataBankPage {
             Thread.sleep(1000); // Wait for date picker to appear
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-            // Use position-based XPath instead of hardcoded values
-            // This works regardless of what date is currently displayed
-            String[] seekBarXpaths = {
-                    "(//android.widget.SeekBar)[1]", // Day picker (1st SeekBar)
-                    "(//android.widget.SeekBar)[2]", // Month picker (2nd SeekBar)
-                    "(//android.widget.SeekBar)[3]" // Year picker (3rd SeekBar)
-            };
-
-            for (int i = 0; i < seekBarXpaths.length; i++) {
+            // Dynamically find all visible date pickers (XCUIElementTypeOther with traits Adjustable)
+            List<WebElement> pickers = driver.findElements(By.xpath("//XCUIElementTypeOther[contains(@traits,'Adjustable')]"));
+            if (pickers.isEmpty()) {
+                // Fallback: try all visible XCUIElementTypeOther with enabled=true and height > 100
+                pickers = driver.findElements(By.xpath("//XCUIElementTypeOther[@enabled='true' and @visible='true' and @height>100]"));
+            }
+            int idx = 1;
+            for (WebElement picker : pickers) {
                 try {
-                    WebElement seekBar = shortWait.until(ExpectedConditions.presenceOfElementLocated(
-                            By.xpath(seekBarXpaths[i])));
-
-                    // Perform swipe down action using W3C Actions
-                    swipeDown(seekBar);
+                    swipeDown(picker);
                     Thread.sleep(500); // Wait for swipe animation
-
-                    System.out.println("Successfully swiped SeekBar " + (i + 1));
-
+                    System.out.println("Successfully swiped date picker " + idx);
                 } catch (Exception e) {
-                    System.out.println("Could not find or swipe SeekBar at position: " + (i + 1));
+                    System.out.println("Could not swipe date picker at position: " + idx);
                 }
+                idx++;
             }
 
-            // Click CONFIRM button
+            // Click CONFIRM button (iOS)
             try {
                 WebElement confirmBtn = shortWait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//android.widget.Button[@content-desc='CONFIRM']")));
+                    By.xpath("//XCUIElementTypeButton[@name='CONFIRM']")));
                 confirmBtn.click();
                 System.out.println("Clicked CONFIRM button on date picker");
             } catch (Exception e) {
@@ -1562,30 +1540,35 @@ public class DataBankPage {
             hideKeyboard();
             Thread.sleep(1000);
 
-            // 1-2. Try primary Gender XPath, else fallback to Male ImageView
-            WebElement genderElement = null;
+            boolean genderClicked = false;
             try {
-                genderElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(genderDropdownXpath)));
+                WebElement genderElement = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//XCUIElementTypeButton[@name='Gender']")));
+                genderElement.click();
+                System.out.println("✓ Step 13: Gender button clicked (iOS)");
+                Thread.sleep(500);
+                genderClicked = true;
             } catch (Exception e) {
-                try {
-                    // 3. Fallback click option
-                    genderElement = wait.until(ExpectedConditions.elementToBeClickable(
-                            By.xpath("//android.widget.ImageView[@content-desc=\"Male\"]")));
-                } catch (Exception ex) {
-                    // 10. Specific failure message
-                    throw new RuntimeException("Gender selection failed: Gender element or Male option not found");
-                }
+                System.out.println("Gender button not found, will click Male directly...");
             }
 
-            // 5-6. Only one click, no double clicks
-            genderElement.click();
-            System.out.println("✓ Step 13: Gender element (or fallback) clicked");
-
-            // 7. Proceed with existing selection flow (unchanged delays)
-            Thread.sleep(500);
-            WebElement maleButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(maleButtonXpath)));
-            maleButton.click();
-            System.out.println("✓ Step 13: Gender selection completed (Male)");
+            if (genderClicked) {
+                // Only click Male once if Gender was present
+                WebElement maleButton = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//XCUIElementTypeButton[@name='Male']")));
+                maleButton.click();
+                System.out.println("✓ Step 13: Gender selection completed (Male, iOS)");
+            } else {
+                // If Gender not present, click Male twice
+                WebElement maleButton = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//XCUIElementTypeButton[@name='Male']")));
+                maleButton.click();
+                System.out.println("✓ Step 13: Male option clicked (iOS)");
+                WebElement maleButtonAgain = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//XCUIElementTypeButton[@name='Male']")));
+                maleButtonAgain.click();
+                System.out.println("✓ Step 13.1: Male option clicked again (iOS)");
+            }
 
         } catch (Exception e) {
             if (e.getMessage() != null && e.getMessage().contains("Gender selection failed")) {
@@ -1600,91 +1583,103 @@ public class DataBankPage {
      * Click country code, search for India, and select it
      */
     public void selectCountryCode() {
-        int maxRetries = 3;
-        boolean success = false;
-        String errorMessage = "India (+91) country code not found after search";
-
-        for (int i = 1; i <= maxRetries; i++) {
-            try {
-                System.out.println("Step 14: Country selection attempt " + i + " of " + maxRetries);
-
-                // 1. Open picker & wait for search input visibility
-                WebElement countryCodeDropdown;
+        long t0 = System.currentTimeMillis();
+        try {
+            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Step 14: Selecting country code (iOS, robust)");
+            // 1. Click current country code (🇦🇫 +93), handle possible newline in name/label/value
+            WebElement codeDropdown = null;
+            String[] attrs = {"name", "label", "value"};
+            boolean found = false;
+            for (String attr : attrs) {
                 try {
-                    countryCodeDropdown = wait
-                            .until(ExpectedConditions.elementToBeClickable(By.xpath(countryCodeXpath)));
-                } catch (Exception e) {
-                    countryCodeDropdown = wait.until(ExpectedConditions
-                            .elementToBeClickable(By.xpath("//android.view.View[contains(@content-desc, \"+\")]")));
-                }
-                countryCodeDropdown.click();
-
-                Thread.sleep(1500);
-                WebElement searchField = wait
-                        .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(countrySearchFieldXpath)));
-
-                // 2. Clear Box and type "India"
-                searchField.click();
-                searchField.clear();
-                searchField.sendKeys("India");
-                System.out.println("  - Typed 'India' in search box");
-
-                // 3. Wait for results list refresh
-                Thread.sleep(2500);
-
-                // 4-9. Identify Button: India +91, avoid BIOT (+246)
-                // Chaining UiSelector as requested
-                String uiAutomatorExpr = "new UiSelector().className(\"android.widget.Button\")" +
-                        ".descriptionContains(\"India\")" +
-                        ".descriptionContains(\"+91\")";
-
-                WebElement indiaButton = null;
-                try {
-                    indiaButton = driver.findElement(AppiumBy.androidUIAutomator(uiAutomatorExpr));
-                } catch (Exception e) {
-                    // 8. Scroll vertically if required
-                    System.out.println("  - India button not visible, attempting scroll...");
-                    scrollPageUp(); // Re-using existing scroll
-                    Thread.sleep(1000);
-                    indiaButton = driver.findElement(AppiumBy.androidUIAutomator(uiAutomatorExpr));
-                }
-
-                if (indiaButton != null) {
-                    String desc = indiaButton.getAttribute("content-desc");
-                    // 6-7. Ensure no match for +246 or BIOT
-                    if (desc != null && (desc.contains("+246") || desc.contains("British Indian Ocean Territory"))) {
-                        System.out.println("  ⚠ Unexpectedly found BIOT/+246, skipping...");
-                        continue;
-                    }
-
-                    indiaButton.click();
-                    System.out.println("  ✓ Clicked India (+91) Button");
-                }
-
-                // 10. Wait until picker closes
-                Thread.sleep(2000);
-
-                // 11. Validate selected country code is displayed as +91
-                WebElement activeCountry = wait.until(ExpectedConditions
-                        .presenceOfElementLocated(By.xpath("//android.view.View[contains(@content-desc, '+91')]")));
-                if (activeCountry.isDisplayed()) {
-                    System.out.println("✓ Step 14: Country code validation passed (+91)");
-                    success = true;
+                    codeDropdown = wait.until(ExpectedConditions.elementToBeClickable(
+                        By.xpath("//XCUIElementTypeStaticText[contains(@" + attr + ", '🇦🇫') and contains(@" + attr + ", '+93')]")));
+                    found = true;
+                    System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Found country code by " + attr);
                     break;
+                } catch (Exception e) {
+                    // Try next attribute
                 }
-
-            } catch (Exception e) {
-                System.out.println("  ⚠ Attempt " + i + " failed: " + e.getMessage());
-                hideKeyboard();
-                try {
-                    driver.navigate().back();
-                } catch (Exception ex) {
-                } // Try to close picker if stuck
             }
-        }
+            if (!found) {
+                try {
+                    List<WebElement> staticTexts = driver.findElements(By.className("XCUIElementTypeStaticText"));
+                    for (WebElement el : staticTexts) {
+                        String n = el.getAttribute("name");
+                        String l = el.getAttribute("label");
+                        String v = el.getAttribute("value");
+                        if ((n != null && n.contains("🇦🇫") && n.contains("+93")) ||
+                            (l != null && l.contains("🇦🇫") && l.contains("+93")) ||
+                            (v != null && v.contains("🇦🇫") && v.contains("+93"))) {
+                            codeDropdown = el;
+                            found = true;
+                            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Found country code by scan");
+                            break;
+                        }
+                    }
+                } catch (Exception e) {}
+            }
+            if (!found || codeDropdown == null) {
+                System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Country code element (🇦🇫 +93) not found");
+                throw new RuntimeException("Country code element (🇦🇫 +93) not found by any method");
+            }
+            codeDropdown.click();
+            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Clicked country code dropdown");
+            Thread.sleep(1200);
 
-        if (!success) {
-            throw new RuntimeException(errorMessage);
+            // 2. Click search bar (XCUIElementTypeTextField)
+            WebElement searchBar = null;
+            try {
+                searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeTextField")));
+            } catch (Exception e) {
+                searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.className("XCUIElementTypeTextField")));
+            }
+            searchBar.click();
+            searchBar.clear();
+            searchBar.sendKeys("India");
+            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Typed 'India' in search bar");
+            Thread.sleep(1500);
+
+            // 3. Select India +91 (robust: handle newlines, case, partial match)
+            WebElement indiaBtn = null;
+            boolean indiaFound = false;
+            String[] indiaAttrs = {"name", "label"};
+            for (String attr : indiaAttrs) {
+                try {
+                    indiaBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                        By.xpath("//XCUIElementTypeButton[contains(translate(@" + attr + ", '\\n', ''), 'India') and contains(translate(@" + attr + ", '\\n', ''), '+91')]")));
+                    indiaFound = true;
+                    System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Found India +91 button by " + attr);
+                    break;
+                } catch (Exception e) {}
+            }
+            if (!indiaFound) {
+                try {
+                    List<WebElement> buttons = driver.findElements(By.className("XCUIElementTypeButton"));
+                    for (WebElement btn : buttons) {
+                        String n = btn.getAttribute("name");
+                        String l = btn.getAttribute("label");
+                        String check = (n != null ? n : "") + " " + (l != null ? l : "");
+                        check = check.replace("\n", " ").toLowerCase();
+                        if (check.contains("india") && check.contains("+91")) {
+                            indiaBtn = btn;
+                            indiaFound = true;
+                            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Found India +91 button by scan");
+                            break;
+                        }
+                    }
+                } catch (Exception e) {}
+            }
+            if (!indiaFound || indiaBtn == null) {
+                System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] India (+91) button not found");
+                throw new RuntimeException("India (+91) button not found by any method");
+            }
+            indiaBtn.click();
+            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Clicked India (+91) Button");
+            Thread.sleep(1200);
+        } catch (Exception e) {
+            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] ERROR: " + e.getMessage());
+            throw new RuntimeException("Failed to select country code (India +91): " + e.getMessage(), e);
         }
     }
 
@@ -1693,18 +1688,27 @@ public class DataBankPage {
      * Click phone number field, fill it, and hide keyboard
      */
     public void fillPhoneNumber(String phoneNumber) {
+        long t0 = System.currentTimeMillis();
         try {
+            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Step 15: Filling phone number");
             WebElement phoneField = wait.until(
                     ExpectedConditions.elementToBeClickable(By.xpath(phoneNumberFieldXpath)));
             phoneField.click();
+            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Clicked phone number field");
             phoneField.clear();
             phoneField.sendKeys(phoneNumber);
-            System.out.println("✓ Step 15: Filled phone number: " + phoneNumber);
+            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Filled phone number: " + phoneNumber);
 
-            // Hide keyboard
-            hideKeyboard();
+            // Hide keyboard and log result
+            try {
+                hideKeyboard();
+                System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] hideKeyboard() called after phone number");
+            } catch (Exception e) {
+                System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] hideKeyboard() failed: " + e.getMessage());
+            }
 
         } catch (TimeoutException e) {
+            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] ERROR: Failed to fill phone number");
             throw new RuntimeException("Failed to fill phone number in Step 15", e);
         }
     }
@@ -2023,9 +2027,20 @@ public class DataBankPage {
      */
     public String verifyPaymentErrorAndGetMessage() {
         try {
-            // Verify PAYMENT ERROR dialog
-            WebElement paymentErrorDialog = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(paymentErrorDialogXpath)));
+            // Try to find PAYMENT ERROR dialog by XPath first
+            WebElement paymentErrorDialog = null;
+            try {
+                paymentErrorDialog = wait.until(
+                        ExpectedConditions.presenceOfElementLocated(By.xpath(paymentErrorDialogXpath)));
+            } catch (TimeoutException e) {
+                // Fallback: try by name if XPath fails
+                java.util.List<WebElement> elemsByName = driver.findElements(By.name("PAYMENT ERROR"));
+                if (!elemsByName.isEmpty()) {
+                    paymentErrorDialog = elemsByName.get(0);
+                } else {
+                    throw new RuntimeException("PAYMENT ERROR dialog not found by XPath or name");
+                }
+            }
 
             if (paymentErrorDialog.isDisplayed()) {
                 System.out.println("✓ Step 30: PAYMENT ERROR dialog is displayed");
@@ -2033,12 +2048,16 @@ public class DataBankPage {
                 throw new RuntimeException("PAYMENT ERROR dialog is not displayed");
             }
 
-            // Get error message
-            WebElement errorMessage = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath(paymentErrorMessageXpath)));
-            String message = errorMessage.getAttribute("content-desc");
+            // Get error message by name instead of XPath
+            WebElement errorMessage = null;
+            java.util.List<WebElement> elemsByName = driver.findElements(By.name("Please try again later."));
+            if (!elemsByName.isEmpty()) {
+                errorMessage = elemsByName.get(0);
+            } else {
+                throw new RuntimeException("Payment error message 'Please try again later.' not found by name");
+            }
+            String message = errorMessage.getText();
             System.out.println("✓ Step 30: Payment error message captured: " + message);
-
             return message;
 
         } catch (TimeoutException e) {

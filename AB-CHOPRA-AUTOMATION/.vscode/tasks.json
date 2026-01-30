@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run DataBankTest Case 4",
+			"type": "shell",
+			"command": "mvn",
+			"args": [
+				"-Dtest=com.automation.tests.DataBankTest#testDataBank_Case4",
+				"test"
+			],
+			"problemMatcher": [
+				"$javac"
+			]
+		}
+	]
+}
