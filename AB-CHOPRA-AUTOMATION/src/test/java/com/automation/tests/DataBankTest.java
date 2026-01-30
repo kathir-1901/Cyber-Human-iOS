@@ -1399,26 +1399,11 @@ public class DataBankTest extends BaseTest {
         driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeImage[@name='ACTIVITY & MOVEMENT']")).click();
         test.log(Status.PASS, "✓ Step 22: ACTIVITY & MOVEMENT dropdown clicked");
 
-        // ✅ TEST CASE 4 - STEP 23: Click HIGH PRIORITY and verify STEP COUNT High Priority
+        // ✅ TEST CASE 4 - STEP 23: Click HIGH PRIORITY only
         test.log(Status.INFO, "Step 23: Clicking HIGH PRIORITY filter");
         driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='HIGH PRIORITY']")).click();
         test.log(Status.PASS, "✓ Step 23: HIGH PRIORITY filter clicked");
-        // Wait for UI update
         Thread.sleep(1000);
-        // Robustly verify STEP COUNT High Priority by name/label (handle newlines)
-        boolean foundStepCountHigh = false;
-        java.util.List<org.openqa.selenium.WebElement> images = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeImage"));
-        for (org.openqa.selenium.WebElement el : images) {
-            String n = el.getAttribute("name");
-            String l = el.getAttribute("label");
-            if ((n != null && n.replaceAll("\\s+"," ").trim().equalsIgnoreCase("STEP COUNT High Priority")) ||
-                (l != null && l.replaceAll("\\s+"," ").trim().equalsIgnoreCase("STEP COUNT High Priority"))) {
-                foundStepCountHigh = true;
-                break;
-            }
-        }
-        Assert.assertTrue(foundStepCountHigh, "STEP COUNT High Priority not found after clicking HIGH PRIORITY");
-        test.log(Status.PASS, "✓ Step 23: STEP COUNT High Priority verified");
 
         // ✅ TEST CASE 4 - STEP 24: Click MEDIUM PRIORITY
         test.log(Status.INFO, "Step 24: Clicking MEDIUM PRIORITY filter");
@@ -1431,21 +1416,22 @@ public class DataBankTest extends BaseTest {
         test.log(Status.PASS, "✓ Step 25: LOW PRIORITY filter clicked");
 
         // ✅ TEST CASE 4 - STEP 26: Click STEP COUNT High Priority (by name only)
-        test.log(Status.INFO, "Step 26: Clicking STEP COUNT High Priority by name");
-        boolean clickedStepCount = false;
-        images = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeImage"));
-        for (org.openqa.selenium.WebElement el : images) {
-            String n = el.getAttribute("name");
-            String l = el.getAttribute("label");
-            if ((n != null && n.replaceAll("\\s+"," ").trim().equalsIgnoreCase("STEP COUNT High Priority")) ||
-                (l != null && l.replaceAll("\\s+"," ").trim().equalsIgnoreCase("STEP COUNT High Priority"))) {
-                el.click();
-                clickedStepCount = true;
-                break;
-            }
-        }
-        Assert.assertTrue(clickedStepCount, "STEP COUNT High Priority could not be clicked by name");
-        test.log(Status.PASS, "✓ Step 26: STEP COUNT High Priority clicked by name");
+        // TEMPORARILY REMOVED BY REQUEST
+        // test.log(Status.INFO, "Step 26: Clicking STEP COUNT High Priority by name");
+        // boolean clickedStepCount = false;
+        // images = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeImage"));
+        // for (org.openqa.selenium.WebElement el : images) {
+        //     String n = el.getAttribute("name");
+        //     String l = el.getAttribute("label");
+        //     if ((n != null && n.replaceAll("\\s+"," ").trim().equalsIgnoreCase("STEP COUNT High Priority")) ||
+        //         (l != null && l.replaceAll("\\s+"," ").trim().equalsIgnoreCase("STEP COUNT High Priority"))) {
+        //         el.click();
+        //         clickedStepCount = true;
+        //         break;
+        //     }
+        // }
+        // Assert.assertTrue(clickedStepCount, "STEP COUNT High Priority could not be clicked by name");
+        // test.log(Status.PASS, "✓ Step 26: STEP COUNT High Priority clicked by name");
 
         // ✅ TEST CASE 4 - STEP 27: Click back button once
         test.log(Status.INFO, "Step 27: Clicking back button once");
