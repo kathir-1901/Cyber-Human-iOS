@@ -250,11 +250,18 @@ public class DataBankTest extends BaseTest {
         test.log(Status.PASS, "✓ Step 17: City filled");
         Thread.sleep(3000);
 
+
         // ✅ TEST CASE 1 - STEP 18: Select country (India)
         test.log(Status.INFO, "Step 18: Selecting country (India)");
         dataBankPage.selectCountry();
         test.log(Status.PASS, "✓ Step 18: Country selected (India)");
         Thread.sleep(3000);
+
+        // ✅ TEST CASE 1 - NEW STEP: Swipe up once (iOS scroll view)
+        test.log(Status.INFO, "Step 18.1: Swiping up once to reveal more fields");
+        dataBankPage.swipeUpOnce();
+        test.log(Status.PASS, "✓ Step 18.1: Swiped up once");
+        Thread.sleep(2000);
 
         // ✅ TEST CASE 1 - STEP 19: Fill postal code (wrong - will cause error)
         test.log(Status.INFO, "Step 19: Filling postal code (wrong)");
@@ -620,10 +627,6 @@ public class DataBankTest extends BaseTest {
         test = extent.createTest("Data Bank Test Case 3");
         test.log(Status.INFO, "Starting Data Bank Test Case 3");
 
-        HomePage homePage = new HomePage(driver);
-        DataBankPage dataBankPage = new DataBankPage(driver);
-
-
         // Step 1: Verify DAILY PRIORITY heading is displayed on home page (iOS XPath)
         test.log(Status.INFO, "Step 1: Verifying DAILY PRIORITY heading on home page (iOS)");
         boolean isHomePageDisplayed = driver.findElements(
@@ -723,115 +726,181 @@ public class DataBankTest extends BaseTest {
             test.log(Status.PASS, "✓ DATA BANK is displayed after click");
         }
 
-        // ...existing code...
-
-        // ✅ TEST CASE 3 - STEP 4: Click DEVICES
+        // Step 4: Click DEVICES
         test.log(Status.INFO, "Step 4: Clicking DEVICES");
-        dataBankPage.clickDevices();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='DEVICES']")).click();
         test.log(Status.PASS, "✓ Step 4: DEVICES clicked");
-        Thread.sleep(2000); // Wait for UI to update after clicking DEVICES
+        Thread.sleep(5000);
 
-        // ✅ TEST CASE 3 - STEP 5: Click LINK DEVICE button
+        // Step 5: Click LINK DEVICE button
         test.log(Status.INFO, "Step 5: Clicking LINK DEVICE button");
-        dataBankPage.clickLinkDeviceButton();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='LINK DEVICE']")).click();
         test.log(Status.PASS, "✓ Step 5: LINK DEVICE button clicked");
-
-        // ✅ TEST CASE 3 - NEW STEP 6: Click ULTRAHUMAN button
+        Thread.sleep(2000);
+        
+        // Step 6: Click ULTRAHUMAN button
         test.log(Status.INFO, "Step 6: Clicking ULTRAHUMAN button");
-        dataBankPage.clickUltrahumanButton();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='ULTRAHUMAN']")).click();
         test.log(Status.PASS, "✓ Step 6: ULTRAHUMAN button clicked");
 
-        // ✅ TEST CASE 3 - STEP 7: Click checkbox (previously step 6)
+        // Step 7: Click checkbox
         test.log(Status.INFO, "Step 7: Clicking checkbox");
-        dataBankPage.clickCheckbox();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeApplication[@name='AB Chopra']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]")).click();
         test.log(Status.PASS, "✓ Step 7: Checkbox clicked");
 
-        // ✅ TEST CASE 3 - STEP 8: Click CONTINUE button (previously step 7)
+        // Step 8: Click CONTINUE button
         test.log(Status.INFO, "Step 8: Clicking CONTINUE button");
-        dataBankPage.clickContinueButton();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='CONTINUE']")).click();
         test.log(Status.PASS, "✓ Step 8: CONTINUE button clicked");
 
-        // ✅ TEST CASE 3 - STEP 9: Verify CONNECT WITH ULTRAHUMAN dialog (previously
-        // step 8)
+        // Step 9: Verify CONNECT WITH ULTRAHUMAN dialog
         test.log(Status.INFO, "Step 9: Verifying CONNECT WITH ULTRAHUMAN dialog");
-        dataBankPage.verifyConnectWithUltrahumanDialog();
-        test.log(Status.PASS, "✓ Step 9: CONNECT WITH ULTRAHUMAN dialog verified");
+        boolean isConnectDialog = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='CONNECT WITH ULTRAHUMAN']")).size() > 0;
+        Assert.assertTrue(isConnectDialog, "CONNECT WITH ULTRAHUMAN dialog not found");
+        test.log(Status.PASS, "✓ Step 9: CONNECT WITH ULTRAHUMAN dialog displayed");
 
-        // ✅ TEST CASE 3 - STEP 10: Enter invalid email (previously step 9)
+        // Step 10: Enter invalid email
         test.log(Status.INFO, "Step 10: Entering invalid email");
-        dataBankPage.enterInvalidEmail("invalid.email");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeTextField[@name='Ultrahuman Email']")).sendKeys("invalidemail");
         test.log(Status.PASS, "✓ Step 10: Invalid email entered");
 
-        // ✅ TEST CASE 3 - STEP 11: Click VERIFY button (previously step 10)
+        // Step 11: Click VERIFY button
         test.log(Status.INFO, "Step 11: Clicking VERIFY button");
-        dataBankPage.clickVerifyButton();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='VERIFY']")).click();
         test.log(Status.PASS, "✓ Step 11: VERIFY button clicked");
 
-        // ✅ TEST CASE 3 - STEP 12 & 13: Validate INVALID EMAIL ID dialog and capture
-        // error message (previously step 11 & 12)
+        // Step 12: Validate INVALID EMAIL ID dialog
         test.log(Status.INFO, "Step 12: Validating INVALID EMAIL ID dialog");
-        String errorMessage = dataBankPage.validateInvalidEmailDialog();
-        test.log(Status.PASS, "✓ Step 12: INVALID EMAIL ID dialog validated");
-        test.log(Status.INFO, "📋 Step 13 - Error Message: " + errorMessage);
+        boolean isInvalidEmailDialog = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='INVALID EMAIL ID']")).size() > 0;
+        Assert.assertTrue(isInvalidEmailDialog, "INVALID EMAIL ID dialog not found");
+        test.log(Status.PASS, "✓ Step 12: INVALID EMAIL ID dialog displayed");
 
-        // Verify the error message
-        Assert.assertEquals(errorMessage, "INVALID EMAIL ID",
-                "Error message should indicate invalid email");
-        test.log(Status.PASS, "✓ Step 13: Verified error message captured");
+        // Step 13: Capture error message
+        test.log(Status.INFO, "Step 13: Capturing error message");
+        String errorMsg = driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Please enter a valid email id.']")).getText();
+        test.log(Status.PASS, "✓ Step 13: Error message captured: " + errorMsg);
 
-        // ✅ TEST CASE 3 - STEP 14: Click OK button after invalid email (previously step
-        // 13)
+        // Step 14: Click OK button
         test.log(Status.INFO, "Step 14: Clicking OK button");
-        dataBankPage.clickOkButton();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
         test.log(Status.PASS, "✓ Step 14: OK button clicked");
 
-        // ✅ TEST CASE 3 - STEP 15: Click ULTRAHUMAN button
+        // Step 15: Click ULTRAHUMAN button
         test.log(Status.INFO, "Step 15: Clicking ULTRAHUMAN button");
-        dataBankPage.clickUltrahumanButton();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='ULTRAHUMAN']")).click();
         test.log(Status.PASS, "✓ Step 15: ULTRAHUMAN button clicked");
 
-        // ✅ TEST CASE 3 - STEP 16: Click checkbox
+        // Step 16: Click checkbox
         test.log(Status.INFO, "Step 16: Clicking checkbox");
-        dataBankPage.clickCheckbox();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeApplication[@name='AB Chopra']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]")).click();
         test.log(Status.PASS, "✓ Step 16: Checkbox clicked");
 
-        // ✅ TEST CASE 3 - STEP 17: Click CONTINUE button
+        // Step 17: Click CONTINUE button
         test.log(Status.INFO, "Step 17: Clicking CONTINUE button");
-        dataBankPage.clickContinueButton();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='CONTINUE']")).click();
         test.log(Status.PASS, "✓ Step 17: CONTINUE button clicked");
 
-        // ✅ TEST CASE 3 - STEP 18: Enter valid email
+        // Step 18: Enter valid email
         test.log(Status.INFO, "Step 18: Entering valid email");
-        dataBankPage.enterValidEmail("valid@example.com");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeTextField[@name='Ultrahuman Email']")).sendKeys("valid@email.com");
         test.log(Status.PASS, "✓ Step 18: Valid email entered");
 
-        // ✅ TEST CASE 3 - STEP 19: Click VERIFY button
+        // Step 19: Click VERIFY button
         test.log(Status.INFO, "Step 19: Clicking VERIFY button");
-        dataBankPage.clickVerifyButton();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='VERIFY']")).click();
         test.log(Status.PASS, "✓ Step 19: VERIFY button clicked");
 
-        // ✅ TEST CASE 3 - STEP 20 & 21: Validate DEVICE LINKED dialog and capture
-        // success message
+        // Step 20: Validate DEVICE LINKED dialog
         test.log(Status.INFO, "Step 20: Validating DEVICE LINKED dialog");
-        String successMessage = dataBankPage.validateDeviceLinkedDialog();
-        test.log(Status.PASS, "✓ Step 20: DEVICE LINKED dialog validated");
-        test.log(Status.INFO, "📋 Step 21 - Success Message: " + successMessage);
+        boolean isDeviceLinkedDialog = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='DEVICE LINKED']")).size() > 0;
+        Assert.assertTrue(isDeviceLinkedDialog, "DEVICE LINKED dialog not found");
+        test.log(Status.PASS, "✓ Step 20: DEVICE LINKED dialog displayed");
 
-        // Verify the success message
-        Assert.assertEquals(successMessage, "Your device has been successfully linked.",
-                "Success message should confirm successful device linking");
-        test.log(Status.PASS, "✓ Step 21: Verified success message captured");
+        // Step 21: Capture success message
+        test.log(Status.INFO, "Step 21: Capturing success message");
+        String successMsg = driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Your device has been successfully linked.']")).getText();
+        test.log(Status.PASS, "✓ Step 21: Success message captured: " + successMsg);
 
-        // ✅ TEST CASE 3 - STEP 22: Click OK button after successful device linking
+        // Step 22: Click OK button after successful device linking
         test.log(Status.INFO, "Step 22: Clicking OK button");
-        dataBankPage.clickOkButton();
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
         test.log(Status.PASS, "✓ Step 22: OK button clicked");
 
-        // ✅ TEST CASE 3 - STEP 23: Close the application to start fresh for the next
-        // test
-        test.log(Status.INFO, "Step 23: Closing application for fresh start");
-        ((io.appium.java_client.android.AndroidDriver) driver).terminateApp("com.houseofepigenetics.abchopra");
-        test.log(Status.PASS, "✓ Step 23: Application closed successfully");
+        // Step 23: Click APPLE HEALTH KIT
+        test.log(Status.INFO, "Step 23: Clicking APPLE HEALTH KIT");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='APPLE HEALTH KIT']")).click();
+        test.log(Status.PASS, "✓ Step 23: APPLE HEALTH KIT clicked");
+
+        // Step 24: Click checkbox
+        test.log(Status.INFO, "Step 24: Clicking checkbox");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeApplication[@name='AB Chopra']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]")).click();
+        test.log(Status.PASS, "✓ Step 24: Checkbox clicked");
+
+        // Step 25: Click CONTINUE button
+        test.log(Status.INFO, "Step 25: Clicking CONTINUE button");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='CONTINUE']")).click();
+        test.log(Status.PASS, "✓ Step 25: CONTINUE button clicked");
+        Thread.sleep(5000);
+
+        // Step 26: Verify DEVICE LINKED dialog is shown
+        test.log(Status.INFO, "Step 26: Verifying DEVICE LINKED dialog");
+        boolean isDeviceLinkedDialog2 = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='DEVICE LINKED']")).size() > 0;
+        Assert.assertTrue(isDeviceLinkedDialog2, "DEVICE LINKED dialog not found after Apple HealthKit");
+        test.log(Status.PASS, "✓ Step 26: DEVICE LINKED dialog displayed");
+
+        // Step 27: Get the success message
+        test.log(Status.INFO, "Step 27: Getting Apple HealthKit success message");
+        String healthKitMsg = driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Apple HealthKit has been successfully connected.']")).getText();
+        test.log(Status.PASS, "✓ Step 27: Success message captured: " + healthKitMsg);
+
+        // Step 28: Click OK
+        test.log(Status.INFO, "Step 28: Clicking OK button");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
+        test.log(Status.PASS, "✓ Step 28: OK button clicked");
+
+        // Step 29: Click back
+        test.log(Status.INFO, "Step 29: Clicking back button");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton")).click();
+        test.log(Status.PASS, "✓ Step 29: Back button clicked");
+
+        // Step 30: Swipe down once
+        test.log(Status.INFO, "Step 30: Swiping down once");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeScrollView")).sendKeys("down");
+        Thread.sleep(5000);
+        test.log(Status.PASS, "✓ Step 30: Swiped down once");
+
+        // Step 31: Verify Apple Health Kit is there
+        test.log(Status.INFO, "Step 31: Verifying Apple Health Kit is present");
+        boolean isAppleHealthKit = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Apple Health Kit']")).size() > 0;
+        Assert.assertTrue(isAppleHealthKit, "Apple Health Kit not found");
+        test.log(Status.PASS, "✓ Step 31: Apple Health Kit is present");
+
+        // Step 32: Click remove icon
+        test.log(Status.INFO, "Step 32: Clicking remove icon");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeApplication[@name='AB Chopra']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")).click();
+        test.log(Status.PASS, "✓ Step 32: Remove icon clicked");
+
+        // Step 33: Verify remove dialog is shown
+        test.log(Status.INFO, "Step 33: Verifying REMOVE DEVICE dialog");
+        boolean isRemoveDialog = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='REMOVE DEVICE']")).size() > 0;
+        Assert.assertTrue(isRemoveDialog, "REMOVE DEVICE dialog not found");
+        test.log(Status.PASS, "✓ Step 33: REMOVE DEVICE dialog displayed");
+
+        // Step 34: Click YES
+        test.log(Status.INFO, "Step 34: Clicking YES button");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='YES']")).click();
+        test.log(Status.PASS, "✓ Step 34: YES button clicked");
+
+        // Step 35: Verify REVOKE HEALTHKIT PERMISSIONS dialog
+        test.log(Status.INFO, "Step 35: Verifying REVOKE HEALTHKIT PERMISSIONS dialog");
+        boolean isRevokeDialog = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='REVOKE HEALTHKIT PERMISSIONS']")).size() > 0;
+        Assert.assertTrue(isRevokeDialog, "REVOKE HEALTHKIT PERMISSIONS dialog not found");
+        test.log(Status.PASS, "✓ Step 35: REVOKE HEALTHKIT PERMISSIONS dialog displayed");
+
+        // Step 36: Click OK
+        test.log(Status.INFO, "Step 36: Clicking OK button");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
+        test.log(Status.PASS, "✓ Step 36: OK button clicked");
 
         test.log(Status.PASS, "Data Bank Test Case 3 completed successfully");
     }

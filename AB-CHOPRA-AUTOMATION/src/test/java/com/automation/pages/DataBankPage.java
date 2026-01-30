@@ -32,91 +32,92 @@ public class DataBankPage {
     private final String dataBankHeadingXpath = "//android.view.View[@content-desc=\"DATA BANK\"]";
 
     // Test Case 1 - Specific Steps
-    private final String packagesAndPricingXpath = "//android.view.View[@content-desc=\"PACKAGES & PRICING\"]";
-    private final String continueButtonXpath = "//android.widget.Button[@content-desc=\"CONTINUE\"]";
-    private final String checkboxXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View[1]";
+    private final String packagesAndPricingXpath = "//XCUIElementTypeStaticText[@name=\"PACKAGES & PRICING\"]";
+    private final String continueButtonXpath = "//XCUIElementTypeButton[@name=\"CONTINUE\"]";
+    private final String checkboxXpath = "//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]";
 
     // Test Case 1 - Checkout Flow Steps (8-32)
-    private final String bagPageXpath = "//android.view.View[@content-desc=\"BAG\"]";
-    private final String essentialEpigeneticsDropdownXpath = "//android.widget.ImageView[@content-desc=\"Essential Epigenetics\"]";
-    private final String proceedToCheckoutButtonXpath = "//android.widget.Button[@content-desc=\"PROCEED TO CHECKOUT\"]";
-    private final String checkoutPageXpath = "//android.view.View[@content-desc=\"CHECKOUT\"]";
-    private final String deliveryAddressXpath = "//android.view.View[@content-desc=\"Delivery Address\"]";
-    private final String nameFieldXpath = "//android.widget.EditText[@text=\"John Doe\"]";
-    private final String confirmButtonXpath = "//android.widget.Button[@content-desc=\"CONFIRM\"]";
-    private final String genderDropdownXpath = "//android.widget.ImageView[@content-desc=\"Gender\"]";
-    private final String maleButtonXpath = "//android.widget.Button[@content-desc=\"Male\"]";
-    private final String countryCodeXpath = "//android.view.View[@content-desc=\"🇦🇫 +93\"]";
-    private final String countrySearchFieldXpath = "//android.widget.EditText";
-    private final String phoneNumberFieldXpath = "//android.widget.ScrollView/android.widget.EditText[2]";
-    private final String addressFieldXpath = "//android.widget.ScrollView/android.widget.EditText[3]";
-    private final String cityFieldXpath = "//android.widget.ScrollView/android.widget.EditText[4]";
-    private final String countryDropdownXpath = "//android.widget.ImageView[@content-desc=\"India\"]";
-    private final String indiaButtonXpath = "//android.widget.Button[@content-desc=\"India\"]";
-    private final String postalCodeFieldXpath = "//android.widget.ScrollView/android.widget.EditText[5]";
-    private final String saveAddressButtonXpath = "//android.widget.Button[@content-desc=\"SAVE ADDRESS\"]";
-    private final String errorDialogXpath = "//android.view.View[@content-desc=\"FIX THE FOLLOWING ERRORS\"]";
+    private final String bagPageXpath = "//XCUIElementTypeStaticText[@name=\"BAG\"]";
+    private final String essentialEpigeneticsDropdownXpath = "//XCUIElementTypeImage[@name=\"Essential Epigenetics\"]";
+    private final String proceedToCheckoutButtonXpath = "//XCUIElementTypeButton[@name=\"PROCEED TO CHECKOUT\"]";
+    private final String checkoutPageXpath = "//XCUIElementTypeStaticText[@name=\"CHECKOUT\"]";
+    private final String deliveryAddressXpath = "//XCUIElementTypeStaticText[@name=\"Delivery Address\"]";
+    private final String nameFieldXpath = "//XCUIElementTypeTextField[@value=\"John Doe\"]";
+    private final String confirmButtonXpath = "//XCUIElementTypeButton[@name=\"CONFIRM\"]";
+    private final String genderDropdownXpath = "//XCUIElementTypeButton[@name=\"Gender\"]";
+    private final String maleButtonXpath = "//XCUIElementTypeButton[@name=\"Male\"]";
+    private final String countryCodeXpath = "//XCUIElementTypeStaticText[@name=\"🇦🇫 +93\"]";
+    private final String countrySearchFieldXpath = "//XCUIElementTypeTextField";
+    private final String phoneNumberFieldXpath = "//XCUIElementTypeTextField[@name=\"Phone Number\"]";
+    private final String addressFieldXpath = "//XCUIElementTypeTextField[@name=\"Address *\"]";
+    private final String cityFieldXpath = "//XCUIElementTypeTextField[@name=\"City *\"]";
+    private final String countryDropdownXpath = "//XCUIElementTypeButton[@name=\"India\"]";
+    private final String indiaButtonXpath = "//XCUIElementTypeButton[@name=\"India\"]";
+    private final String postalCodeFieldXpath = "//XCUIElementTypeTextField[@name=\"Postal Code *\"]";
+    private final String saveAddressButtonXpath = "//XCUIElementTypeButton[@name=\"SAVE ADDRESS\"]";
+    private final String errorDialogXpath = "//XCUIElementTypeStaticText[@name=\"FIX THE FOLLOWING ERRORS\"]";
 
-    private final String shippingMethodXpath = "//android.view.View[@content-desc=\"Shipping Method\"]";
-    private final String proceedToPaymentButtonXpath = "//android.widget.Button[@content-desc=\"PROCEED TO PAYMENT\"]";
-    private final String closeSheetXpath = "//android.view.View[@content-desc=\"Close sheet\"]";
-    private final String paymentErrorDialogXpath = "//android.view.View[@content-desc=\"PAYMENT ERROR\"]";
-    private final String paymentErrorMessageXpath = "//android.view.View[@content-desc=\"Please try again later\"]";
-    private final String retryPaymentButtonXpath = "//android.view.View[@content-desc=\"Retry Payment\"]";
-    private final String paymentPageButtonXpath = "//android.widget.ScrollView/android.view.View[1]/android.widget.Button";
+    private final String shippingMethodXpath = "//XCUIElementTypeStaticText[@name=\"Shipping Method\"]";
+    private final String proceedToPaymentButtonXpath = "//XCUIElementTypeButton[@name=\"PROCEED TO PAYMENT\"]";
+    private final String closeSheetXpath = "//XCUIElementTypeApplication[@name=\"AB Chopra\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeScrollView";
+    private final String paymentErrorDialogXpath = "//XCUIElementTypeStaticText[@name=\"PAYMENT ERROR\"]";
+    private final String paymentErrorMessageXpath = "//XCUIElementTypeStaticText[@name=\"Please try again later.\"]";
+    private final String retryPaymentButtonXpath = "//XCUIElementTypeStaticText[@name=\"Retry Payment\"]";
+    private final String paymentPageButtonXpath = "//XCUIElementTypeButton[@name=\"pay_with_link_button\"]";
 
     // Test Case 2 - Specific Steps
-    private final String uploadDataXpath = "//android.view.View[@content-desc=\"UPLOAD DATA\"]";
-    private final String uploadReportButtonXpath = "//android.widget.Button[@content-desc=\"UPLOAD REPORT\"]";
-    private final String uploadFailedDialogXpath = "//android.view.View[@content-desc=\"UPLOAD FAILED\"]";
-    private final String uploadFailedMessageXpath = "//android.view.View[@content-desc=\"Wrong file type chosen. Only allowed type is pdf.\"]";
-    private final String okButtonXpath = "//android.widget.Button[@content-desc=\"OK\"]";
-    private final String uploadSuccessfulDialogXpath = "//android.view.View[@content-desc=\"UPLOAD SUCCESSFUL\"]";
-    private final String uploadSuccessMessageXpath = "//android.view.View[@content-desc=\"Your document has been successfully uploaded\"]";
-    private final String removeButtonXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]";
-    private final String areYouSureDialogXpath = "//android.view.View[@content-desc=\"ARE YOU SURE?\"]";
-    private final String yesButtonXpath = "//android.widget.Button[@content-desc=\"YES\"]";
-    private final String deleteSuccessfulDialogXpath = "//android.view.View[@content-desc=\"DELETE SUCCESSFUL\"]";
-    private final String deleteSuccessMessageXpath = "//android.view.View[@content-desc=\"Your report has been successfully removed.\"]";
+    private final String uploadDataXpath = "//XCUIElementTypeStaticText[@name=\"UPLOAD DATA\"]";
+    private final String uploadReportButtonXpath = "//XCUIElementTypeButton[@name=\"UPLOAD REPORT\"]";
+    // iOS XPaths for upload failed dialog and message
+    private final String uploadFailedDialogXpath = "//XCUIElementTypeStaticText[@name=\"UPLOAD FAILED\"]";
+    private final String uploadFailedMessageXpath = "//XCUIElementTypeStaticText[@name=\"Wrong file type chosen. Only allowed type is pdf.\"]";
+    private final String okButtonXpath = "//XCUIElementTypeButton[@name=\"OK\"]";
+    private final String uploadSuccessfulDialogXpath = "//XCUIElementTypeStaticText[@name=\"UPLOAD SUCCESSFUL\"]";
+    private final String uploadSuccessMessageXpath = "//XCUIElementTypeStaticText[@name=\"Your document has been successfully uploaded.\"]";
+    private final String removeButtonXpath = "//XCUIElementTypeApplication[@name=\"AB Chopra\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeImage[2]";
+    private final String areYouSureDialogXpath = "//XCUIElementTypeStaticText[@name=\"ARE YOU SURE?\"]";
+    private final String yesButtonXpath = "//XCUIElementTypeButton[@name=\"YES\"]";
+    private final String deleteSuccessfulDialogXpath = "//XCUIElementTypeStaticText[@name=\"DELETE SUCCESSFUL\"]";
+    private final String deleteSuccessMessageXpath = "//XCUIElementTypeStaticText[@name=\"Your report has been successfully removed.\"]";
 
     // Test Case 3 - Specific Steps
-    private final String devicesXpath = "//android.view.View[@content-desc=\"DEVICES\"]";
-    private final String linkDeviceButtonXpath = "//android.widget.Button[@content-desc=\"LINK DEVICE\"]";
-    private final String ultrahumanButtonXpath = "//android.view.View[@content-desc=\"ULTRAHUMAN\"]";
-    private final String connectWithUltrahumanDialogXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View";
-    private final String emailFieldXpath = "//android.widget.EditText";
-    private final String scrollViewXpath = "//android.widget.ScrollView";
-    private final String verifyButtonXpath = "//android.widget.Button[@content-desc=\"VERIFY\"]";
-    private final String invalidEmailDialogXpath = "//android.view.View[@content-desc=\"INVALID EMAIL ID\"]";
-    private final String deviceLinkedDialogXpath = "//android.view.View[@content-desc=\"DEVICE LINKED\"]";
-    private final String deviceLinkedMessageXpath = "//android.view.View[@content-desc=\"Your device has been successfully linked.\"]";
+    private final String devicesXpath = "//XCUIElementTypeStaticText[@name=\"DEVICES\"]";
+    private final String linkDeviceButtonXpath = "//XCUIElementTypeButton[@name=\"LINK DEVICE\"]";
+    private final String ultrahumanButtonXpath = "//XCUIElementTypeStaticText[@name=\"ULTRAHUMAN\"]";
+    private final String connectWithUltrahumanDialogXpath = "//XCUIElementTypeStaticText[@name=\"CONNECT WITH ULTRAHUMAN\"]";
+    private final String emailFieldXpath = "//XCUIElementTypeTextField[@name=\"Ultrahuman Email\"]";
+    private final String scrollViewXpath = "//XCUIElementTypeScrollView";
+    private final String verifyButtonXpath = "//XCUIElementTypeButton[@name=\"VERIFY\"]";
+    private final String invalidEmailDialogXpath = "//XCUIElementTypeStaticText[@name=\"INVALID EMAIL ID\"]";
+    private final String deviceLinkedDialogXpath = "//XCUIElementTypeStaticText[@name=\"DEVICE LINKED\"]";
+    private final String deviceLinkedMessageXpath = "//XCUIElementTypeStaticText[@name=\"Your device has been successfully linked.\"]";
 
     // Test Case 4 - Specific Steps
-    private final String reportsXpath = "//android.view.View[@content-desc=\"REPORTS\"]";
-    private final String bloodReportXpath = "//android.view.View[@content-desc=\"BLOOD REPORT\"]";
-    private final String dnaReportXpath = "//android.view.View[@content-desc=\"DNA REPORT\"]";
-    private final String deviceReportXpath = "//android.view.View[@content-desc=\"DEVICE REPORT\"]";
-    private final String uploadReportButtonCase4Xpath = "//android.widget.Button[@content-desc=\"UPLOAD REPORT\"]";
-    private final String uploadDataPageXpath = "//android.view.View[@content-desc=\"UPLOAD DATA\"]";
-    private final String epigeneticMappingButtonXpath = "//android.widget.Button[@content-desc=\"EPIGENETIC MAPPING\"]";
-    private final String packagesAndPricingPageXpath = "//android.view.View[@content-desc=\"PACKAGES & PRICING\"]";
-    private final String backButtonXpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView";
+    private final String reportsXpath = "//XCUIElementTypeStaticText[@name=\"REPORTS\"]";
+    private final String bloodReportXpath = "//XCUIElementTypeStaticText[@name=\"BLOOD REPORT\"]";
+    private final String dnaReportXpath = "//XCUIElementTypeStaticText[@name=\"DNA REPORT\"]";
+    private final String deviceReportXpath = "//XCUIElementTypeStaticText[@name=\"DEVICE REPORT\"]";
+    private final String uploadReportButtonCase4Xpath = "//XCUIElementTypeButton[@name=\"UPLOAD REPORT\"]";
+    private final String uploadDataPageXpath = "//XCUIElementTypeStaticText[@name=\"UPLOAD DATA\"]";
+    private final String epigeneticMappingButtonXpath = "//XCUIElementTypeButton[@name=\"EPIGENETIC MAPPING\"]";
+    private final String packagesAndPricingPageXpath = "//XCUIElementTypeStaticText[@name=\"PACKAGES & PRICING\"]";
+    private final String backButtonXpath = "//XCUIElementTypeButton";
 
     // Test Case 4 - Priority Filter Steps (New Steps 6-13)
-    private final String highPriorityButtonXpath = "//android.view.View[@content-desc=\"HIGH PRIORITY\"]";
-    private final String mediumPriorityButtonXpath = "//android.view.View[@content-desc=\"MEDIUM PRIORITY\"]";
-    private final String lowPriorityButtonXpath = "//android.view.View[@content-desc=\"LOW PRIORITY\"]";
-    private final String renalDropdownXpath = "//android.widget.ImageView[@content-desc=\"RENAL\"]";
-    // XPath for verification (using contains() to handle newline characters)
-    private final String creatinineHighPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'Creatinine') and contains(@content-desc, 'High Priority')]";
-    private final String bunMediumPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'Bun') and contains(@content-desc, 'Medium Priority') and not(contains(@content-desc, 'creatinine'))]";
-    private final String bunCreatinineLowPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'Bun/creatinine') and contains(@content-desc, 'Low Priority')]";
-    private final String egfrMediumPriorityXpath = "//android.widget.ImageView[contains(@content-desc, 'Egfr') and contains(@content-desc, 'Medium Priority')]";
+    private final String highPriorityButtonXpath = "//XCUIElementTypeStaticText[@name=\"HIGH PRIORITY\"]";
+    private final String mediumPriorityButtonXpath = "//XCUIElementTypeStaticText[@name=\"MEDIUM PRIORITY\"]";
+    private final String lowPriorityButtonXpath = "//XCUIElementTypeStaticText[@name=\"LOW PRIORITY\"]";
+    private final String renalDropdownXpath = "//XCUIElementTypeImage[@name=\"RENAL\"]";
+    // XPath for verification
+    private final String creatinineHighPriorityXpath = "//XCUIElementTypeImage[@name=\"CREATININE High Priority\"]";
+    private final String bunMediumPriorityXpath = "//XCUIElementTypeImage[@name=\"BUN Medium Priority\"]";
+    private final String bunCreatinineLowPriorityXpath = "//XCUIElementTypeImage[@name=\"BUN/CREATININE Low Priority\"]";
+    private final String egfrMediumPriorityXpath = "//XCUIElementTypeImage[@name=\"EGFR Medium Priority\"]";
     // XPath for second click in step 12 (simpler - just the name)
-    private final String bunSimpleXpath = "//android.widget.ImageView[@content-desc=\"Bun\"]";
-    private final String creatinineSimpleXpath = "//android.widget.ImageView[@content-desc=\"Creatinine\"]";
-    private final String bunCreatinineSimpleXpath = "//android.widget.ImageView[@content-desc=\"Bun/creatinine\"]";
-    private final String egfrSimpleXpath = "//android.widget.ImageView[@content-desc=\"Egfr\"]";
+    private final String bunSimpleXpath = "//XCUIElementTypeImage[@name=\"BUN\"]";
+    private final String creatinineSimpleXpath = "//XCUIElementTypeImage[@name=\"CREATININE\"]";
+    private final String bunCreatinineSimpleXpath = "//XCUIElementTypeImage[@name=\"BUN/CREATININE\"]";
+    private final String egfrSimpleXpath = "//XCUIElementTypeImage[@name=\"EGFR\"]";
 
     // ==================== COMMON STEP 3 ====================
 
