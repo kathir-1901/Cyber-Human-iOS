@@ -3,15 +3,16 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="com.automation.tests.DataBankTest">
+      <class name="com.automation.tests.SignInTest">
         <methods>
-          <include name="testDataBank_Case4"/>
+          <include name="testPositiveSignIn"/>
           <include name="setup"/>
           <include name="tearDownReport"/>
           <include name="setupReport"/>
           <include name="tearDown"/>
+          <include name="navigateToSignInPageBeforeTest"/>
         </methods>
-      </class> <!-- com.automation.tests.DataBankTest -->
+      </class> <!-- com.automation.tests.SignInTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->

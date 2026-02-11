@@ -1,125 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-30T10:55:29 GMT-08:00" name="Surefire suite" finished-at="2026-01-30T11:02:09 GMT-08:00" duration-ms="400125">
+  <suite started-at="2026-02-11T14:48:00 IST" name="Surefire suite" finished-at="2026-02-11T14:48:52 IST" duration-ms="52205">
     <groups>
     </groups>
-    <test started-at="2026-01-30T10:55:29 GMT-08:00" name="Surefire test" finished-at="2026-01-30T11:02:09 GMT-08:00" duration-ms="400125">
-      <class name="com.automation.tests.DataBankTest">
-        <test-method is-config="true" signature="setupReport()[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T10:55:29 GMT-08:00" name="setupReport" finished-at="2026-01-30T10:55:29 GMT-08:00" duration-ms="130" status="PASS">
+    <test started-at="2026-02-11T14:48:00 IST" name="Surefire test" finished-at="2026-02-11T14:48:52 IST" duration-ms="52205">
+      <class name="com.automation.tests.SignInTest">
+        <test-method is-config="true" signature="setupReport()[pri:0, instance:com.automation.tests.SignInTest@23986957]" started-at="2026-02-11T14:47:59 IST" name="setupReport" finished-at="2026-02-11T14:48:00 IST" duration-ms="84" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupReport -->
-        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T10:55:29 GMT-08:00" name="setup" finished-at="2026-01-30T10:55:39 GMT-08:00" duration-ms="9300" status="PASS">
+        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:com.automation.tests.SignInTest@23986957]" started-at="2026-02-11T14:48:00 IST" name="setup" finished-at="2026-02-11T14:48:04 IST" duration-ms="4746" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.automation.tests.DataBankTest.testDataBank_Case1() throws java.lang.InterruptedException]]>
+                <![CDATA[public void com.automation.tests.SignInTest.testPositiveSignIn() throws java.lang.InterruptedException]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="testDataBank_Case1()[pri:1, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T10:55:39 GMT-08:00" name="testDataBank_Case1" finished-at="2026-01-30T10:59:12 GMT-08:00" duration-ms="213151" status="PASS">
+        <test-method is-config="true" signature="navigateToSignInPageBeforeTest()[pri:0, instance:com.automation.tests.SignInTest@23986957]" started-at="2026-02-11T14:48:04 IST" name="navigateToSignInPageBeforeTest" finished-at="2026-02-11T14:48:08 IST" duration-ms="3808" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testDataBank_Case1 -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T10:59:12 GMT-08:00" name="tearDown" finished-at="2026-01-30T10:59:15 GMT-08:00" duration-ms="3079" status="PASS">
+        </test-method> <!-- navigateToSignInPageBeforeTest -->
+        <test-method signature="testPositiveSignIn()[pri:0, instance:com.automation.tests.SignInTest@23986957]" started-at="2026-02-11T14:48:08 IST" name="testPositiveSignIn" finished-at="2026-02-11T14:48:49 IST" duration-ms="40563" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testPositiveSignIn -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.automation.tests.SignInTest@23986957]" started-at="2026-02-11T14:48:49 IST" name="tearDown" finished-at="2026-02-11T14:48:52 IST" duration-ms="3069" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=testDataBank_Case1 status=SUCCESS method=DataBankTest.testDataBank_Case1()[pri:1, instance:com.automation.tests.DataBankTest@8909f18] output={null}]]]>
+                <![CDATA[[TestResult name=testPositiveSignIn status=SUCCESS method=SignInTest.testPositiveSignIn()[pri:0, instance:com.automation.tests.SignInTest@23986957] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T10:59:15 GMT-08:00" name="setup" finished-at="2026-01-30T10:59:23 GMT-08:00" duration-ms="8024" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.automation.tests.DataBankTest.testDataBank_Case2() throws java.lang.InterruptedException]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="testDataBank_Case2()[pri:2, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T10:59:23 GMT-08:00" name="testDataBank_Case2" finished-at="2026-01-30T11:00:07 GMT-08:00" duration-ms="44087" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testDataBank_Case2 -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T11:00:07 GMT-08:00" name="tearDown" finished-at="2026-01-30T11:00:10 GMT-08:00" duration-ms="3046" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=testDataBank_Case2 status=SUCCESS method=DataBankTest.testDataBank_Case2()[pri:2, instance:com.automation.tests.DataBankTest@8909f18] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T11:00:10 GMT-08:00" name="setup" finished-at="2026-01-30T11:00:18 GMT-08:00" duration-ms="7919" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.automation.tests.DataBankTest.testDataBank_Case3() throws java.lang.InterruptedException]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="testDataBank_Case3()[pri:3, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T11:00:18 GMT-08:00" name="testDataBank_Case3" finished-at="2026-01-30T11:00:58 GMT-08:00" duration-ms="39923" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testDataBank_Case3 -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T11:00:58 GMT-08:00" name="tearDown" finished-at="2026-01-30T11:01:01 GMT-08:00" duration-ms="3050" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=testDataBank_Case3 status=SUCCESS method=DataBankTest.testDataBank_Case3()[pri:3, instance:com.automation.tests.DataBankTest@8909f18] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T11:01:01 GMT-08:00" name="setup" finished-at="2026-01-30T11:01:09 GMT-08:00" duration-ms="7900" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.automation.tests.DataBankTest.testDataBank_Case4() throws java.lang.InterruptedException]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="testDataBank_Case4()[pri:4, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T11:01:09 GMT-08:00" name="testDataBank_Case4" finished-at="2026-01-30T11:02:06 GMT-08:00" duration-ms="57550" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testDataBank_Case4 -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T11:02:06 GMT-08:00" name="tearDown" finished-at="2026-01-30T11:02:09 GMT-08:00" duration-ms="3046" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=testDataBank_Case4 status=SUCCESS method=DataBankTest.testDataBank_Case4()[pri:4, instance:com.automation.tests.DataBankTest@8909f18] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="tearDownReport()[pri:0, instance:com.automation.tests.DataBankTest@8909f18]" started-at="2026-01-30T11:02:09 GMT-08:00" name="tearDownReport" finished-at="2026-01-30T11:02:10 GMT-08:00" duration-ms="130" status="PASS">
+        <test-method is-config="true" signature="tearDownReport()[pri:0, instance:com.automation.tests.SignInTest@23986957]" started-at="2026-02-11T14:48:52 IST" name="tearDownReport" finished-at="2026-02-11T14:48:52 IST" duration-ms="122" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownReport -->
-      </class> <!-- com.automation.tests.DataBankTest -->
+      </class> <!-- com.automation.tests.SignInTest -->
     </test> <!-- Surefire test -->
   </suite> <!-- Surefire suite -->
 </testng-results>

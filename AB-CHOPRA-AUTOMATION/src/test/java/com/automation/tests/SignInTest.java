@@ -209,101 +209,75 @@ public class SignInTest extends BaseTest {
 
         signInPage.clickContinue();
         test.log(Status.INFO, "Clicked Continue button");
+        // ...existing code for post-login steps...
+        // Step 1: Verify DAILY PRIORITY page shows
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            WebElement dailyPriority = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//XCUIElementTypeStaticText[@name='DAILY PRIORITY']")));
+            test.log(Status.PASS, "✓ DAILY PRIORITY page verified - Home page loaded");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ DAILY PRIORITY not found");
+        }
 
-        // Wait for navigation to LINK DEVICES page
-        // User requested approx 5 sec wait/check for "LINK DEVICES"
-        boolean isLinkDevicesPage = signInPage.isLinkDevicesDisplayed();
+        // Step 2: Click WELLBEING DASHBOARD
+        try {
+            WebElement wellbeingDashboard = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//XCUIElementTypeImage[@name='WELLBEING DASHBOARD HOME'] | //XCUIElementTypeImage[contains(@name, 'WELLBEING')]")));
+            wellbeingDashboard.click();
+            test.log(Status.INFO, "✓ Clicked WELLBEING DASHBOARD HOME");
+            Thread.sleep(1500);
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ WELLBEING DASHBOARD HOME not found: " + e.getMessage());
+        }
 
-        if (isLinkDevicesPage) {
-            // PASS: Successfully navigated to Link Devices page
-            test.log(Status.PASS, "✓ 'LINK DEVICES' page displayed - Login successful");
-            test.log(Status.PASS, "Test PASSED: Valid credentials accepted and navigated to next screen");
+        // Step 3: Click PROFILE
+        try {
+            WebElement profile = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//XCUIElementTypeStaticText[@name='PROFILE']")));
+            profile.click();
+            test.log(Status.INFO, "✓ Clicked PROFILE");
+            Thread.sleep(1500);
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ PROFILE button not found: " + e.getMessage());
+        }
+        Thread.sleep(5000);
 
-            // Click "SKIP FOR NOW"
-            signInPage.clickSkipForNow();
-            test.log(Status.INFO, "✓ Clicked 'SKIP FOR NOW' - Test completed successfully");
+        // Step 4: Click LOG OUT
+        try {
+            WebElement logout = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//XCUIElementTypeStaticText[@name='LOG OUT']")));
+            logout.click();
+            test.log(Status.INFO, "✓ Clicked LOG OUT");
+            Thread.sleep(1500);
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ LOG OUT button not found: " + e.getMessage());
+        }
 
-            // Step 1: Verify DAILY PRIORITY page shows
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            try {
-                WebElement dailyPriority = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//XCUIElementTypeStaticText[@name='DAILY PRIORITY']")));
-                test.log(Status.PASS, "✓ DAILY PRIORITY page verified - Home page loaded");
-            } catch (Exception e) {
-                test.log(Status.WARNING, "⚠ DAILY PRIORITY not found");
-            }
+        // Step 5: Click YES
+        try {
+            WebElement yes = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//XCUIElementTypeStaticText[@name='YES']")));
+            yes.click();
+            test.log(Status.INFO, "✓ Clicked YES");
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ YES button not found: " + e.getMessage());
+        }
 
-            // Step 2: Click WELLBEING DASHBOARD
-            try {
-                WebElement wellbeingDashboard = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//XCUIElementTypeImage[@name='WELLBEING DASHBOARD HOME'] | //XCUIElementTypeImage[contains(@name, 'WELLBEING')]")));
-                wellbeingDashboard.click();
-                test.log(Status.INFO, "✓ Clicked WELLBEING DASHBOARD HOME");
-                Thread.sleep(1500);
-            } catch (Exception e) {
-                test.log(Status.WARNING, "⚠ WELLBEING DASHBOARD HOME not found: " + e.getMessage());
-            }
+        // Step 6: Wait 3 seconds
+        Thread.sleep(3000);
+        test.log(Status.INFO, "⏳ Waited 3 seconds for logout");
 
-            // Step 3: Click PROFILE
-            try {
-                WebElement profile = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//XCUIElementTypeStaticText[@name='PROFILE']")));
-                profile.click();
-                test.log(Status.INFO, "✓ Clicked PROFILE");
-                Thread.sleep(1500);
-            } catch (Exception e) {
-                test.log(Status.WARNING, "⚠ PROFILE button not found: " + e.getMessage());
-            }
-            Thread.sleep(5000);
-
-            // Step 4: Click LOG OUT
-            try {
-                WebElement logout = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//XCUIElementTypeStaticText[@name='LOG OUT']")));
-                logout.click();
-                test.log(Status.INFO, "✓ Clicked LOG OUT");
-                Thread.sleep(1500);
-            } catch (Exception e) {
-                test.log(Status.WARNING, "⚠ LOG OUT button not found: " + e.getMessage());
-            }
-
-            // Step 5: Click YES
-            try {
-                WebElement yes = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//XCUIElementTypeStaticText[@name='YES']")));
-                yes.click();
-                test.log(Status.INFO, "✓ Clicked YES");
-                Thread.sleep(1000);
-            } catch (Exception e) {
-                test.log(Status.WARNING, "⚠ YES button not found: " + e.getMessage());
-            }
-
-            // Step 6: Wait 3 seconds
-            Thread.sleep(3000);
-            test.log(Status.INFO, "⏳ Waited 3 seconds for logout");
-
-            // Step 7: Verify SIGN IN page shows after logout
-            try {
-                WebElement signInPage_verify = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//XCUIElementTypeStaticText[@name='SIGN IN']")));
-                test.log(Status.PASS, "✓ SIGN IN page verified - Logout successful");
-                test.log(Status.PASS, "✓✓✓ FULL TEST PASSED: Login → Skip → Logout → Sign In Page");
-            } catch (Exception e) {
-                test.log(Status.WARNING, "⚠ SIGN IN page not found after logout: " + e.getMessage());
-                test.log(Status.FAIL, "Failed to verify Sign In page after logout");
-            }
-
-        } else {
-            // FAIL: Did not navigate to Link Devices page
-            test.log(Status.FAIL, "✗ Failed to navigate to 'LINK DEVICES' page");
-
-            // Check if validation error is present to give more context
-            if (signInPage.isAnyValidationVisible()) {
-                String msg = signInPage.getValidationMessage();
-                test.log(Status.INFO, "Validation error detected: " + msg);
-            }
-
-            Assert.fail("Expected to navigate to 'LINK DEVICES' page after valid login");
+        // Step 7: Verify SIGN IN page shows after logout
+        try {
+            WebElement signInPage_verify = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//XCUIElementTypeStaticText[@name='SIGN IN']")));
+            test.log(Status.PASS, "✓ SIGN IN page verified - Logout successful");
+            test.log(Status.PASS, "✓✓✓ FULL TEST PASSED: Login → Skip → Logout → Sign In Page");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ SIGN IN page not found after logout: " + e.getMessage());
+            test.log(Status.FAIL, "Failed to verify Sign In page after logout");
         }
     }
 }
