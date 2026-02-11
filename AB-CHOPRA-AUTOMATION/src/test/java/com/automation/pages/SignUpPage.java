@@ -596,8 +596,8 @@ public class SignUpPage {
     public boolean isResendSuccessfulDialogDisplayed() {
         try {
             WebElement resendDialog = findElementWithFallback(null,
-                    "//XCUIElementTypeStaticText[@name='RESEND SUCCESSFUL']",
-                    "RESEND SUCCESSFUL");
+                    "//XCUIElementTypeStaticText[@name='RESENT SUCCESSFULLY']",
+                    "RESENT SUCCESSFULLY");
             return resendDialog.isDisplayed();
         } catch (Exception e) {
             return false;
