@@ -215,7 +215,7 @@ public class ForgotPasswordPage {
     private final String getNewCodeXpath = "//XCUIElementTypeStaticText[@name=\"Get a new code\"]";
 
     // Step 13: Resend Successful dialog (iOS)
-    private final String resendSuccessfulDialogXpath = "//XCUIElementTypeStaticText[@name=\"RESEND SUCCESSFUL\"]";
+    private final String resendSuccessfulDialogXpath = "//XCUIElementTypeStaticText[@name=\"RESENT SUCCESSFULLY\"]";
     private final String resendSuccessMessageXpath = "//XCUIElementTypeStaticText[@name=\"Verification code has been send successfully.\"]";
 
     // Step 16: Reset Password page (iOS)

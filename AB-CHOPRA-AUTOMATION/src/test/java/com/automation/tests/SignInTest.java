@@ -201,7 +201,7 @@ public class SignInTest extends BaseTest {
 
         // Use valid credentials
         String validEmail = "ramesh@navadhiti.com";
-        String validPassword = "Testing@2026";
+        String validPassword = "Human@2026";
 
         signInPage.enterEmail(validEmail);
         signInPage.enterPassword(validPassword);
@@ -209,15 +209,68 @@ public class SignInTest extends BaseTest {
 
         signInPage.clickContinue();
         test.log(Status.INFO, "Clicked Continue button");
-        // ...existing code for post-login steps...
-        // Step 1: Verify DAILY PRIORITY page shows
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Declare wait once for the method
+        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+
+        // Step 0.1: Click UPLOAD button (XCUIElementTypeButton[@name="UPLOAD"])
+        try {
+            WebElement uploadBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name='UPLOAD']")));
+            uploadBtn.click();
+            test.log(Status.INFO, "✓ Clicked UPLOAD button (Step 0.1)");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click UPLOAD button: " + e.getMessage());
+            throw new RuntimeException("Failed to click UPLOAD button in Step 0.1", e);
+        }
+
+        // Step 0.2: Click TAKE A PHOTO
+        try {
+            WebElement takePhoto = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeStaticText[@name='TAKE A PHOTO']")));
+            takePhoto.click();
+            test.log(Status.INFO, "✓ Clicked TAKE A PHOTO");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click TAKE A PHOTO: " + e.getMessage());
+            throw new RuntimeException("Failed to click TAKE A PHOTO", e);
+        }
+
+        // Step 0.3: Click capture (PhotoCapture)
+        try {
+            WebElement captureBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name='PhotoCapture']")));
+            captureBtn.click();
+            test.log(Status.INFO, "✓ Clicked PhotoCapture button");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click PhotoCapture: " + e.getMessage());
+            throw new RuntimeException("Failed to click PhotoCapture", e);
+        }
+
+        // Step 0.4: Click Use Photo
+        try {
+            WebElement usePhoto = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeStaticText[@name='Use Photo']")));
+            usePhoto.click();
+            test.log(Status.INFO, "✓ Clicked Use Photo");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click Use Photo: " + e.getMessage());
+            throw new RuntimeException("Failed to click Use Photo", e);
+        }
+
+        // Step 0.5: Click UPLOAD
+        try {
+            WebElement uploadBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name='UPLOAD']")));
+            uploadBtn.click();
+            test.log(Status.INFO, "✓ Clicked UPLOAD button");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click UPLOAD: " + e.getMessage());
+            throw new RuntimeException("Failed to click UPLOAD", e);
+        }
+
+        // Wait until DAILY PRIORITY page is visible before proceeding
         try {
             WebElement dailyPriority = wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//XCUIElementTypeStaticText[@name='DAILY PRIORITY']")));
             test.log(Status.PASS, "✓ DAILY PRIORITY page verified - Home page loaded");
         } catch (Exception e) {
-            test.log(Status.WARNING, "⚠ DAILY PRIORITY not found");
+            test.log(Status.WARNING, "⚠ DAILY PRIORITY not found after upload: " + e.getMessage());
+            throw new RuntimeException("DAILY PRIORITY page not found after upload", e);
         }
 
         // Step 2: Click WELLBEING DASHBOARD

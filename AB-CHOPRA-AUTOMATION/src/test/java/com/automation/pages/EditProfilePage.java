@@ -108,26 +108,47 @@ public class EditProfilePage {
         try {
             hideKeyboard();
             Thread.sleep(500);
+            // Try by static xpath (label)
             WebElement dobField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dateOfBirthFieldXpath)));
             dobField.click();
+            return;
         } catch (Exception e1) {
+            // Try by accessibility id
             try {
                 WebElement dobAccId = driver.findElement(io.appium.java_client.MobileBy.AccessibilityId("Date of birth"));
                 dobAccId.click();
+                return;
             } catch (Exception e2) {
+                // Try by iOS class chain
                 try {
                     WebElement dobClassChain = driver.findElement(io.appium.java_client.MobileBy.iOSClassChain("**/XCUIElementTypeOther[`name == 'Date of birth'`]"));
                     dobClassChain.click();
+                    return;
                 } catch (Exception e3) {
+                    // Try by iOS predicate
                     try {
                         WebElement dobPredicate = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == 'Date of birth'"));
                         dobPredicate.click();
+                        return;
                     } catch (Exception e4) {
+                        // Try by generic XCUIElementTypeOther with value attribute matching a date pattern (e.g., 20/01/2026)
                         try {
+                            java.util.List<WebElement> others = driver.findElements(By.xpath("//XCUIElementTypeOther[@value]"));
+                            boolean clicked = false;
+                            for (WebElement el : others) {
+                                String value = el.getAttribute("value");
+                                if (value != null && value.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                                    el.click();
+                                    clicked = true;
+                                    break;
+                                }
+                            }
+                            if (clicked) return;
+                            // Fallback: swipe up and try again by static xpath
                             swipeUp();
                             Thread.sleep(500);
-                            WebElement dobField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(dateOfBirthFieldXpath)));
-                            tapElement(dobField);
+                            WebElement dobField2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(dateOfBirthFieldXpath)));
+                            tapElement(dobField2);
                         } catch (Exception ex) {
                             throw new RuntimeException("Date of Birth field not found or clickable on Edit Profile page after retry", ex);
                         }

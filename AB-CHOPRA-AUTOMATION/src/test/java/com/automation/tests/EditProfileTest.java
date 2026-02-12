@@ -58,18 +58,18 @@ public class EditProfileTest extends BaseTest {
     public Object[][] getChangePasswordData() {
         // "loginPassword" is assumed to be "Ramesh@2025" based on
         // navigateToEditProfileFirstTime
-        String currentLoginPass = "Testing@2026";
+        String currentLoginPass = "Human@2026";
 
         return new Object[][] {
                 // Scenario, Current Pass, New Pass, Confirm Pass, Expected Error XPath (or
                 // "SUCCESS")
-                { "Wrong Old Password Validation", "Testing@2025", "Testing@2026", "Testing@2026",
+                { "Wrong Old Password Validation", "Testing@2025", "Human@2026", "Human@2026",
                     "//XCUIElementTypeStaticText[@name='Wrong password. Please enter correct password.']" },
                 { "Weak Password Validation", currentLoginPass, "test2026", "test2026",
                     "//XCUIElementTypeStaticText[@name='Use at least 8 characters with uppercase, lowercase, number, and special symbol.']" },
                 { "Same Old and New Password Validation", currentLoginPass, currentLoginPass, currentLoginPass,
                     "//XCUIElementTypeStaticText[@name='Current and new password cannot be the same.']" },
-                { "Valid Change Password", currentLoginPass, "Human@2026", "Human@2026", "SUCCESS" }
+                { "Valid Change Password", currentLoginPass, "Testing@2026", "Testing@2026", "SUCCESS" }
         };
     }
 
@@ -83,13 +83,26 @@ public class EditProfileTest extends BaseTest {
         // Step 1: Sign In with valid credentials
         SignInPage signInPage = new SignInPage(driver);
         signInPage.enterEmail("ramesh@navadhiti.com");
-        signInPage.enterPassword("Testing@2026");
+        signInPage.enterPassword("Human@2026");
+
         signInPage.clickContinue();
         test.log(Status.INFO, "Signed in with valid credentials");
         Thread.sleep(2000);
 
-        // Step 1.1: Tap "NO" button if present (by xpath or name)
-        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(5));
+        // Declare wait once for the method
+        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+
+        // After clicking Continue, if SKIP FOR NOW button is present, click it
+        try {
+            WebElement skipForNowBtn = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeButton[@name='SKIP FOR NOW']")));
+            if (skipForNowBtn != null && skipForNowBtn.isDisplayed() && skipForNowBtn.isEnabled()) {
+                skipForNowBtn.click();
+                test.log(Status.INFO, "✓ Clicked SKIP FOR NOW button after Continue");
+                Thread.sleep(1500);
+            }
+        } catch (Exception e) {
+            test.log(Status.INFO, "SKIP FOR NOW button not present after Continue, proceeding");
+        }
         boolean tappedNo = false;
         try {
             WebElement noButton = wait.until(ExpectedConditions.elementToBeClickable(
@@ -110,16 +123,7 @@ public class EditProfileTest extends BaseTest {
                 test.log(Status.INFO, "'NO' button not found by name either, continuing");
             }
         }
-
-        // Step 2: Wait for LINK DEVICES page and click SKIP FOR NOW
-        boolean isLinkDevicesPage = signInPage.isLinkDevicesDisplayed();
-        if (isLinkDevicesPage) {
-            signInPage.clickSkipForNow();
-            test.log(Status.INFO, "✓ Clicked SKIP FOR NOW on Link Devices page");
-            Thread.sleep(1500);
-        } else {
-            test.log(Status.WARNING, "⚠ Link Devices page not found, continuing anyway");
-        }
+        // Removed: Step for LINK DEVICES page and SKIP FOR NOW after tapping 'NO'
 
         // Step 3: Click WELLBEING DASHBOARD (using working XPath from SignInTest)
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -186,6 +190,122 @@ public class EditProfileTest extends BaseTest {
         EditProfilePage editProfilePage = new EditProfilePage(driver);
         if (editProfilePage.isEditProfilePageDisplayed()) {
             test.log(Status.INFO, "✓ Edit Profile page displayed successfully");
+        }
+
+
+        // Step 6: Click profile image (by type XCUIElementTypeImage, xpath //XCUIElementTypeImage)
+        WebElement profileImage = null;
+        try {
+            profileImage = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeImage")));
+            profileImage.click();
+            test.log(Status.INFO, "✓ Clicked profile image by xpath");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click profile image: " + e.getMessage());
+            throw new RuntimeException("Failed to click profile image", e);
+        }
+
+        // Step 7: Tap TAKE A PHOTO
+        try {
+            WebElement takePhoto = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeStaticText[@name='TAKE A PHOTO']")));
+            takePhoto.click();
+            test.log(Status.INFO, "✓ Clicked TAKE A PHOTO");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click TAKE A PHOTO: " + e.getMessage());
+            throw new RuntimeException("Failed to click TAKE A PHOTO", e);
+        }
+
+        // Step 8: Click capture (PhotoCapture)
+        try {
+            WebElement captureBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name='PhotoCapture']")));
+            captureBtn.click();
+            test.log(Status.INFO, "✓ Clicked PhotoCapture button");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click PhotoCapture: " + e.getMessage());
+            throw new RuntimeException("Failed to click PhotoCapture", e);
+        }
+
+        // Step 9: Click Use Photo
+        try {
+            WebElement usePhoto = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeStaticText[@name='Use Photo']")));
+            usePhoto.click();
+            test.log(Status.INFO, "✓ Clicked Use Photo");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click Use Photo: " + e.getMessage());
+            throw new RuntimeException("Failed to click Use Photo", e);
+        }
+
+        // Step 10: Verify profile upload dialog is showing
+        try {
+            WebElement uploadDialog = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='PROFILE IMAGE UPLOADED']")));
+            test.log(Status.INFO, "✓ PROFILE IMAGE UPLOADED dialog is displayed");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ PROFILE IMAGE UPLOADED dialog not found: " + e.getMessage());
+            throw new RuntimeException("PROFILE IMAGE UPLOADED dialog not found", e);
+        }
+
+        // Step 11: Get the upload success message
+        try {
+            WebElement uploadMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='Your profile image has been uploaded successfully.']")));
+            String msg = uploadMsg.getText();
+            test.log(Status.INFO, "Upload Success Message: " + msg);
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Upload success message not found: " + e.getMessage());
+        }
+
+        // Step 12: Click OK button
+        try {
+            WebElement okBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name='OK']")));
+            okBtn.click();
+            test.log(Status.INFO, "✓ Clicked OK after upload");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click OK after upload: " + e.getMessage());
+        }
+
+        // Step 13: Click image again (by type XCUIElementTypeImage, xpath //XCUIElementTypeImage)
+        try {
+            WebElement profileImage2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeImage")));
+            profileImage2.click();
+            test.log(Status.INFO, "✓ Clicked profile image again for removal");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click profile image for removal: " + e.getMessage());
+            throw new RuntimeException("Failed to click profile image for removal", e);
+        }
+
+        // Step 14: Click REMOVE PHOTO
+        try {
+            WebElement removePhoto = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeStaticText[@name='REMOVE PHOTO']")));
+            removePhoto.click();
+            test.log(Status.INFO, "✓ Clicked REMOVE PHOTO");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click REMOVE PHOTO: " + e.getMessage());
+            throw new RuntimeException("Failed to click REMOVE PHOTO", e);
+        }
+
+        // Step 15: Find and verify the delete success dialog
+        try {
+            WebElement deleteDialog = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='DELETE SUCCESSFUL']")));
+            test.log(Status.INFO, "✓ DELETE SUCCESSFUL dialog is displayed");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ DELETE SUCCESSFUL dialog not found: " + e.getMessage());
+            throw new RuntimeException("DELETE SUCCESSFUL dialog not found", e);
+        }
+
+        // Step 16: Get remove success message
+        try {
+            WebElement removeMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='Your profile image has been removed successfully.']")));
+            String msg = removeMsg.getText();
+            test.log(Status.INFO, "Remove Success Message: " + msg);
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Remove success message not found: " + e.getMessage());
+        }
+
+        // Step 17: Click OK button after removal
+        try {
+            WebElement okBtn2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name='OK']")));
+            okBtn2.click();
+            test.log(Status.INFO, "✓ Clicked OK after removal");
+        } catch (Exception e) {
+            test.log(Status.WARNING, "⚠ Failed to click OK after removal: " + e.getMessage());
         }
 
         // No longer needed: isLoggedIn removed, handled by firstTimeFlow

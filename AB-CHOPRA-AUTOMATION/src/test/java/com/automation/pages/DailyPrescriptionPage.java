@@ -17,6 +17,54 @@ import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.ios.IOSDriver;
 
 public class DailyPrescriptionPage {
+
+                    /**
+                     * Swipe left on an element specified by XPath
+                     * @param xpath XPath of the element to swipe on
+                     */
+                    public void swipeLeftOnElement(String xpath) {
+                        try {
+                            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+                            org.openqa.selenium.Point location = element.getLocation();
+                            org.openqa.selenium.Dimension size = element.getSize();
+                            int startX = location.getX() + (int)(size.getWidth() * 0.8);
+                            int endX = location.getX() + (int)(size.getWidth() * 0.2);
+                            int centerY = location.getY() + size.getHeight() / 2;
+                            PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                            Sequence swipe = new Sequence(finger, 1);
+                            swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, centerY));
+                            swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                            swipe.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), endX, centerY));
+                            swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                            driver.perform(Collections.singletonList(swipe));
+                        } catch (Exception e) {
+                            throw new RuntimeException("Failed to swipe left on element: " + e.getMessage(), e);
+                        }
+                    }
+
+                    /**
+                     * Swipe right on an element specified by XPath
+                     * @param xpath XPath of the element to swipe on
+                     */
+                    public void swipeRightOnElement(String xpath) {
+                        try {
+                            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+                            org.openqa.selenium.Point location = element.getLocation();
+                            org.openqa.selenium.Dimension size = element.getSize();
+                            int startX = location.getX() + (int)(size.getWidth() * 0.2);
+                            int endX = location.getX() + (int)(size.getWidth() * 0.8);
+                            int centerY = location.getY() + size.getHeight() / 2;
+                            PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                            Sequence swipe = new Sequence(finger, 1);
+                            swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, centerY));
+                            swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                            swipe.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), endX, centerY));
+                            swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                            driver.perform(Collections.singletonList(swipe));
+                        } catch (Exception e) {
+                            throw new RuntimeException("Failed to swipe right on element: " + e.getMessage(), e);
+                        }
+                    }
                 /**
                  * Swipe up on the time picker ScrollView (x=40, y=360, width=310, height=101)
                  */
