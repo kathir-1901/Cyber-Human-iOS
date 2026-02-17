@@ -1,4 +1,5 @@
 package com.automation.pages;
+import org.openqa.selenium.remote.RemoteWebElement;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
@@ -6,11 +7,11 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.interactions.PointerInput;
 import java.util.Collections;
+// Removed duplicate import
 
 public class EditProfilePage {
     private AppiumDriver driver;
@@ -23,7 +24,6 @@ public class EditProfilePage {
 
     // Locators (iOS XPath)
     private final String editProfileHeadingXpath = "//XCUIElementTypeStaticText[@name='EDIT PROFILE']";
-    // iOS TextField locators
     private final String nameFieldXpath = "(//XCUIElementTypeTextField)[1]";
     private final String emailFieldXpath = "(//XCUIElementTypeTextField)[2]";
     private final String dateOfBirthFieldXpath = "//XCUIElementTypeOther[@name='Date of birth']";
@@ -33,9 +33,6 @@ public class EditProfilePage {
     private final String saveChangesButtonXpath = "//XCUIElementTypeButton[@name='SAVE CHANGES']";
     private final String changePasswordButtonXpath = "//XCUIElementTypeButton[@name='CHANGE PASSWORD']";
 
-    /**
-     * Enter name in the Name field
-     */
     public void enterName(String name) {
         try {
             WebElement nameField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(nameFieldXpath)));
@@ -48,9 +45,6 @@ public class EditProfilePage {
         }
     }
 
-    /**
-     * Enter email in the Email field
-     */
     public void enterEmail(String email) {
         try {
             WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(emailFieldXpath)));
@@ -63,13 +57,9 @@ public class EditProfilePage {
         }
     }
 
-    /**
-     * Enter phone number in the Phone Number field
-     */
     public void enterPhoneNumber(String phoneNumber) {
         try {
             WebElement phoneField = null;
-            // Try elementId first (if available)
             try {
                 phoneField = driver.findElement(By.id("0A010000-0000-0000-7B0A-000000000000"));
             } catch (Exception e0) {
@@ -77,7 +67,7 @@ public class EditProfilePage {
                     phoneField = driver.findElement(io.appium.java_client.MobileBy.AccessibilityId("Phone Number"));
                 } catch (Exception e1) {
                     try {
-                        phoneField = driver.findElement(io.appium.java_client.MobileBy.iOSClassChain("**/XCUIElementTypeTextField[`name == 'Phone Number'`]"));
+                        phoneField = driver.findElement(io.appium.java_client.MobileBy.iOSClassChain("**/XCUIElementTypeTextField[`name == 'Phone Number'`]") );
                     } catch (Exception e2) {
                         try {
                             phoneField = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == 'Phone Number'"));
@@ -100,139 +90,36 @@ public class EditProfilePage {
         }
     }
 
-    /**
-     * Click the Date of Birth field to open date picker
-     * Includes robust fallback for when validation messages block the view
-     */
     public void clickDateOfBirth() {
         try {
             hideKeyboard();
             Thread.sleep(500);
-            // Try by static xpath (label)
-            WebElement dobField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dateOfBirthFieldXpath)));
+            WebElement dobField = driver.findElement(
+                io.appium.java_client.MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeOther' AND value CONTAINS '/'")
+            );
             dobField.click();
-            return;
-        } catch (Exception e1) {
-            // Try by accessibility id
-            try {
-                WebElement dobAccId = driver.findElement(io.appium.java_client.MobileBy.AccessibilityId("Date of birth"));
-                dobAccId.click();
-                return;
-            } catch (Exception e2) {
-                // Try by iOS class chain
-                try {
-                    WebElement dobClassChain = driver.findElement(io.appium.java_client.MobileBy.iOSClassChain("**/XCUIElementTypeOther[`name == 'Date of birth'`]"));
-                    dobClassChain.click();
-                    return;
-                } catch (Exception e3) {
-                    // Try by iOS predicate
-                    try {
-                        WebElement dobPredicate = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == 'Date of birth'"));
-                        dobPredicate.click();
-                        return;
-                    } catch (Exception e4) {
-                        // Try by generic XCUIElementTypeOther with value attribute matching a date pattern (e.g., 20/01/2026)
-                        try {
-                            java.util.List<WebElement> others = driver.findElements(By.xpath("//XCUIElementTypeOther[@value]"));
-                            boolean clicked = false;
-                            for (WebElement el : others) {
-                                String value = el.getAttribute("value");
-                                if (value != null && value.matches("\\d{2}/\\d{2}/\\d{4}")) {
-                                    el.click();
-                                    clicked = true;
-                                    break;
-                                }
-                            }
-                            if (clicked) return;
-                            // Fallback: swipe up and try again by static xpath
-                            swipeUp();
-                            Thread.sleep(500);
-                            WebElement dobField2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(dateOfBirthFieldXpath)));
-                            tapElement(dobField2);
-                        } catch (Exception ex) {
-                            throw new RuntimeException("Date of Birth field not found or clickable on Edit Profile page after retry", ex);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * PERFORM DATE SELECTION (SWIPE ACTIONS)
-     * Swipes down on Day, Month, and Year wheels and clicks Confirm
-     * Uses position-based XPath to work with any date (future-proof)
-     */
-    public void performDateSelection() {
-        try {
-            Thread.sleep(1000); // Wait for date picker to appear
-            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-
-            // Use working elementIds for picker wheels as provided by Appium Inspector
-            String[] pickerWheelIds = {
-                "18000000-0000-0000-850B-000000000000", // Day (value="19")
-                "19000000-0000-0000-850B-000000000000", // Month (value="01")
-                "1A000000-0000-0000-850B-000000000000"  // Year (value="2026")
-            };
-
-            for (int i = 0; i < pickerWheelIds.length; i++) {
-                try {
-                    WebElement pickerWheel = driver.findElement(By.id(pickerWheelIds[i]));
-                    swipeDown(pickerWheel);
-                    Thread.sleep(500);
-                    System.out.println("Successfully swiped PickerWheel " + (i + 1));
-                } catch (Exception e) {
-                    System.out.println("Could not find or swipe PickerWheel by id at position: " + (i + 1));
-                }
-            }
-
-            // Click CONFIRM button to confirm date selection
-            try {
-                WebElement confirmBtn = driver.findElement(io.appium.java_client.MobileBy.AccessibilityId("CONFIRM"));
-                confirmBtn.click();
-                System.out.println("Clicked CONFIRM button on date picker");
-            } catch (Exception e1) {
-                try {
-                    WebElement confirmClassChain = driver.findElement(io.appium.java_client.MobileBy.iOSClassChain("**/XCUIElementTypeButton[`name == 'CONFIRM'`]"));
-                    confirmClassChain.click();
-                } catch (Exception e2) {
-                    try {
-                        WebElement confirmPredicate = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == 'CONFIRM'"));
-                        confirmPredicate.click();
-                    } catch (Exception e3) {
-                        try {
-                            WebElement confirmXpath = driver.findElement(By.xpath("//XCUIElementTypeButton[@name='CONFIRM']"));
-                            confirmXpath.click();
-                        } catch (Exception e4) {
-                            System.out.println("CONFIRM button not found on date picker");
-                        }
-                    }
-                }
-            }
-
+            System.out.println("Clicked Date of Birth using iOSNsPredicateString.");
         } catch (Exception e) {
-            System.out.println("Error in performDateSelection: " + e.getMessage());
+            try {
+                WebElement dobFallback = driver.findElement(By.xpath("//XCUIElementTypeOther[@name='Date of birth']"));
+                dobFallback.click();
+                System.out.println("Clicked Date of Birth using fallback XPath.");
+            } catch (Exception e2) {
+                throw new RuntimeException("Date of Birth field not found using iOSNsPredicateString or fallback XPath", e2);
+            }
         }
     }
 
-    /**
-     * Helper method to swipe down on an element using W3C Actions
-     */
     private void swipeDown(WebElement element) {
         int centerX = element.getRect().getX() + (element.getRect().getWidth() / 2);
         int startY = element.getRect().getY() + (element.getRect().getHeight() / 2);
-        int endY = startY + 200; // Swipe down by 200 pixels
-
+        int endY = startY + 200;
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
         Sequence swipe = new Sequence(finger, 1);
-
         swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerX, startY));
         swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        swipe.addAction(
-                finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), centerX, endY));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), centerX, endY));
         swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
         driver.perform(Collections.singletonList(swipe));
     }
 
@@ -261,27 +148,15 @@ public class EditProfilePage {
         try {
             WebElement genderBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(genderButtonXpath)));
             genderBtn.click();
+            System.out.println("Clicked Gender button using main XPath.");
         } catch (Exception e1) {
+            // Fallback: Click Male button if Gender not found
             try {
-                WebElement genderAccId = driver.findElement(io.appium.java_client.MobileBy.AccessibilityId("Gender"));
-                genderAccId.click();
+                WebElement maleBtn = driver.findElement(By.xpath("//XCUIElementTypeButton[@name='Male']"));
+                maleBtn.click();
+                System.out.println("Gender button not found, clicked Male button using XPath.");
             } catch (Exception e2) {
-                try {
-                    WebElement genderClassChain = driver.findElement(io.appium.java_client.MobileBy.iOSClassChain("**/XCUIElementTypeButton[`name == 'Gender'`]"));
-                    genderClassChain.click();
-                } catch (Exception e3) {
-                    try {
-                        WebElement genderPredicate = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == 'Gender'"));
-                        genderPredicate.click();
-                    } catch (Exception e4) {
-                        try {
-                            WebElement genderXpath = driver.findElement(By.xpath("//XCUIElementTypeButton[@name='Gender']"));
-                            genderXpath.click();
-                        } catch (Exception e5) {
-                            throw new RuntimeException("Gender button not found on Edit Profile page after retry", e5);
-                        }
-                    }
-                }
+                throw new RuntimeException("Gender button not found on Edit Profile page after retry, and Male button also not found.", e2);
             }
         }
     }
@@ -326,30 +201,13 @@ public class EditProfilePage {
      */
     public void clickCountryCode() {
         try {
-            WebElement countryCode = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(countryCodeXpath)));
+            // Find the first country code element whose name contains '+'
+            WebElement countryCode = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//XCUIElementTypeStaticText[contains(@name, '+')]")));
             countryCode.click();
-        } catch (Exception e1) {
-            try {
-                WebElement countryAccId = driver.findElement(io.appium.java_client.MobileBy.AccessibilityId("🇦🇫\n+93"));
-                countryAccId.click();
-            } catch (Exception e2) {
-                try {
-                    WebElement countryClassChain = driver.findElement(io.appium.java_client.MobileBy.iOSClassChain("**/XCUIElementTypeStaticText[`name == '🇦🇫 +93'`]"));
-                    countryClassChain.click();
-                } catch (Exception e3) {
-                    try {
-                        WebElement countryPredicate = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == '🇦🇫 +93'"));
-                        countryPredicate.click();
-                    } catch (Exception e4) {
-                        try {
-                            WebElement countryXpath = driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='🇦🇫 +93']"));
-                            countryXpath.click();
-                        } catch (Exception e5) {
-                            throw new RuntimeException("Country Code dropdown not found on Edit Profile page after retry", e5);
-                        }
-                    }
-                }
-            }
+            System.out.println("Clicked Country Code using contains(+) XPath: " + countryCode.getAttribute("name"));
+        } catch (Exception e) {
+            throw new RuntimeException("Country Code dropdown with '+' not found on Edit Profile page", e);
         }
     }
 
@@ -365,56 +223,40 @@ public class EditProfilePage {
             int maxSwipes = 20;
             boolean found = false;
             for (int i = 0; i < maxSwipes; i++) {
-                WebElement countryOption = null;
-                // Try elementId first
                 try {
-                    countryOption = driver.findElement(By.id("E8000000-0000-0000-7B0A-000000000000"));
+                    WebElement countryOption = driver.findElement(
+                        io.appium.java_client.MobileBy.iOSNsPredicateString("name CONTAINS '" + country + "'")
+                    );
                     if (countryOption != null && countryOption.isDisplayed() && countryOption.isEnabled()) {
-                        countryOption.click();
-                        found = true;
-                        break;
-                    }
-                } catch (Exception eId) {
-                    // Fallback to other locators
-                    try {
-                        countryOption = driver.findElement(io.appium.java_client.MobileBy.AccessibilityId("🇧🇾\nBelarus\n+375"));
                         tapElement(countryOption);
                         found = true;
                         break;
-                    } catch (Exception e1) {
-                        try {
-                            countryOption = driver.findElement(io.appium.java_client.MobileBy.iOSClassChain("**/XCUIElementTypeButton[`name == '🇧🇾 Belarus +375'`]"));
-                            tapElement(countryOption);
-                            found = true;
-                            break;
-                        } catch (Exception e2) {
-                            try {
-                                countryOption = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == '🇧🇾 Belarus +375'"));
-                                tapElement(countryOption);
-                                found = true;
-                                break;
-                            } catch (Exception e3) {
-                                try {
-                                    countryOption = driver.findElement(By.xpath("//XCUIElementTypeButton[@name='🇧🇾 Belarus +375']"));
-                                    tapElement(countryOption);
-                                    found = true;
-                                    break;
-                                } catch (Exception e4) {
-                                    // Not found, will swipe
-                                }
-                            }
-                        }
                     }
+                } catch (Exception e) {
+                    // Not found, will swipe up
                 }
-                // If not found, swipe up and try again
-                swipeUp();
-                Thread.sleep(500);
+                // Strong full-screen swipe up (85% to 15%)
+                org.openqa.selenium.Dimension size = driver.manage().window().getSize();
+                int centerX = size.width / 2;
+                int startY = (int) (size.height * 0.85);
+                int endY = (int) (size.height * 0.15);
+
+                PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                Sequence swipe = new Sequence(finger, 1);
+
+                swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerX, startY));
+                swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), centerX, endY));
+                swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+                driver.perform(Collections.singletonList(swipe));
+                Thread.sleep(700);
             }
             if (!found) {
-                System.out.println("Could not find country: Belarus after swiping " + maxSwipes + " times.");
+                System.out.println("Could not find country: " + country + " after swiping " + maxSwipes + " times.");
             }
         } catch (Exception e) {
-            System.out.println("Error selecting country: Belarus - " + e.getMessage());
+            System.out.println("Error selecting country: " + country + " - " + e.getMessage());
         }
     }
 
@@ -668,6 +510,48 @@ public class EditProfilePage {
                 ((io.appium.java_client.ios.IOSDriver) driver).hideKeyboard();
             }
         } catch (Exception ignored) {
+        }
+    }
+
+    /**
+     * PERFORM DATE SELECTION (SWIPE ACTIONS)
+     * Swipes down on Day, Month, and Year wheels and clicks Confirm
+     * Uses position-based XPath to work with any date (future-proof)
+     */
+    public void performDateSelection() {
+        try {
+            Thread.sleep(1000); // Wait for date picker to appear
+            // Find all custom picker wheels
+            java.util.List<WebElement> pickerWheels = driver.findElements(By.xpath("//XCUIElementTypeOther[@enabled='true' and @visible='true' and @traits='Adjustable']"));
+            if (pickerWheels.size() < 3) {
+                throw new RuntimeException("Expected at least 3 picker wheels, found: " + pickerWheels.size());
+            }
+            // For Date, Month, Year wheels
+            for (int i = 0; i < 3; i++) {
+                WebElement wheel = pickerWheels.get(i);
+                // Calculate swipe coordinates
+                int x = wheel.getRect().getX() + (wheel.getRect().getWidth() / 2);
+                int startY = wheel.getRect().getY() + (int)(wheel.getRect().getHeight() * 0.2);
+                int endY = wheel.getRect().getY() + (int)(wheel.getRect().getHeight() * 0.8);
+                PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                Sequence swipe = new Sequence(finger, 1);
+                swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), x, startY));
+                swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                swipe.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), x, endY));
+                swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                driver.perform(Collections.singletonList(swipe));
+                Thread.sleep(500); // Small delay between swipes
+            }
+            // Click CONFIRM button after all swipes
+            try {
+                WebElement confirmBtn = driver.findElement(By.xpath("//XCUIElementTypeButton[@name='CONFIRM']"));
+                confirmBtn.click();
+                Thread.sleep(300); // Optional: small delay after confirm
+            } catch (Exception ce) {
+                System.out.println("CONFIRM button not found or not clickable: " + ce.getMessage());
+            }
+        } catch (Exception e) {
+            System.out.println("Error in performDateSelection: " + e.getMessage());
         }
     }
 }

@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 3 failed tests</span>
+      <span class="top-banner-font-1">1 suite, 5 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">4 methods, 3 failed,   1 passed</span>
+                    <span class="method-stats">8 methods, 5 failed,   3 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -103,17 +103,27 @@
                     <div class="method-list-content failed suite-Surefire_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.DataBankTest" class="method navigator-link" hash-for-method="testDataBank_Case1">testDataBank_Case1</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="runNegativeThenChangePassword">runNegativeThenChangePassword</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.DataBankTest" class="method navigator-link" hash-for-method="testDataBank_Case2">testDataBank_Case2</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS)">testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.DataBankTest" class="method navigator-link" hash-for-method="testDataBank_Case3">testDataBank_Case3</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testEditProfileWithDateGenderCountry">testEditProfileWithDateGenderCountry</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Email Without @, John Doe, testexample.com, 12345678)">testNegativeEditProfile(Email Without @, John Doe, testexample.com, 12345678)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Email Without Domain, John Doe, test@, 12345678)">testNegativeEditProfile(Email Without Domain, John Doe, test@, 12345678)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Surefire_suite -->
@@ -127,7 +137,17 @@
                     <div class="method-list-content passed suite-Surefire_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.DataBankTest" class="method navigator-link" hash-for-method="testDataBank_Case4">testDataBank_Case4</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name=&#039;Use at ...)">testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name='Use at ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...)">testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...)">testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Surefire_suite -->
@@ -145,89 +165,157 @@
           <div class="suite-Surefire_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">com.automation.tests.DataBankTest</span>
+              <span class="class-name">com.automation.tests.EditProfileTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testDataBank_Case1">
-                  </a> <!-- testDataBank_Case1 -->
-                  <span class="method-name">testDataBank_Case1</span>
-                  <div class="stack-trace">java.lang.RuntimeException: Failed to fill DOB field in Step 13
-	at com.automation.pages.DataBankPage.fillDOBFieldWrong(DataBankPage.java:1288)
-	at com.automation.tests.DataBankTest.testDataBank_Case1(DataBankTest.java:219)
+                  <a name="runNegativeThenChangePassword">
+                  </a> <!-- runNegativeThenChangePassword -->
+                  <span class="method-name">runNegativeThenChangePassword</span>
+                  <div class="stack-trace">java.lang.RuntimeException: Country Code dropdown with &apos;+&apos; not found on Edit Profile page
+	at com.automation.pages.EditProfilePage.clickCountryCode(EditProfilePage.java:210)
+	at com.automation.tests.EditProfileTest.testNegativeEditProfile(EditProfileTest.java:644)
+	at com.automation.tests.EditProfileTest.runNegativeThenChangePassword(EditProfileTest.java:26)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-Caused by: java.lang.RuntimeException: CRITICAL: Failed Step 13 DOB click (iOS): Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeOther[@name=&apos;dd/mm/yyyy&apos;] (tried for 10 second(s) with 500 milliseconds interval)
+Caused by: org.openqa.selenium.StaleElementReferenceException: The previously found element &quot;StaticText at {{34.0, 607.0}, {112.3, 44.0}}&quot; is not present in the current view anymore. Make sure the application UI has the expected state. Original error: No matches found for Elements matching predicate &apos;fb_uid IN {&quot;F7000000-0000-0000-1A2F-000000000000&quot;}&apos; from input {(
+    StaticText
+)}
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
 Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
 System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;25.0.1&apos;
 Driver info: io.appium.java_client.ios.IOSDriver
+Command: [9ba037c8-219d-45f4-bc12-f07d7fae1af5, getElementAttribute {id=F7000000-0000-0000-1A2F-000000000000, name=name}]
 Capabilities {appium:automationName: XCUITest, appium:bundleId: com.houseofepigenetics.abch..., appium:databaseEnabled: false, appium:deviceName: iPhone 13, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: false, appium:newCommandTimeout: 3600, appium:noReset: true, appium:platformVersion: 18.7, appium:takesScreenshot: true, appium:udid: 00008110-001425322E9B601E, appium:useNewWDA: false, appium:usePrebuiltWDA: true, appium:webDriverAgentUrl: http://localhost:8100, appium:webStorageEnabled: false, platformName: IOS}
-Session ID: 0b6cc8ab-5684-42af-8066-3b3bd024d308
-	at com.automation.pages.DataBankPage.clickDateOfBirth(DataBankPage.java:1314)
-	at com.automation.pages.DataBankPage.fillDOBFieldWrong(DataBankPage.java:1285)
-	... 32 more
-Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeOther[@name=&apos;dd/mm/yyyy&apos;] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
-System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;25.0.1&apos;
-Driver info: io.appium.java_client.ios.IOSDriver
-Capabilities {appium:automationName: XCUITest, appium:bundleId: com.houseofepigenetics.abch..., appium:databaseEnabled: false, appium:deviceName: iPhone 13, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: false, appium:newCommandTimeout: 3600, appium:noReset: true, appium:platformVersion: 18.7, appium:takesScreenshot: true, appium:udid: 00008110-001425322E9B601E, appium:useNewWDA: false, appium:usePrebuiltWDA: true, appium:webDriverAgentUrl: http://localhost:8100, appium:webStorageEnabled: false, platformName: IOS}
-Session ID: 0b6cc8ab-5684-42af-8066-3b3bd024d308
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
-	at com.automation.pages.DataBankPage.clickDateOfBirth(DataBankPage.java:1308)
-	... 33 more
-... Removed 30 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testDataBank_Case2">
-                  </a> <!-- testDataBank_Case2 -->
-                  <span class="method-name">testDataBank_Case2</span>
-                  <div class="stack-trace">java.lang.RuntimeException: Appium folder not found in iCloud Drive
-	at com.automation.pages.DataBankPage.uploadCorrectFormatFile(DataBankPage.java:404)
-	at com.automation.tests.DataBankTest.testDataBank_Case2(DataBankTest.java:821)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.IosNsPredicate: type == &apos;XCUIElementTypeCell&apos; AND (label CONTAINS &apos;Appium&apos; OR name CONTAINS &apos;Appium&apos;) (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
-System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;25.0.1&apos;
-Driver info: io.appium.java_client.ios.IOSDriver
-Capabilities {appium:automationName: XCUITest, appium:bundleId: com.houseofepigenetics.abch..., appium:databaseEnabled: false, appium:deviceName: iPhone 13, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: false, appium:newCommandTimeout: 3600, appium:noReset: true, appium:platformVersion: 18.7, appium:takesScreenshot: true, appium:udid: 00008110-001425322E9B601E, appium:useNewWDA: false, appium:usePrebuiltWDA: true, appium:webDriverAgentUrl: http://localhost:8100, appium:webStorageEnabled: false, platformName: IOS}
-Session ID: 620f79e3-4f06-4477-a57c-88f23cd9ab24
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
-	at com.automation.pages.DataBankPage.uploadCorrectFormatFile(DataBankPage.java:399)
-	... 32 more
-... Removed 30 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testDataBank_Case3">
-                  </a> <!-- testDataBank_Case3 -->
-                  <span class="method-name">testDataBank_Case3</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
-System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;25.0.1&apos;
-Driver info: io.appium.java_client.ios.IOSDriver
-Command: [aefbb8be-b62d-43b5-86d0-484f373bbc62, findElement {using=xpath, value=//XCUIElementTypeButton[@name=&apos;LINK DEVICE&apos;]}]
-Capabilities {appium:automationName: XCUITest, appium:bundleId: com.houseofepigenetics.abch..., appium:databaseEnabled: false, appium:deviceName: iPhone 13, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: false, appium:newCommandTimeout: 3600, appium:noReset: true, appium:platformVersion: 18.7, appium:takesScreenshot: true, appium:udid: 00008110-001425322E9B601E, appium:useNewWDA: false, appium:usePrebuiltWDA: true, appium:webDriverAgentUrl: http://localhost:8100, appium:webStorageEnabled: false, platformName: IOS}
-Session ID: aefbb8be-b62d-43b5-86d0-484f373bbc62
+Element: [[IOSDriver:  on IOS (9ba037c8-219d-45f4-bc12-f07d7fae1af5)] -&gt; xpath: //XCUIElementTypeStaticText[contains(@name, &apos;+&apos;)]]
+Session ID: 9ba037c8-219d-45f4-bc12-f07d7fae1af5
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
 	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
-	at com.automation.tests.DataBankTest.testDataBank_Case3(DataBankTest.java:997)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:150)
+	at com.automation.pages.EditProfilePage.clickCountryCode(EditProfilePage.java:208)
+	... 33 more
+... Removed 33 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS)">
+                  </a> <!-- testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS) -->
+                  <span class="method-name">testChangePassword</span>
+                  <span class="parameters">(Valid Change Password,Human@2026,Testing@2026,Testing@2026,SUCCESS)</span>
+                  <div class="stack-trace">java.lang.AssertionError: Expected Success Dialog was not displayed.
+	at com.automation.tests.EditProfileTest.testChangePassword(EditProfileTest.java:498)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+... Removed 31 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testEditProfileWithDateGenderCountry">
+                  </a> <!-- testEditProfileWithDateGenderCountry -->
+                  <span class="method-name">testEditProfileWithDateGenderCountry</span>
+                  <div class="stack-trace">java.lang.RuntimeException: Country Code dropdown with &apos;+&apos; not found on Edit Profile page
+	at com.automation.pages.EditProfilePage.clickCountryCode(EditProfilePage.java:210)
+	at com.automation.tests.EditProfileTest.testEditProfileWithDateGenderCountry(EditProfileTest.java:735)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+Caused by: org.openqa.selenium.StaleElementReferenceException: The previously found element &quot;StaticText at {{34.0, 607.0}, {112.3, 44.0}}&quot; is not present in the current view anymore. Make sure the application UI has the expected state. Original error: No matches found for Elements matching predicate &apos;fb_uid IN {&quot;F6000000-0000-0000-1F2F-000000000000&quot;}&apos; from input {(
+    StaticText
+)}
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;25.0.1&apos;
+Driver info: io.appium.java_client.ios.IOSDriver
+Command: [ca509e30-55fc-4245-a2f0-a37bfb1d06c3, getElementAttribute {id=F6000000-0000-0000-1F2F-000000000000, name=name}]
+Capabilities {appium:automationName: XCUITest, appium:bundleId: com.houseofepigenetics.abch..., appium:databaseEnabled: false, appium:deviceName: iPhone 13, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: false, appium:newCommandTimeout: 3600, appium:noReset: true, appium:platformVersion: 18.7, appium:takesScreenshot: true, appium:udid: 00008110-001425322E9B601E, appium:useNewWDA: false, appium:usePrebuiltWDA: true, appium:webDriverAgentUrl: http://localhost:8100, appium:webStorageEnabled: false, platformName: IOS}
+Element: [[IOSDriver:  on IOS (ca509e30-55fc-4245-a2f0-a37bfb1d06c3)] -&gt; xpath: //XCUIElementTypeStaticText[contains(@name, &apos;+&apos;)]]
+Session ID: ca509e30-55fc-4245-a2f0-a37bfb1d06c3
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:150)
+	at com.automation.pages.EditProfilePage.clickCountryCode(EditProfilePage.java:208)
+	... 32 more
+... Removed 33 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Email Without @, John Doe, testexample.com, 12345678)">
+                  </a> <!-- testNegativeEditProfile(Email Without @, John Doe, testexample.com, 12345678) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Email Without @,John Doe,testexample.com,12345678)</span>
+                  <div class="stack-trace">java.lang.RuntimeException: Country Code dropdown with &apos;+&apos; not found on Edit Profile page
+	at com.automation.pages.EditProfilePage.clickCountryCode(EditProfilePage.java:210)
+	at com.automation.tests.EditProfileTest.testNegativeEditProfile(EditProfileTest.java:644)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+Caused by: org.openqa.selenium.StaleElementReferenceException: The previously found element &quot;StaticText at {{34.0, 607.0}, {112.3, 44.0}}&quot; is not present in the current view anymore. Make sure the application UI has the expected state. Original error: No matches found for Elements matching predicate &apos;fb_uid IN {&quot;F7000000-0000-0000-212F-000000000000&quot;}&apos; from input {(
+    StaticText
+)}
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;25.0.1&apos;
+Driver info: io.appium.java_client.ios.IOSDriver
+Command: [73933475-eb4e-486d-9b25-dd5ce0171b62, getElementAttribute {id=F7000000-0000-0000-212F-000000000000, name=name}]
+Capabilities {appium:automationName: XCUITest, appium:bundleId: com.houseofepigenetics.abch..., appium:databaseEnabled: false, appium:deviceName: iPhone 13, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: false, appium:newCommandTimeout: 3600, appium:noReset: true, appium:platformVersion: 18.7, appium:takesScreenshot: true, appium:udid: 00008110-001425322E9B601E, appium:useNewWDA: false, appium:usePrebuiltWDA: true, appium:webDriverAgentUrl: http://localhost:8100, appium:webStorageEnabled: false, platformName: IOS}
+Element: [[IOSDriver:  on IOS (73933475-eb4e-486d-9b25-dd5ce0171b62)] -&gt; xpath: //XCUIElementTypeStaticText[contains(@name, &apos;+&apos;)]]
+Session ID: 73933475-eb4e-486d-9b25-dd5ce0171b62
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:150)
+	at com.automation.pages.EditProfilePage.clickCountryCode(EditProfilePage.java:208)
+	... 32 more
+... Removed 33 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Email Without Domain, John Doe, test@, 12345678)">
+                  </a> <!-- testNegativeEditProfile(Email Without Domain, John Doe, test@, 12345678) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Email Without Domain,John Doe,test@,12345678)</span>
+                  <div class="stack-trace">java.lang.RuntimeException: Country Code dropdown with &apos;+&apos; not found on Edit Profile page
+	at com.automation.pages.EditProfilePage.clickCountryCode(EditProfilePage.java:210)
+	at com.automation.tests.EditProfileTest.testNegativeEditProfile(EditProfileTest.java:644)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+Caused by: org.openqa.selenium.StaleElementReferenceException: The previously found element &quot;StaticText at {{34.0, 607.0}, {112.3, 44.0}}&quot; is not present in the current view anymore. Make sure the application UI has the expected state. Original error: No matches found for Elements matching predicate &apos;fb_uid IN {&quot;F7000000-0000-0000-242F-000000000000&quot;}&apos; from input {(
+    StaticText
+)}
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;25.0.1&apos;
+Driver info: io.appium.java_client.ios.IOSDriver
+Command: [931474c5-c4e5-40bf-9909-314764f7153d, getElementAttribute {id=F7000000-0000-0000-242F-000000000000, name=name}]
+Capabilities {appium:automationName: XCUITest, appium:bundleId: com.houseofepigenetics.abch..., appium:databaseEnabled: false, appium:deviceName: iPhone 13, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: false, appium:newCommandTimeout: 3600, appium:noReset: true, appium:platformVersion: 18.7, appium:takesScreenshot: true, appium:udid: 00008110-001425322E9B601E, appium:useNewWDA: false, appium:usePrebuiltWDA: true, appium:webDriverAgentUrl: http://localhost:8100, appium:webStorageEnabled: false, platformName: IOS}
+Element: [[IOSDriver:  on IOS (931474c5-c4e5-40bf-9909-314764f7153d)] -&gt; xpath: //XCUIElementTypeStaticText[contains(@name, &apos;+&apos;)]]
+Session ID: 931474c5-c4e5-40bf-9909-314764f7153d
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:150)
+	at com.automation.pages.EditProfilePage.clickCountryCode(EditProfilePage.java:208)
+	... 32 more
 ... Removed 33 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
@@ -237,14 +325,31 @@ Session ID: aefbb8be-b62d-43b5-86d0-484f373bbc62
           <div class="suite-Surefire_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.automation.tests.DataBankTest</span>
+              <span class="class-name">com.automation.tests.EditProfileTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testDataBank_Case4">
-                  </a> <!-- testDataBank_Case4 -->
-                  <span class="method-name">testDataBank_Case4</span>
+                  <a name="testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name=&#039;Use at ...)">
+                  </a> <!-- testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name='Use at ...) -->
+                  <span class="method-name">testChangePassword</span>
+                  <span class="parameters">(Weak Password Validation,Human@2026,test2026,test2026,//XCUIElementTypeStaticText[@name='Use at least 8 characters with uppercase, lowercase, number, and special symbol.'])</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...)">
+                  </a> <!-- testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...) -->
+                  <span class="method-name">testChangePassword</span>
+                  <span class="parameters">(Same Old and New Password Validation,Human@2026,Human@2026,Human@2026,//XCUIElementTypeStaticText[@name='Current and new password cannot be the same.'])</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...)">
+                  </a> <!-- testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...) -->
+                  <span class="method-name">testChangePassword</span>
+                  <span class="parameters">(Wrong Old Password Validation,Testing@2025,Human@2026,Human@2026,//XCUIElementTypeStaticText[@name='Wrong password. Please enter correct password.'])</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -260,7 +365,7 @@ Session ID: aefbb8be-b62d-43b5-86d0-484f373bbc62
 &lt;suite name=&quot;Surefire suite&quot; verbose=&quot;0&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Surefire test&quot; verbose=&quot;0&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.automation.tests.DataBankTest&quot;/&gt;
+      &lt;class name=&quot;com.automation.tests.EditProfileTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Surefire test --&gt;
 &lt;/suite&gt; &lt;!-- Surefire suite --&gt;
@@ -300,28 +405,44 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(4);
+data.addRows(8);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testDataBank_Case4')
-data.setCell(0, 2, 'com.automation.tests.DataBankTest')
-data.setCell(0, 3, 59442);
+data.setCell(0, 1, 'testChangePassword')
+data.setCell(0, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(0, 3, 143697);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'testDataBank_Case1')
-data.setCell(1, 2, 'com.automation.tests.DataBankTest')
-data.setCell(1, 3, 58117);
+data.setCell(1, 1, 'testChangePassword')
+data.setCell(1, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(1, 3, 131788);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'testDataBank_Case2')
-data.setCell(2, 2, 'com.automation.tests.DataBankTest')
-data.setCell(2, 3, 23872);
+data.setCell(2, 1, 'testChangePassword')
+data.setCell(2, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(2, 3, 131638);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'testDataBank_Case3')
-data.setCell(3, 2, 'com.automation.tests.DataBankTest')
-data.setCell(3, 3, 16251);
+data.setCell(3, 1, 'testChangePassword')
+data.setCell(3, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(3, 3, 131584);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'testNegativeEditProfile')
+data.setCell(4, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(4, 3, 49943);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'runNegativeThenChangePassword')
+data.setCell(5, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(5, 3, 49932);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'testNegativeEditProfile')
+data.setCell(6, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(6, 3, 49858);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'testEditProfileWithDateGenderCountry')
+data.setCell(7, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(7, 3, 42977);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 12 minutes</span>
               <div id="times-div-Surefire_suite">
               </div> <!-- times-div-Surefire_suite -->
             </div> <!-- times-div -->
@@ -347,68 +468,120 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.automation.tests.DataBankTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.automation.tests.EditProfileTest</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">setupReport</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
-                <span class="method-name">setup(public void com.automation.tests.DataBankTest.testDataBank_Case1() throws java.lang.InterruptedExcep...)</span>
-                <span class="method-start">102 ms</span>
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.runNegativeThenChangePassword() throws java.lang.In...)</span>
+                <span class="method-start">89 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">testDataBank_Case1</span>
-                <span class="method-start">8504 ms</span>
+                <span class="method-name">runNegativeThenChangePassword</span>
+                <span class="method-start">3504 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=testDataBank_Case1 status=FAILURE method=DataBankTest.testDataBank_Case1()[pri:1, i...)</span>
-                <span class="method-start">66631 ms</span>
+                <span class="method-name">tearDown([TestResult name=runNegativeThenChangePassword status=FAILURE method=EditProfileTest.runNegativeThen...)</span>
+                <span class="method-start">53445 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
-                <span class="method-name">setup(public void com.automation.tests.DataBankTest.testDataBank_Case2() throws java.lang.InterruptedExcep...)</span>
-                <span class="method-start">70048 ms</span>
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testEditProfileWithDateGenderCountry() throws java....)</span>
+                <span class="method-start">56822 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">testDataBank_Case2</span>
-                <span class="method-start">78001 ms</span>
+                <span class="method-name">testEditProfileWithDateGenderCountry</span>
+                <span class="method-start">58814 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=testDataBank_Case2 status=FAILURE method=DataBankTest.testDataBank_Case2()[pri:2, i...)</span>
-                <span class="method-start">101877 ms</span>
+                <span class="method-name">tearDown([TestResult name=testEditProfileWithDateGenderCountry status=FAILURE method=EditProfileTest.testEdit...)</span>
+                <span class="method-start">101795 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
-                <span class="method-name">setup(public void com.automation.tests.DataBankTest.testDataBank_Case3() throws java.lang.InterruptedExcep...)</span>
-                <span class="method-start">105184 ms</span>
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">105141 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">testDataBank_Case3</span>
-                <span class="method-start">113183 ms</span>
+                <span class="method-name">testNegativeEditProfile(Email Without @, John Doe, testexample.com, 12345678)</span>
+                <span class="method-start">107105 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=testDataBank_Case3 status=FAILURE method=DataBankTest.testDataBank_Case3()[pri:3, i...)</span>
-                <span class="method-start">129441 ms</span>
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=FAILURE method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">157052 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
-                <span class="method-name">setup(public void com.automation.tests.DataBankTest.testDataBank_Case4() throws java.lang.InterruptedExcep...)</span>
-                <span class="method-start">132756 ms</span>
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">160420 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">testDataBank_Case4</span>
-                <span class="method-start">140601 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testNegativeEditProfile(Email Without Domain, John Doe, test@, 12345678)</span>
+                <span class="method-start">162376 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=testDataBank_Case4 status=SUCCESS method=DataBankTest.testDataBank_Case4()[pri:4, i...)</span>
-                <span class="method-start">200048 ms</span>
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=FAILURE method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">212238 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testChangePassword(java.lang.String,java.lang.Strin...)</span>
+                <span class="method-start">215564 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...)</span>
+                <span class="method-start">217566 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testChangePassword status=SUCCESS method=EditProfileTest.testChangePassword(java.la...)</span>
+                <span class="method-start">349207 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testChangePassword(java.lang.String,java.lang.Strin...)</span>
+                <span class="method-start">352299 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name='Use at ...)</span>
+                <span class="method-start">354274 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testChangePassword status=SUCCESS method=EditProfileTest.testChangePassword(java.la...)</span>
+                <span class="method-start">485862 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testChangePassword(java.lang.String,java.lang.Strin...)</span>
+                <span class="method-start">488905 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...)</span>
+                <span class="method-start">490866 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testChangePassword status=SUCCESS method=EditProfileTest.testChangePassword(java.la...)</span>
+                <span class="method-start">622657 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testChangePassword(java.lang.String,java.lang.Strin...)</span>
+                <span class="method-start">625784 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS)</span>
+                <span class="method-start">627791 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testChangePassword status=FAILURE method=EditProfileTest.testChangePassword(java.la...)</span>
+                <span class="method-start">771493 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-suite after">
                 <span class="method-name">tearDownReport</span>
-                <span class="method-start">203167 ms</span>
+                <span class="method-start">774846 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

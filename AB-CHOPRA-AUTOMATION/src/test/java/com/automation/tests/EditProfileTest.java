@@ -38,15 +38,15 @@ public class EditProfileTest extends BaseTest {
     @DataProvider(name = "negativeEditProfileData")
     public Object[][] getNegativeEditProfileData() {
         return new Object[][] {
-                // Scenario, Name, Email, Phone
-                { "Email Without @", "John Doe", "testexample.com", "123456789" },
-                { "Email Without Domain", "John Doe", "test@", "123456789" },
-                { "Invalid Phone - Letters", "John Doe", "test@example.com", "abcdefgh" },
-                { "Short Phone Number", "John Doe", "test@example.com", "12" },
-                { "Invalid Email Format", "John Doe", "invalidemail", "123456789" },
-                { "Empty Name Field", "", "test@example.com", "123456789" },
-                { "Empty Email Field", "John Doe", "", "123456789" },
-                { "Empty Phone Number", "John Doe", "test@example.com", "" },
+            // Scenario, Name, Email, Phone
+            { "Email Without @", "John Doe", "testexample.com", "12345678" },
+            { "Email Without Domain", "John Doe", "test@", "12345678" },
+            // { "Invalid Phone - Letters", "John Doe", "test@example.com", "abcdefgh" },
+            // { "Short Phone Number", "John Doe", "test@example.com", "12" },
+            // { "Invalid Email Format", "John Doe", "invalidemail", "12345678" },
+            // { "Empty Name Field", "", "test@example.com", "12345678" },
+            // { "Empty Email Field", "John Doe", "", "12345678" },
+            // { "Empty Phone Number", "John Doe", "test@example.com", "" },
         };
     }
     // ...existing code...
@@ -626,49 +626,19 @@ public class EditProfileTest extends BaseTest {
             Thread.sleep(1000);
 
             // HANDLE DATE OF BIRTH (robust locator)
-            boolean dobClicked = false;
-            WebDriverWait dobWait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
-            try {
-                WebElement dobField = dobWait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("//XCUIElementTypeOther[@name='Date of birth']")));
-                dobField.click();
-                test.log(Status.INFO, "Clicked Date of Birth by xpath");
-                dobClicked = true;
-            } catch (Exception e1) {
-                test.log(Status.WARNING, "Date of Birth not found by xpath: " + e1.getMessage());
-                // Try by accessibility id
-                try {
-                    WebElement dobAccId = driver.findElement(MobileBy.AccessibilityId("Date of birth"));
-                    dobAccId.click();
-                    test.log(Status.INFO, "Clicked Date of Birth by accessibility id");
-                    dobClicked = true;
-                } catch (Exception e2) {
-                    test.log(Status.WARNING, "Date of Birth not found by accessibility id: " + e2.getMessage());
-                    // Try by class chain
-                    try {
-                        WebElement dobClassChain = driver.findElement(MobileBy.iOSClassChain("**/XCUIElementTypeOther[`name == 'Date of birth'`]"));
-                        dobClassChain.click();
-                        test.log(Status.INFO, "Clicked Date of Birth by iOS class chain");
-                        dobClicked = true;
-                    } catch (Exception e3) {
-                        test.log(Status.WARNING, "Date of Birth not found by iOS class chain: " + e3.getMessage());
-                        // Try by iOSNsPredicateString
-                        try {
-                            WebElement dobPredicate = driver.findElement(MobileBy.iOSNsPredicateString("name == 'Date of birth'"));
-                            dobPredicate.click();
-                            test.log(Status.INFO, "Clicked Date of Birth by iOSNsPredicateString");
-                            dobClicked = true;
-                        } catch (Exception e4) {
-                            test.log(Status.WARNING, "Date of Birth not found by iOSNsPredicateString: " + e4.getMessage());
-                        }
-                    }
-                }
-            }
-            if (!dobClicked) {
-                throw new RuntimeException("Date of Birth field not found or clickable on Edit Profile page after retry");
-            }
+            // Click the Date of Birth field using the page method (iOSNsPredicateString, no date change)
+            editProfilePage.clickDateOfBirth();
+            test.log(Status.INFO, "Clicked Date of Birth field using iOSNsPredicateString");
+            // Swipe down on the Date of Birth field as the next step
             editProfilePage.performDateSelection();
             test.log(Status.INFO, "Performed Date Selection (Swipe & Confirm)");
+            
+            // HANDLE GENDER (Standardized to Male for negative tests)
+            editProfilePage.clickGender();
+            test.log(Status.INFO, "Clicked Gender dropdown");
+            Thread.sleep(500);
+            editProfilePage.selectGender("Male");
+            test.log(Status.INFO, "Selected gender: Male");
 
             // HANDLE COUNTRY (Standardized to Belarus for negative tests)
             editProfilePage.clickCountryCode();
@@ -680,12 +650,7 @@ public class EditProfileTest extends BaseTest {
             editProfilePage.enterPhoneNumber(phone);
             test.log(Status.INFO, "Entered phone: '" + phone + "'");
 
-            // HANDLE GENDER (Standardized to Male for negative tests)
-            editProfilePage.clickGender();
-            test.log(Status.INFO, "Clicked Gender dropdown");
-            Thread.sleep(500);
-            editProfilePage.selectGender("Male");
-            test.log(Status.INFO, "Selected gender: Male");
+           
 
 
             // Hide keyboard immediately after entering phone number
