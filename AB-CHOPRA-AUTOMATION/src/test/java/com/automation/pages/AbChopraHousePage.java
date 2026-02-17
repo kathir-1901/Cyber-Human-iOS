@@ -589,8 +589,8 @@ public class AbChopraHousePage {
      */
     public void clickVideoItem() {
         try {
-            // iOS: Use provided XPath for the radio button
-            By radioXpath = By.xpath("//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]");
+            // iOS: Use updated XPath for the article radio button
+            By radioXpath = By.xpath("//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther");
             WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(radioXpath));
             try {
                 radioButton.click();

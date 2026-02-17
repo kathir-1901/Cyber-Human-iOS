@@ -39,13 +39,13 @@ public class EditProfileTest extends BaseTest {
     public Object[][] getNegativeEditProfileData() {
         return new Object[][] {
             // Scenario, Name, Email, Phone
-            { "Email Without @", "John Doe", "testexample.com", "12345678" },
-            { "Email Without Domain", "John Doe", "test@", "12345678" },
+            { "Email Without @", "John Doe", "testexample.com", "123456789" },
+            { "Email Without Domain", "John Doe", "test@", "123456789" },
             // { "Invalid Phone - Letters", "John Doe", "test@example.com", "abcdefgh" },
             // { "Short Phone Number", "John Doe", "test@example.com", "12" },
-            // { "Invalid Email Format", "John Doe", "invalidemail", "12345678" },
-            // { "Empty Name Field", "", "test@example.com", "12345678" },
-            // { "Empty Email Field", "John Doe", "", "12345678" },
+            // { "Invalid Email Format", "John Doe", "invalidemail", "123456789" },
+            // { "Empty Name Field", "", "test@example.com", "123456789" },
+            // { "Empty Email Field", "John Doe", "", "123456789" },
             // { "Empty Phone Number", "John Doe", "test@example.com", "" },
         };
     }
@@ -633,12 +633,7 @@ public class EditProfileTest extends BaseTest {
             editProfilePage.performDateSelection();
             test.log(Status.INFO, "Performed Date Selection (Swipe & Confirm)");
             
-            // HANDLE GENDER (Standardized to Male for negative tests)
-            editProfilePage.clickGender();
-            test.log(Status.INFO, "Clicked Gender dropdown");
-            Thread.sleep(500);
-            editProfilePage.selectGender("Male");
-            test.log(Status.INFO, "Selected gender: Male");
+           
 
             // HANDLE COUNTRY (Standardized to Belarus for negative tests)
             editProfilePage.clickCountryCode();

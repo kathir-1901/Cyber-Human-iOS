@@ -162,32 +162,25 @@ public class AbChopraHouseTest extends BaseTest {
         }
 
         // Step 8.2: Verify Love & Unity file is shown (robust partial match)
-        test.log(Status.INFO, "Step 8.2: Verifying Love & Unity file is shown");
-        boolean loveUnityFound = false;
-        // Try partial match XPath first
-        try {
-            loveUnityFound = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeOther[contains(@name,'Love & Unity') or contains(@label,'Love & Unity') or contains(@value,'Love & Unity')]")).size() > 0;
-            if (loveUnityFound) {
-                System.out.println("[Step 8.2] Found Love & Unity file by partial XPath");
-            }
-        } catch (Exception e1) {}
-        // Fallback: search by name attribute in all XCUIElementTypeOther elements
-        if (!loveUnityFound) {
-            try {
-                java.util.List<WebElement> others = driver.findElements(org.openqa.selenium.By.className("XCUIElementTypeOther"));
-                for (WebElement el : others) {
-                    String name = el.getAttribute("name");
-                    if (name != null && name.contains("Love & Unity")) {
-                        loveUnityFound = true;
-                        System.out.println("[Step 8.2] Found Love & Unity file by partial name");
-                        break;
+                test.log(Status.INFO, "Step 8.2: Verifying Love & Unity file is shown (Appium Inspector attributes)");
+                boolean loveUnityImageFound = false;
+                try {
+                    java.util.List<WebElement> images = driver.findElements(org.openqa.selenium.By.className("XCUIElementTypeImage"));
+                    for (WebElement img : images) {
+                        String name = img.getAttribute("name");
+                        String label = img.getAttribute("label");
+                        if ((name != null && name.contains("Love & Unity")) || (label != null && label.contains("Love & Unity"))) {
+                            loveUnityImageFound = true;
+                            System.out.println("[Step 8.2] Found Love & Unity file by XCUIElementTypeImage and partial name/label");
+                            break;
+                        }
                     }
+                } catch (Exception e) {
+                    test.log(Status.WARNING, "Exception during Love & Unity image search: " + e.getMessage());
                 }
-            } catch (Exception e2) {}
-        }
-        Assert.assertTrue(loveUnityFound, "Love & Unity file should be displayed");
-        test.log(Status.PASS, "✓ Step 8.2: Love & Unity file is displayed");
-        Thread.sleep(1000);
+                Assert.assertTrue(loveUnityImageFound, "Love & Unity file should be displayed as XCUIElementTypeImage");
+                test.log(Status.PASS, "✓ Step 8.2: Love & Unity file is displayed as XCUIElementTypeImage");
+                Thread.sleep(1000);
 
         // Step 8.3: Clear the text in search bar
         test.log(Status.INFO, "Step 8.3: Clearing search bar");
