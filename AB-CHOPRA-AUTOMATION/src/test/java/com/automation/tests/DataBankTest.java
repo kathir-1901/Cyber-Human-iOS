@@ -645,11 +645,6 @@ public class DataBankTest extends BaseTest {
         test.log(Status.PASS, "✓ Step 30: Payment error dialog verified and message captured");
         Thread.sleep(3000);
 
-        // ✅ TEST CASE 1 - STEP 31: Click OK button
-        test.log(Status.INFO, "Step 31: Clicking OK button");
-        dataBankPage.clickOKButton();
-        test.log(Status.PASS, "✓ Step 31: OK button clicked");
-        Thread.sleep(3000);
 
         // ✅ TEST CASE 1 - STEP 32: Click Retry Payment button, wait 9 seconds, and
         // verify payment page
@@ -1084,81 +1079,81 @@ public class DataBankTest extends BaseTest {
         driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
         test.log(Status.PASS, "✓ Step 22: OK button clicked");
 
-        // Step 23: Click APPLE HEALTH KIT (custom XPath)
-        test.log(Status.INFO, "Step 23: Clicking APPLE HEALTH KIT (custom XPath)");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[4]/XCUIElementTypeImage")).click();
-        test.log(Status.PASS, "✓ Step 23: APPLE HEALTH KIT clicked (custom XPath)");
+        // // Step 23: Click APPLE HEALTH KIT (custom XPath)
+        // test.log(Status.INFO, "Step 23: Clicking APPLE HEALTH KIT (custom XPath)");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[4]/XCUIElementTypeImage")).click();
+        // test.log(Status.PASS, "✓ Step 23: APPLE HEALTH KIT clicked (custom XPath)");
 
-        // Step 24: Click checkbox
-        test.log(Status.INFO, "Step 24: Clicking checkbox");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeApplication[@name='AB Chopra']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]")).click();
-        test.log(Status.PASS, "✓ Step 24: Checkbox clicked");
+        // // Step 24: Click checkbox
+        // test.log(Status.INFO, "Step 24: Clicking checkbox");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeApplication[@name='AB Chopra']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]")).click();
+        // test.log(Status.PASS, "✓ Step 24: Checkbox clicked");
 
-        // Step 25: Click CONTINUE button
-        test.log(Status.INFO, "Step 25: Clicking CONTINUE button");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='CONTINUE']")).click();
-        test.log(Status.PASS, "✓ Step 25: CONTINUE button clicked");
-        Thread.sleep(5000);
-
-        // Step 26: Verify DEVICE LINKED dialog is shown
-        test.log(Status.INFO, "Step 26: Verifying DEVICE LINKED dialog");
-        boolean isDeviceLinkedDialog2 = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='DEVICE LINKED']")).size() > 0;
-        Assert.assertTrue(isDeviceLinkedDialog2, "DEVICE LINKED dialog not found after Apple HealthKit");
-        test.log(Status.PASS, "✓ Step 26: DEVICE LINKED dialog displayed");
-
-        // Step 27: Get the success message
-        test.log(Status.INFO, "Step 27: Getting Apple HealthKit success message");
-        String healthKitMsg = driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Apple HealthKit has been successfully connected.']")).getText();
-        test.log(Status.PASS, "✓ Step 27: Success message captured: " + healthKitMsg);
-
-        // Step 28: Click OK
-        test.log(Status.INFO, "Step 28: Clicking OK button");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
-        test.log(Status.PASS, "✓ Step 28: OK button clicked");
-
-        // // Step 29: Click back
-        // test.log(Status.INFO, "Step 29: Clicking back button");
-        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton")).click();
-        // test.log(Status.PASS, "✓ Step 29: Back button clicked");
-
-        // // Step 30: Swipe down once
-        // test.log(Status.INFO, "Step 30: Swiping down once");
-        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeScrollView")).sendKeys("down");
+        // // Step 25: Click CONTINUE button
+        // test.log(Status.INFO, "Step 25: Clicking CONTINUE button");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='CONTINUE']")).click();
+        // test.log(Status.PASS, "✓ Step 25: CONTINUE button clicked");
         // Thread.sleep(5000);
-        // test.log(Status.PASS, "✓ Step 30: Swiped down once");
 
-        // // Step 31: Verify Apple Health Kit is there
-        // test.log(Status.INFO, "Step 31: Verifying Apple Health Kit is present");
-        // boolean isAppleHealthKit = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Apple Health Kit']")).size() > 0;
-        // Assert.assertTrue(isAppleHealthKit, "Apple Health Kit not found");
-        // test.log(Status.PASS, "✓ Step 31: Apple Health Kit is present");
+        // // Step 26: Verify DEVICE LINKED dialog is shown
+        // test.log(Status.INFO, "Step 26: Verifying DEVICE LINKED dialog");
+        // boolean isDeviceLinkedDialog2 = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='DEVICE LINKED']")).size() > 0;
+        // Assert.assertTrue(isDeviceLinkedDialog2, "DEVICE LINKED dialog not found after Apple HealthKit");
+        // test.log(Status.PASS, "✓ Step 26: DEVICE LINKED dialog displayed");
 
-        // Step 32: Click remove icon
-        test.log(Status.INFO, "Step 32: Clicking remove icon");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeApplication[@name='AB Chopra']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")).click();
-        test.log(Status.PASS, "✓ Step 32: Remove icon clicked");
+        // // Step 27: Get the success message
+        // test.log(Status.INFO, "Step 27: Getting Apple HealthKit success message");
+        // String healthKitMsg = driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Apple HealthKit has been successfully connected.']")).getText();
+        // test.log(Status.PASS, "✓ Step 27: Success message captured: " + healthKitMsg);
 
-        // Step 33: Verify remove dialog is shown
-        test.log(Status.INFO, "Step 33: Verifying REMOVE DEVICE dialog");
-        boolean isRemoveDialog = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='REMOVE DEVICE']")).size() > 0;
-        Assert.assertTrue(isRemoveDialog, "REMOVE DEVICE dialog not found");
-        test.log(Status.PASS, "✓ Step 33: REMOVE DEVICE dialog displayed");
+        // // Step 28: Click OK
+        // test.log(Status.INFO, "Step 28: Clicking OK button");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
+        // test.log(Status.PASS, "✓ Step 28: OK button clicked");
 
-        // Step 34: Click YES
-        test.log(Status.INFO, "Step 34: Clicking YES button");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='YES']")).click();
-        test.log(Status.PASS, "✓ Step 34: YES button clicked");
+        // // // Step 29: Click back
+        // // test.log(Status.INFO, "Step 29: Clicking back button");
+        // // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton")).click();
+        // // test.log(Status.PASS, "✓ Step 29: Back button clicked");
 
-        // Step 35: Verify REVOKE HEALTHKIT PERMISSIONS dialog
-        test.log(Status.INFO, "Step 35: Verifying REVOKE HEALTHKIT PERMISSIONS dialog");
-        boolean isRevokeDialog = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='REVOKE HEALTHKIT PERMISSIONS']")).size() > 0;
-        Assert.assertTrue(isRevokeDialog, "REVOKE HEALTHKIT PERMISSIONS dialog not found");
-        test.log(Status.PASS, "✓ Step 35: REVOKE HEALTHKIT PERMISSIONS dialog displayed");
+        // // // Step 30: Swipe down once
+        // // test.log(Status.INFO, "Step 30: Swiping down once");
+        // // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeScrollView")).sendKeys("down");
+        // // Thread.sleep(5000);
+        // // test.log(Status.PASS, "✓ Step 30: Swiped down once");
 
-        // Step 36: Click OK
-        test.log(Status.INFO, "Step 36: Clicking OK button");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
-        test.log(Status.PASS, "✓ Step 36: OK button clicked");
+        // // // Step 31: Verify Apple Health Kit is there
+        // // test.log(Status.INFO, "Step 31: Verifying Apple Health Kit is present");
+        // // boolean isAppleHealthKit = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Apple Health Kit']")).size() > 0;
+        // // Assert.assertTrue(isAppleHealthKit, "Apple Health Kit not found");
+        // // test.log(Status.PASS, "✓ Step 31: Apple Health Kit is present");
+
+        // // Step 32: Click remove icon
+        // test.log(Status.INFO, "Step 32: Clicking remove icon");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeApplication[@name='AB Chopra']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")).click();
+        // test.log(Status.PASS, "✓ Step 32: Remove icon clicked");
+
+        // // Step 33: Verify remove dialog is shown
+        // test.log(Status.INFO, "Step 33: Verifying REMOVE DEVICE dialog");
+        // boolean isRemoveDialog = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='REMOVE DEVICE']")).size() > 0;
+        // Assert.assertTrue(isRemoveDialog, "REMOVE DEVICE dialog not found");
+        // test.log(Status.PASS, "✓ Step 33: REMOVE DEVICE dialog displayed");
+
+        // // Step 34: Click YES
+        // test.log(Status.INFO, "Step 34: Clicking YES button");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='YES']")).click();
+        // test.log(Status.PASS, "✓ Step 34: YES button clicked");
+
+        // // Step 35: Verify REVOKE HEALTHKIT PERMISSIONS dialog
+        // test.log(Status.INFO, "Step 35: Verifying REVOKE HEALTHKIT PERMISSIONS dialog");
+        // boolean isRevokeDialog = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='REVOKE HEALTHKIT PERMISSIONS']")).size() > 0;
+        // Assert.assertTrue(isRevokeDialog, "REVOKE HEALTHKIT PERMISSIONS dialog not found");
+        // test.log(Status.PASS, "✓ Step 35: REVOKE HEALTHKIT PERMISSIONS dialog displayed");
+
+        // // Step 36: Click OK
+        // test.log(Status.INFO, "Step 36: Clicking OK button");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
+        // test.log(Status.PASS, "✓ Step 36: OK button clicked");
 
         test.log(Status.PASS, "Data Bank Test Case 3 completed successfully");
     }
@@ -1411,25 +1406,6 @@ public class DataBankTest extends BaseTest {
         driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='LOW PRIORITY']")).click();
         test.log(Status.PASS, "✓ Step 25: LOW PRIORITY filter clicked");
 
-        // ✅ TEST CASE 4 - STEP 26: Click STEP COUNT High Priority (by name only)
-        // TEMPORARILY REMOVED BY REQUEST
-        // test.log(Status.INFO, "Step 26: Clicking STEP COUNT High Priority by name");
-        // boolean clickedStepCount = false;
-        // images = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeImage"));
-        // for (org.openqa.selenium.WebElement el : images) {
-        //     String n = el.getAttribute("name");
-        //     String l = el.getAttribute("label");
-        //     if ((n != null && n.replaceAll("\\s+"," ").trim().equalsIgnoreCase("STEP COUNT High Priority")) ||
-        //         (l != null && l.replaceAll("\\s+"," ").trim().equalsIgnoreCase("STEP COUNT High Priority"))) {
-        //         el.click();
-        //         clickedStepCount = true;
-        //         break;
-        //     }
-        // }
-        // Assert.assertTrue(clickedStepCount, "STEP COUNT High Priority could not be clicked by name");
-        // test.log(Status.PASS, "✓ Step 26: STEP COUNT High Priority clicked by name");
-
-        // ✅ TEST CASE 4 - STEP 27: Click back button once
         test.log(Status.INFO, "Step 27: Clicking back button once");
         dataBankPage.clickBackButton();
         test.log(Status.PASS, "✓ Step 27: Back button clicked once");

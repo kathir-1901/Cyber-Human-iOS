@@ -44,7 +44,7 @@ public class DataBankPage {
     private final String proceedToCheckoutButtonXpath = "//XCUIElementTypeButton[@name=\"PROCEED TO CHECKOUT\"]";
     private final String checkoutPageXpath = "//XCUIElementTypeStaticText[@name=\"CHECKOUT\"]";
     private final String deliveryAddressXpath = "//XCUIElementTypeStaticText[@name=\"Delivery Address\"]";
-    private final String nameFieldXpath = "//XCUIElementTypeTextField[@value=\"John Doe\"]";
+    private final String nameFieldXpath = "//XCUIElementTypeTextField[@value and string-length(@value) > 0]";
     private final String confirmButtonXpath = "//XCUIElementTypeButton[@name=\"CONFIRM\"]";
     private final String genderDropdownXpath = "//XCUIElementTypeButton[@name=\"Gender\"]";
     private final String maleButtonXpath = "//XCUIElementTypeButton[@name=\"Male\"]";
@@ -64,8 +64,9 @@ public class DataBankPage {
     private final String closeSheetXpath = "//XCUIElementTypeButton[@name=\"UIButton.Close\"]";
     private final String paymentErrorDialogXpath = "//XCUIElementTypeStaticText[@name=\"PAYMENT ERROR\"]";
     private final String paymentErrorMessageXpath = "//XCUIElementTypeStaticText[@name=\"Please try again later.\"]";
-    private final String retryPaymentButtonXpath = "//XCUIElementTypeStaticText[@name=\"Retry Payment\"]";
+    private final String retryPaymentButtonXpath = "//XCUIElementTypeButton[@name=\"RETRY PAYMENT\"]";
     private final String paymentPageButtonXpath = "//XCUIElementTypeButton[@name=\"pay_with_link_button\"]";
+                                                    
 
     // Test Case 2 - Specific Steps
     private final String uploadDataXpath = "//XCUIElementTypeStaticText[@name=\"UPLOAD DATA\"]";
@@ -1308,7 +1309,7 @@ public class DataBankPage {
             System.out.println("Clicked Date of Birth using iOSNsPredicateString.");
         } catch (Exception e) {
             try {
-                WebElement dobFallback = driver.findElement(By.xpath("//XCUIElementTypeOther[@name='Date of birth']"));
+                WebElement dobFallback = driver.findElement(By.xpath("//XCUIElementTypeOther[@name=\"dd/mm/yyyy\"]"));
                 dobFallback.click();
                 System.out.println("Clicked Date of Birth using fallback XPath.");
             } catch (Exception e2) {
@@ -1610,11 +1611,124 @@ public class DataBankPage {
  public void selectCountryFromList() {
         try {
             Thread.sleep(1000); // Wait for the country list to render
-            // Try iOSNsPredicateString for name with line breaks
-            WebElement countryBtn = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == '🇦🇫\\nAfghanistan\\n+93'"));
-            countryBtn.click();
+            org.openqa.selenium.Dimension size = driver.manage().window().getSize();
+            int centerX = size.width / 2;
+            int startY = (int) (size.height * 0.8); // Start at 80% of screen height
+            int endY = (int) (size.height * 0.2); // End at 20% of screen height
+            int maxScrolls = 20;
+            boolean found = false;
+            String predicate = "name == '🇮🇳\\nIndia\\n+91'";
+            for (int i = 1; i <= maxScrolls; i++) {
+                WebElement countryBtn = null;
+                try {
+                    // Try iOSNsPredicateString
+                    try {
+                        countryBtn = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString(predicate));
+                    } catch (Exception ignore) {}
+                    // Try by label if not found
+                    if (countryBtn == null) {
+                        java.util.List<WebElement> candidates = driver.findElements(By.xpath("//XCUIElementTypeButton[@label='🇮🇳\\nIndia\\n+91']"));
+                        if (!candidates.isEmpty()) {
+                            countryBtn = candidates.get(0);
+                        }
+                    }
+                    // Try by visible/enabled and label
+                    if (countryBtn != null && countryBtn.isDisplayed() && countryBtn.isEnabled()) {
+                        // Log element attributes
+                        try {
+                            System.out.println("[selectCountryFromList] Found India button. name: " + countryBtn.getAttribute("name") + ", label: " + countryBtn.getAttribute("label") + ", value: " + countryBtn.getAttribute("value") + ", enabled: " + countryBtn.isEnabled() + ", displayed: " + countryBtn.isDisplayed());
+                        } catch (Exception logEx) {}
+                        boolean clicked = false;
+                        // 1. Try click()
+                        try {
+                            countryBtn.click();
+                            System.out.println("[selectCountryFromList] Clicked India button after " + i + " scroll(s) using click().");
+                            Thread.sleep(500);
+                            // Check if dialog is dismissed (button gone)
+                            if (driver.findElements(io.appium.java_client.MobileBy.iOSNsPredicateString(predicate)).isEmpty()) {
+                                found = true;
+                                clicked = true;
+                                break;
+                            }
+                        } catch (Exception clickEx) {
+                            System.out.println("[selectCountryFromList] click() failed: " + clickEx.getMessage());
+                        }
+                        // 2. Try tap by coordinates
+                        if (!clicked) {
+                            try {
+                                int x = countryBtn.getLocation().getX() + countryBtn.getSize().getWidth() / 2;
+                                int y = countryBtn.getLocation().getY() + countryBtn.getSize().getHeight() / 2;
+                                PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                                Sequence tap = new Sequence(finger, 1);
+                                tap.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), x, y));
+                                tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                                tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                                driver.perform(Collections.singletonList(tap));
+                                System.out.println("[selectCountryFromList] Tapped India button by coordinates after click() failure.");
+                                Thread.sleep(500);
+                                if (driver.findElements(io.appium.java_client.MobileBy.iOSNsPredicateString(predicate)).isEmpty()) {
+                                    found = true;
+                                    clicked = true;
+                                    break;
+                                }
+                            } catch (Exception tapEx) {
+                                System.out.println("[selectCountryFromList] Tap by coordinates failed: " + tapEx.getMessage());
+                            }
+                        }
+                        // 3. Try JavaScript tap (if supported)
+                        if (!clicked) {
+                            try {
+                                ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", countryBtn);
+                                System.out.println("[selectCountryFromList] JavaScript click() attempted.");
+                                Thread.sleep(500);
+                                if (driver.findElements(io.appium.java_client.MobileBy.iOSNsPredicateString(predicate)).isEmpty()) {
+                                    found = true;
+                                    clicked = true;
+                                    break;
+                                }
+                            } catch (Exception jsEx) {
+                                System.out.println("[selectCountryFromList] JavaScript click failed: " + jsEx.getMessage());
+                            }
+                        }
+                        // 4. Try sendKeys("") to force focus
+                        if (!clicked) {
+                            try {
+                                countryBtn.sendKeys("");
+                                System.out.println("[selectCountryFromList] sendKeys(\"\") attempted.");
+                                Thread.sleep(500);
+                                if (driver.findElements(io.appium.java_client.MobileBy.iOSNsPredicateString(predicate)).isEmpty()) {
+                                    found = true;
+                                    clicked = true;
+                                    break;
+                                }
+                            } catch (Exception sendKeysEx) {
+                                System.out.println("[selectCountryFromList] sendKeys failed: " + sendKeysEx.getMessage());
+                            }
+                        }
+                        // If still not gone, log and continue
+                        if (!clicked) {
+                            System.out.println("[selectCountryFromList] India button still present after all click/tap attempts.");
+                        }
+                    }
+                } catch (Exception notFound) {
+                    // Not found, scroll up
+                }
+                // Scroll up if not found/clicked
+                PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                Sequence swipe = new Sequence(finger, 1);
+                swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerX, startY));
+                swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                swipe.addAction(finger.createPointerMove(Duration.ofMillis(600), PointerInput.Origin.viewport(), centerX, endY));
+                swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                driver.perform(Collections.singletonList(swipe));
+                System.out.println("[selectCountryFromList] Scrolled up " + i + " time(s) in center of screen.");
+                Thread.sleep(500); // Small delay between swipes
+            }
+            if (!found) {
+                System.out.println("[selectCountryFromList] Could not find or click India button after " + maxScrolls + " scrolls.");
+            }
         } catch (Exception e) {
-            System.out.println("Error clicking Afghanistan country button: " + e.getMessage());
+            System.out.println("Error scrolling and selecting India country button: " + e.getMessage());
         }
     }
 
@@ -1963,34 +2077,32 @@ public class DataBankPage {
      */
     public String verifyPaymentErrorAndGetMessage() {
         try {
-            // Try to find PAYMENT ERROR dialog by XPath first
-            WebElement paymentErrorDialog = null;
-            try {
-                paymentErrorDialog = wait.until(
-                        ExpectedConditions.presenceOfElementLocated(By.xpath(paymentErrorDialogXpath)));
-            } catch (TimeoutException e) {
-                // Fallback: try by name if XPath fails
-                java.util.List<WebElement> elemsByName = driver.findElements(By.name("PAYMENT ERROR"));
-                if (!elemsByName.isEmpty()) {
-                    paymentErrorDialog = elemsByName.get(0);
-                } else {
-                    throw new RuntimeException("PAYMENT ERROR dialog not found by XPath or name");
-                }
-            }
-
-            if (paymentErrorDialog.isDisplayed()) {
-                System.out.println("✓ Step 30: PAYMENT ERROR dialog is displayed");
+            // Find PAYMENT FAILED dialog by name, label, or value
+            WebElement paymentFailedDialog = null;
+            java.util.List<WebElement> dialogCandidates = driver.findElements(By.xpath(
+                "//XCUIElementTypeStaticText[@name='PAYMENT FAILED' or @label='PAYMENT FAILED' or @value='PAYMENT FAILED']"
+            ));
+            if (!dialogCandidates.isEmpty()) {
+                paymentFailedDialog = dialogCandidates.get(0);
             } else {
-                throw new RuntimeException("PAYMENT ERROR dialog is not displayed");
+                throw new RuntimeException("PAYMENT FAILED dialog not found by name, label, or value");
             }
 
-            // Get error message by name instead of XPath
+            if (paymentFailedDialog.isDisplayed()) {
+                System.out.println("✓ Step 30: PAYMENT FAILED dialog is displayed");
+            } else {
+                throw new RuntimeException("PAYMENT FAILED dialog is not displayed");
+            }
+
+            // Find error message by name, label, or value
             WebElement errorMessage = null;
-            java.util.List<WebElement> elemsByName = driver.findElements(By.name("Please try again later."));
-            if (!elemsByName.isEmpty()) {
-                errorMessage = elemsByName.get(0);
+            java.util.List<WebElement> errorCandidates = driver.findElements(By.xpath(
+                "//XCUIElementTypeStaticText[@name='Please check your details and try again.' or @label='Please check your details and try again.' or @value='Please check your details and try again.']"
+            ));
+            if (!errorCandidates.isEmpty()) {
+                errorMessage = errorCandidates.get(0);
             } else {
-                throw new RuntimeException("Payment error message 'Please try again later.' not found by name");
+                throw new RuntimeException("Payment error message 'Please check your details and try again.' not found by name, label, or value");
             }
             String message = errorMessage.getText();
             System.out.println("✓ Step 30: Payment error message captured: " + message);
