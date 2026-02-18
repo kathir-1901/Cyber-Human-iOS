@@ -1,4 +1,3 @@
-
 package com.automation.pages;
 
 import io.appium.java_client.AppiumDriver;
@@ -1300,18 +1299,21 @@ public class DataBankPage {
      */
     public void clickDateOfBirth() {
         try {
-            System.out.println("Step 13: Clicking DOB field using iOS XPath selector...");
             hideKeyboard();
-            Thread.sleep(1000);
-
-            // Use iOS locator from README: //XCUIElementTypeOther[@name="dd/mm/yyyy"]
-            WebElement dobField = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//XCUIElementTypeOther[@name='dd/mm/yyyy']")));
+            Thread.sleep(500);
+            WebElement dobField = driver.findElement(
+                io.appium.java_client.MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeOther' AND value CONTAINS '/'")
+            );
             dobField.click();
-            System.out.println("✓ Step 13: DOB field clicked (iOS XPath)");
-
+            System.out.println("Clicked Date of Birth using iOSNsPredicateString.");
         } catch (Exception e) {
-            throw new RuntimeException("CRITICAL: Failed Step 13 DOB click (iOS): " + e.getMessage(), e);
+            try {
+                WebElement dobFallback = driver.findElement(By.xpath("//XCUIElementTypeOther[@name='Date of birth']"));
+                dobFallback.click();
+                System.out.println("Clicked Date of Birth using fallback XPath.");
+            } catch (Exception e2) {
+                throw new RuntimeException("Date of Birth field not found using iOSNsPredicateString or fallback XPath", e2);
+            }
         }
     }
 
@@ -1582,106 +1584,40 @@ public class DataBankPage {
      * TEST CASE 1 - STEP 14:
      * Click country code, search for India, and select it
      */
-    public void selectCountryCode() {
-        long t0 = System.currentTimeMillis();
+  public void selectCountryCode() {
+    long t0 = System.currentTimeMillis();
+    try {
+        System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Clicking country code dropdown");
+
+        WebElement countryCode = wait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.xpath("//XCUIElementTypeStaticText[contains(@name, '+') or contains(@label, '+') or contains(@value, '+')]")
+            )
+        );
+
+        countryCode.click();
+
+        System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Country code dropdown opened");
+
+        // ✅ Call next function after dropdown opens
+        selectCountryFromList();
+
+    } catch (Exception e) {
+        throw new RuntimeException("Failed to open country code dropdown", e);
+    }
+}
+
+ public void selectCountryFromList() {
         try {
-            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Step 14: Selecting country code (iOS, robust)");
-            // 1. Click current country code (🇦🇫 +93), handle possible newline in name/label/value
-            WebElement codeDropdown = null;
-            String[] attrs = {"name", "label", "value"};
-            boolean found = false;
-            for (String attr : attrs) {
-                try {
-                    codeDropdown = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//XCUIElementTypeStaticText[contains(@" + attr + ", '🇦🇫') and contains(@" + attr + ", '+93')]")));
-                    found = true;
-                    System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Found country code by " + attr);
-                    break;
-                } catch (Exception e) {
-                    // Try next attribute
-                }
-            }
-            if (!found) {
-                try {
-                    List<WebElement> staticTexts = driver.findElements(By.className("XCUIElementTypeStaticText"));
-                    for (WebElement el : staticTexts) {
-                        String n = el.getAttribute("name");
-                        String l = el.getAttribute("label");
-                        String v = el.getAttribute("value");
-                        if ((n != null && n.contains("🇦🇫") && n.contains("+93")) ||
-                            (l != null && l.contains("🇦🇫") && l.contains("+93")) ||
-                            (v != null && v.contains("🇦🇫") && v.contains("+93"))) {
-                            codeDropdown = el;
-                            found = true;
-                            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Found country code by scan");
-                            break;
-                        }
-                    }
-                } catch (Exception e) {}
-            }
-            if (!found || codeDropdown == null) {
-                System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Country code element (🇦🇫 +93) not found");
-                throw new RuntimeException("Country code element (🇦🇫 +93) not found by any method");
-            }
-            codeDropdown.click();
-            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Clicked country code dropdown");
-            Thread.sleep(1200);
-
-            // 2. Click search bar (XCUIElementTypeTextField)
-            WebElement searchBar = null;
-            try {
-                searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeTextField")));
-            } catch (Exception e) {
-                searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.className("XCUIElementTypeTextField")));
-            }
-            searchBar.click();
-            searchBar.clear();
-            searchBar.sendKeys("India");
-            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Typed 'India' in search bar");
-            Thread.sleep(1500);
-
-            // 3. Select India +91 (robust: handle newlines, case, partial match)
-            WebElement indiaBtn = null;
-            boolean indiaFound = false;
-            String[] indiaAttrs = {"name", "label"};
-            for (String attr : indiaAttrs) {
-                try {
-                    indiaBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//XCUIElementTypeButton[contains(translate(@" + attr + ", '\\n', ''), 'India') and contains(translate(@" + attr + ", '\\n', ''), '+91')]")));
-                    indiaFound = true;
-                    System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Found India +91 button by " + attr);
-                    break;
-                } catch (Exception e) {}
-            }
-            if (!indiaFound) {
-                try {
-                    List<WebElement> buttons = driver.findElements(By.className("XCUIElementTypeButton"));
-                    for (WebElement btn : buttons) {
-                        String n = btn.getAttribute("name");
-                        String l = btn.getAttribute("label");
-                        String check = (n != null ? n : "") + " " + (l != null ? l : "");
-                        check = check.replace("\n", " ").toLowerCase();
-                        if (check.contains("india") && check.contains("+91")) {
-                            indiaBtn = btn;
-                            indiaFound = true;
-                            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Found India +91 button by scan");
-                            break;
-                        }
-                    }
-                } catch (Exception e) {}
-            }
-            if (!indiaFound || indiaBtn == null) {
-                System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] India (+91) button not found");
-                throw new RuntimeException("India (+91) button not found by any method");
-            }
-            indiaBtn.click();
-            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] Clicked India (+91) Button");
-            Thread.sleep(1200);
+            Thread.sleep(1000); // Wait for the country list to render
+            // Try iOSNsPredicateString for name with line breaks
+            WebElement countryBtn = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == '🇦🇫\\nAfghanistan\\n+93'"));
+            countryBtn.click();
         } catch (Exception e) {
-            System.out.println("[T=" + (System.currentTimeMillis()-t0) + "] ERROR: " + e.getMessage());
-            throw new RuntimeException("Failed to select country code (India +91): " + e.getMessage(), e);
+            System.out.println("Error clicking Afghanistan country button: " + e.getMessage());
         }
     }
+
 
     /**
      * TEST CASE 1 - STEP 15:

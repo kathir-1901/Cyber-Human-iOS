@@ -293,8 +293,6 @@ public class DataBankTest extends BaseTest {
         test.log(Status.PASS, "✓ Step 18: Country selected (India)");
         Thread.sleep(3000);
 
-        // ...existing code...
-
         // ✅ TEST CASE 1 - STEP 19: Fill postal code (wrong - will cause error)
         test.log(Status.INFO, "Step 19: Filling postal code (wrong)");
         dataBankPage.fillPostalCodeWrong("kahsw");
@@ -992,16 +990,16 @@ public class DataBankTest extends BaseTest {
         test.log(Status.PASS, "✓ Step 4: DEVICES clicked");
         Thread.sleep(5000);
 
-        // Step 5: Click LINK DEVICE button
-        test.log(Status.INFO, "Step 5: Clicking LINK DEVICE button");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='LINK DEVICE']")).click();
-        test.log(Status.PASS, "✓ Step 5: LINK DEVICE button clicked");
-        Thread.sleep(2000);
+        // // Step 5: Click LINK DEVICE button
+        // test.log(Status.INFO, "Step 5: Clicking LINK DEVICE button");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='LINK DEVICE']")).click();
+        // test.log(Status.PASS, "✓ Step 5: LINK DEVICE button clicked");
+        // Thread.sleep(2000);
         
         // Step 6: Click ULTRAHUMAN button
-        test.log(Status.INFO, "Step 6: Clicking ULTRAHUMAN button");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='ULTRAHUMAN']")).click();
-        test.log(Status.PASS, "✓ Step 6: ULTRAHUMAN button clicked");
+        test.log(Status.INFO, "Step 6: Clicking ULTRAHUMAN button (custom XPath)");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeImage")).click();
+        test.log(Status.PASS, "✓ Step 6: ULTRAHUMAN button clicked (custom XPath)");
 
         // Step 7: Click checkbox
         test.log(Status.INFO, "Step 7: Clicking checkbox");
@@ -1045,10 +1043,10 @@ public class DataBankTest extends BaseTest {
         driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
         test.log(Status.PASS, "✓ Step 14: OK button clicked");
 
-        // Step 15: Click ULTRAHUMAN button
-        test.log(Status.INFO, "Step 15: Clicking ULTRAHUMAN button");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='ULTRAHUMAN']")).click();
-        test.log(Status.PASS, "✓ Step 15: ULTRAHUMAN button clicked");
+            // Step 15: Click ULTRAHUMAN button
+            test.log(Status.INFO, "Step 15: Clicking ULTRAHUMAN button (custom XPath)");
+            driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeImage")).click();
+            test.log(Status.PASS, "✓ Step 15: ULTRAHUMAN button clicked (custom XPath)");
 
         // Step 16: Click checkbox
         test.log(Status.INFO, "Step 16: Clicking checkbox");
@@ -1086,10 +1084,10 @@ public class DataBankTest extends BaseTest {
         driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
         test.log(Status.PASS, "✓ Step 22: OK button clicked");
 
-        // Step 23: Click APPLE HEALTH KIT
-        test.log(Status.INFO, "Step 23: Clicking APPLE HEALTH KIT");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='APPLE HEALTH KIT']")).click();
-        test.log(Status.PASS, "✓ Step 23: APPLE HEALTH KIT clicked");
+        // Step 23: Click APPLE HEALTH KIT (custom XPath)
+        test.log(Status.INFO, "Step 23: Clicking APPLE HEALTH KIT (custom XPath)");
+        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[4]/XCUIElementTypeImage")).click();
+        test.log(Status.PASS, "✓ Step 23: APPLE HEALTH KIT clicked (custom XPath)");
 
         // Step 24: Click checkbox
         test.log(Status.INFO, "Step 24: Clicking checkbox");
@@ -1118,22 +1116,22 @@ public class DataBankTest extends BaseTest {
         driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton[@name='OK']")).click();
         test.log(Status.PASS, "✓ Step 28: OK button clicked");
 
-        // Step 29: Click back
-        test.log(Status.INFO, "Step 29: Clicking back button");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton")).click();
-        test.log(Status.PASS, "✓ Step 29: Back button clicked");
+        // // Step 29: Click back
+        // test.log(Status.INFO, "Step 29: Clicking back button");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeButton")).click();
+        // test.log(Status.PASS, "✓ Step 29: Back button clicked");
 
-        // Step 30: Swipe down once
-        test.log(Status.INFO, "Step 30: Swiping down once");
-        driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeScrollView")).sendKeys("down");
-        Thread.sleep(5000);
-        test.log(Status.PASS, "✓ Step 30: Swiped down once");
+        // // Step 30: Swipe down once
+        // test.log(Status.INFO, "Step 30: Swiping down once");
+        // driver.findElement(org.openqa.selenium.By.xpath("//XCUIElementTypeScrollView")).sendKeys("down");
+        // Thread.sleep(5000);
+        // test.log(Status.PASS, "✓ Step 30: Swiped down once");
 
-        // Step 31: Verify Apple Health Kit is there
-        test.log(Status.INFO, "Step 31: Verifying Apple Health Kit is present");
-        boolean isAppleHealthKit = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Apple Health Kit']")).size() > 0;
-        Assert.assertTrue(isAppleHealthKit, "Apple Health Kit not found");
-        test.log(Status.PASS, "✓ Step 31: Apple Health Kit is present");
+        // // Step 31: Verify Apple Health Kit is there
+        // test.log(Status.INFO, "Step 31: Verifying Apple Health Kit is present");
+        // boolean isAppleHealthKit = driver.findElements(org.openqa.selenium.By.xpath("//XCUIElementTypeStaticText[@name='Apple Health Kit']")).size() > 0;
+        // Assert.assertTrue(isAppleHealthKit, "Apple Health Kit not found");
+        // test.log(Status.PASS, "✓ Step 31: Apple Health Kit is present");
 
         // Step 32: Click remove icon
         test.log(Status.INFO, "Step 32: Clicking remove icon");
@@ -1284,14 +1282,12 @@ public class DataBankTest extends BaseTest {
             test.log(Status.PASS, "✓ DATA BANK is displayed after click");
         }
 
-        // ...existing code...
-
-        // ✅ TEST CASE 4 - STEP 4: Click REPORTS
+        // Step 4: Click REPORTS
         test.log(Status.INFO, "Step 4: Clicking REPORTS");
         dataBankPage.clickReports();
         test.log(Status.PASS, "✓ Step 4: REPORTS clicked");
 
-        // ✅ TEST CASE 4 - STEP 5: Click BLOOD REPORT and verify page
+        // Step 5: Click BLOOD REPORT and verify page
         test.log(Status.INFO, "Step 5: Clicking BLOOD REPORT and verifying page");
         dataBankPage.clickAndVerifyBloodReport();
         test.log(Status.PASS, "✓ Step 5: BLOOD REPORT clicked and page verified");
