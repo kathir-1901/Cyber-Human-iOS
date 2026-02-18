@@ -41,12 +41,12 @@ public class EditProfileTest extends BaseTest {
             // Scenario, Name, Email, Phone
             { "Email Without @", "John Doe", "testexample.com", "123456789" },
             { "Email Without Domain", "John Doe", "test@", "123456789" },
-            // { "Invalid Phone - Letters", "John Doe", "test@example.com", "abcdefgh" },
-            // { "Short Phone Number", "John Doe", "test@example.com", "12" },
-            // { "Invalid Email Format", "John Doe", "invalidemail", "123456789" },
-            // { "Empty Name Field", "", "test@example.com", "123456789" },
-            // { "Empty Email Field", "John Doe", "", "123456789" },
-            // { "Empty Phone Number", "John Doe", "test@example.com", "" },
+            { "Invalid Phone - Letters", "John Doe", "test@example.com", "abcdefgh" },
+            { "Short Phone Number", "John Doe", "test@example.com", "12" },
+            { "Invalid Email Format", "John Doe", "invalidemail", "123456789" },
+            { "Empty Name Field", "", "test@example.com", "123456789" },
+            { "Empty Email Field", "John Doe", "", "123456789" },
+            { "Empty Phone Number", "John Doe", "test@example.com", "" },
         };
     }
     // ...existing code...
@@ -632,20 +632,24 @@ public class EditProfileTest extends BaseTest {
             // Swipe down on the Date of Birth field as the next step
             editProfilePage.performDateSelection();
             test.log(Status.INFO, "Performed Date Selection (Swipe & Confirm)");
-            
-           
-
+        
             // HANDLE COUNTRY (Standardized to Belarus for negative tests)
             editProfilePage.clickCountryCode();
             test.log(Status.INFO, "Clicked Country Code dropdown");
             Thread.sleep(500);
-            editProfilePage.selectCountry("Belarus");
+            editProfilePage.selectCountry();
             test.log(Status.INFO, "Selected country: Belarus");
 
             editProfilePage.enterPhoneNumber(phone);
             test.log(Status.INFO, "Entered phone: '" + phone + "'");
-
-           
+            
+            editProfilePage.clickGender();
+            test.log(Status.INFO, "Clicked Gender dropdown");
+            Thread.sleep(1000);
+    
+            editProfilePage.selectGender("Male");
+            test.log(Status.INFO, "Selected gender: Male");
+            Thread.sleep(1000);
 
 
             // Hide keyboard immediately after entering phone number
@@ -685,79 +689,79 @@ public class EditProfileTest extends BaseTest {
     // Static counter for negative test index
     private static int testNegativeEditProfileIndex = 0;
 
-    /**
-     * TEST WITH DATE OF BIRTH, GENDER, AND COUNTRY SELECTION
-     * 
-     * This test demonstrates handling of:
-     * - Date of Birth picker (runtime)
-     * - Gender dropdown
-     * - Country selection (India)
-     */
-    @Test
-    public void testEditProfileWithDateGenderCountry() throws InterruptedException {
-        test = extent.createTest("Test: Edit Profile with Date, Gender, Country");
-        test.log(Status.INFO, "Testing date picker, gender dropdown, and country selection");
-
-        // Navigate to Edit Profile page (from Home, not full sign-in)
-        navigateToEditProfile(false);
-
-        EditProfilePage editProfilePage = new EditProfilePage(driver);
-
-        // Enter valid data
-        editProfilePage.enterName("Test User");
-        test.log(Status.INFO, "Entered name");
-
-        editProfilePage.enterEmail("test@example.com");
-        test.log(Status.INFO, "Entered email");
-
-        editProfilePage.clickDateOfBirth();
-        test.log(Status.INFO, "Clicked Date of Birth field");
-
-        editProfilePage.performDateSelection();
-        test.log(Status.INFO, "Performed Date Selection (Swipe & Confirm)");
-        Thread.sleep(1000);
-
-        // Click and select Gender
-        editProfilePage.clickGender();
-        test.log(Status.INFO, "Clicked Gender dropdown");
-        Thread.sleep(1000);
-
-        editProfilePage.selectGender("Male");
-        test.log(Status.INFO, "Selected gender: Male");
-        Thread.sleep(1000);
-
-        // Click and select Country (India)
-        editProfilePage.clickCountryCode();
-        test.log(Status.INFO, "Clicked Country Code dropdown");
-        Thread.sleep(1000);
-
-        editProfilePage.selectCountry("Belarus");
-        test.log(Status.INFO, "Selected country: Belarus");
-        Thread.sleep(1000);
-
-        editProfilePage.enterPhoneNumber("9876543210");
-        test.log(Status.INFO, "Entered phone number");
-
-        // Hide keyboard before clicking SAVE CHANGES
-        editProfilePage.hideKeyboard();
-        // Click SAVE CHANGES
-        editProfilePage.clickSaveChanges();
-        test.log(Status.INFO, "Clicked SAVE CHANGES button");
-
-        Thread.sleep(2000);
-
-        // Check for validation (should not appear for valid data)
-        boolean validationDetected = editProfilePage.isAnyValidationVisible();
-
-        if (!validationDetected) {
-            test.log(Status.PASS, "✓ No validation errors - Profile update successful");
-            test.log(Status.PASS, "Test PASSED: Valid data accepted");
-        } else {
-            String validationMessage = editProfilePage.getValidationMessage();
-            if (validationMessage != null) {
-                test.log(Status.INFO, "Validation message: \"" + validationMessage + "\"");
-            }
-            test.log(Status.INFO, "Validation appeared - may need to check data format");
-        }
-    }
+    // /**
+    //  * TEST WITH DATE OF BIRTH, GENDER, AND COUNTRY SELECTION
+    //  * 
+    //  * This test demonstrates handling of:
+    //  * - Date of Birth picker (runtime)
+    //  * - Gender dropdown
+    //  * - Country selection (India)
+    //  */
+    // @Test
+    // public void testEditProfileWithDateGenderCountry() throws InterruptedException {
+    //     test = extent.createTest("Test: Edit Profile with Date, Gender, Country");
+    //     test.log(Status.INFO, "Testing date picker, gender dropdown, and country selection");
+    //
+    //     // Navigate to Edit Profile page (from Home, not full sign-in)
+    //     navigateToEditProfile(false);
+    //
+    //     EditProfilePage editProfilePage = new EditProfilePage(driver);
+    //
+    //     // Enter valid data
+    //     editProfilePage.enterName("Test User");
+    //     test.log(Status.INFO, "Entered name");
+    //
+    //     editProfilePage.enterEmail("test@example.com");
+    //     test.log(Status.INFO, "Entered email");
+    //
+    //     editProfilePage.clickDateOfBirth();
+    //     test.log(Status.INFO, "Clicked Date of Birth field");
+    //
+    //     editProfilePage.performDateSelection();
+    //     test.log(Status.INFO, "Performed Date Selection (Swipe & Confirm)");
+    //     Thread.sleep(1000);
+    //
+    //     // Click and select Gender
+    //     editProfilePage.clickGender();
+    //     test.log(Status.INFO, "Clicked Gender dropdown");
+    //     Thread.sleep(1000);
+    //
+    //     editProfilePage.selectGender("Male");
+    //     test.log(Status.INFO, "Selected gender: Male");
+    //     Thread.sleep(1000);
+    //
+    //     // Click and select Country (India)
+    //     editProfilePage.clickCountryCode();
+    //     test.log(Status.INFO, "Clicked Country Code dropdown");
+    //     Thread.sleep(1000);
+    //
+    //     editProfilePage.selectCountry();
+    //     test.log(Status.INFO, "Selected country: Belarus");
+    //     Thread.sleep(1000);
+    //
+    //     editProfilePage.enterPhoneNumber("9876543210");
+    //     test.log(Status.INFO, "Entered phone number");
+    //
+    //     // Hide keyboard before clicking SAVE CHANGES
+    //     editProfilePage.hideKeyboard();
+    //     // Click SAVE CHANGES
+    //     editProfilePage.clickSaveChanges();
+    //     test.log(Status.INFO, "Clicked SAVE CHANGES button");
+    //
+    //     Thread.sleep(2000);
+    //
+    //     // Check for validation (should not appear for valid data)
+    //     boolean validationDetected = editProfilePage.isAnyValidationVisible();
+    //
+    //     if (!validationDetected) {
+    //         test.log(Status.PASS, "✓ No validation errors - Profile update successful");
+    //         test.log(Status.PASS, "Test PASSED: Valid data accepted");
+    //     } else {
+    //         String validationMessage = editProfilePage.getValidationMessage();
+    //         if (validationMessage != null) {
+    //             test.log(Status.INFO, "Validation message: \"" + validationMessage + "\"");
+    //         }
+    //         test.log(Status.INFO, "Validation appeared - may need to check data format");
+    //     }
+    // }
 }

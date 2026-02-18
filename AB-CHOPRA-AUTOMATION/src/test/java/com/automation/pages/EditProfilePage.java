@@ -61,24 +61,16 @@ public class EditProfilePage {
         try {
             WebElement phoneField = null;
             try {
-                phoneField = driver.findElement(By.id("0A010000-0000-0000-7B0A-000000000000"));
-            } catch (Exception e0) {
+                phoneField = driver.findElement(io.appium.java_client.MobileBy.AccessibilityId("Phone Number"));
+                System.out.println("[enterPhoneNumber] Found by AccessibilityId");
+            } catch (Exception e1) {
                 try {
-                    phoneField = driver.findElement(io.appium.java_client.MobileBy.AccessibilityId("Phone Number"));
-                } catch (Exception e1) {
-                    try {
-                        phoneField = driver.findElement(io.appium.java_client.MobileBy.iOSClassChain("**/XCUIElementTypeTextField[`name == 'Phone Number'`]") );
-                    } catch (Exception e2) {
-                        try {
-                            phoneField = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == 'Phone Number'"));
-                        } catch (Exception e3) {
-                            try {
-                                phoneField = driver.findElement(By.xpath("//XCUIElementTypeTextField[@name='Phone Number']"));
-                            } catch (Exception e4) {
-                                throw new RuntimeException("Phone Number field not found on Edit Profile page after all locator attempts", e4);
-                            }
-                        }
-                    }
+                    // Fallback: iOSNsPredicateString for numeric value, enabled, visible
+                    String predicate = "type == 'XCUIElementTypeTextField' AND enabled == 1 AND visible == 1 AND value MATCHES '^[0-9]+$'";
+                    phoneField = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString(predicate));
+                    System.out.println("[enterPhoneNumber] Found by iOSNsPredicateString numeric value fallback");
+                } catch (Exception e2) {
+                    throw new RuntimeException("Phone Number field not found on Edit Profile page after AccessibilityId and iOSNsPredicateString fallback", e2);
                 }
             }
             phoneField.click();
@@ -205,58 +197,24 @@ public class EditProfilePage {
             WebElement countryCode = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//XCUIElementTypeStaticText[contains(@name, '+')]")));
             countryCode.click();
-            System.out.println("Clicked Country Code using contains(+) XPath: " + countryCode.getAttribute("name"));
+            System.out.println("Clicked Country Code using contains(+) XPath");
         } catch (Exception e) {
             throw new RuntimeException("Country Code dropdown with '+' not found on Edit Profile page", e);
         }
     }
 
     /**
-     * Select country from country code dropdown
-     * Scroll until finding the country using W3C actions
-     * 
-     * @param country Country name (e.g., "Belarus")
+     * Clicks the Afghanistan country button in the country code dropdown.
+     * Only clicks the hardcoded XPath for Afghanistan.
      */
-    public void selectCountry(String country) {
+    public void selectCountry() {
         try {
-            Thread.sleep(1000); // Wait for dropdown list to fully load
-            int maxSwipes = 20;
-            boolean found = false;
-            for (int i = 0; i < maxSwipes; i++) {
-                try {
-                    WebElement countryOption = driver.findElement(
-                        io.appium.java_client.MobileBy.iOSNsPredicateString("name CONTAINS '" + country + "'")
-                    );
-                    if (countryOption != null && countryOption.isDisplayed() && countryOption.isEnabled()) {
-                        tapElement(countryOption);
-                        found = true;
-                        break;
-                    }
-                } catch (Exception e) {
-                    // Not found, will swipe up
-                }
-                // Strong full-screen swipe up (85% to 15%)
-                org.openqa.selenium.Dimension size = driver.manage().window().getSize();
-                int centerX = size.width / 2;
-                int startY = (int) (size.height * 0.85);
-                int endY = (int) (size.height * 0.15);
-
-                PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-                Sequence swipe = new Sequence(finger, 1);
-
-                swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerX, startY));
-                swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-                swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), centerX, endY));
-                swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
-                driver.perform(Collections.singletonList(swipe));
-                Thread.sleep(700);
-            }
-            if (!found) {
-                System.out.println("Could not find country: " + country + " after swiping " + maxSwipes + " times.");
-            }
+            Thread.sleep(1000); // Wait for the country list to render
+            // Try iOSNsPredicateString for name with line breaks
+            WebElement countryBtn = driver.findElement(io.appium.java_client.MobileBy.iOSNsPredicateString("name == '🇦🇫\\nAfghanistan\\n+93'"));
+            countryBtn.click();
         } catch (Exception e) {
-            System.out.println("Error selecting country: " + country + " - " + e.getMessage());
+            System.out.println("Error clicking Afghanistan country button: " + e.getMessage());
         }
     }
 

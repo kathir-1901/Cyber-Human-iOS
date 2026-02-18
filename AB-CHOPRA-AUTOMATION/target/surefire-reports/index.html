@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Surefire_suite" class="navigator-link">
-              <span class="suite-name border-passed">Surefire suite</span>
+              <span class="suite-name border-failed">Surefire suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,7 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">13 methods, 1 failed,   12 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Surefire_suite" class="hide-methods failed suite-Surefire_suite"> (hide)</a> <!-- hide-methods failed suite-Surefire_suite -->
+                      <a href="#" panel-name="suite-Surefire_suite" class="show-methods failed suite-Surefire_suite"> (show)</a> <!-- show-methods failed suite-Surefire_suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Surefire_suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="runNegativeThenChangePassword">runNegativeThenChangePassword</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Surefire_suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,7 +117,62 @@
                     <div class="method-list-content passed suite-Surefire_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.AbChopraHouseTest" class="method navigator-link" hash-for-method="testAbChopraHouse_Case1">testAbChopraHouse_Case1</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...)">testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS)">testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...)">testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name=&#039;Use at ...)">testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name='Use at ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Email Without Domain, John Doe, test@, 123456789)">testNegativeEditProfile(Email Without Domain, John Doe, test@, 123456789)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Short Phone Number, John Doe, test@example.com, 12)">testNegativeEditProfile(Short Phone Number, John Doe, test@example.com, 12)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Invalid Phone - Letters, John Doe, test@example.com, abcdefgh)">testNegativeEditProfile(Invalid Phone - Letters, John Doe, test@example.com, abcdefgh)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Empty Phone Number, John Doe, test@example.com, )">testNegativeEditProfile(Empty Phone Number, John Doe, test@example.com, )</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Email Without @, John Doe, testexample.com, 123456789)">testNegativeEditProfile(Email Without @, John Doe, testexample.com, 123456789)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Invalid Email Format, John Doe, invalidemail, 123456789)">testNegativeEditProfile(Invalid Email Format, John Doe, invalidemail, 123456789)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Empty Email Field, John Doe, , 123456789)">testNegativeEditProfile(Empty Email Field, John Doe, , 123456789)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.automation.tests.EditProfileTest" class="method navigator-link" hash-for-method="testNegativeEditProfile(Empty Name Field, , test@example.com, 123456789)">testNegativeEditProfile(Empty Name Field, , test@example.com, 123456789)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Surefire_suite -->
@@ -118,17 +187,137 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Surefire_suite" class="panel Surefire_suite">
-          <div class="suite-Surefire_suite-class-passed">
+          <div class="suite-Surefire_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.automation.tests.AbChopraHouseTest</span>
+              <img src="failed.png"/>
+              <span class="class-name">com.automation.tests.EditProfileTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testAbChopraHouse_Case1">
-                  </a> <!-- testAbChopraHouse_Case1 -->
-                  <span class="method-name">testAbChopraHouse_Case1</span>
+                  <a name="runNegativeThenChangePassword">
+                  </a> <!-- runNegativeThenChangePassword -->
+                  <span class="method-name">runNegativeThenChangePassword</span>
+                  <div class="stack-trace">java.lang.RuntimeException: Failed to click Wellbeing Dashboard
+	at com.automation.tests.EditProfileTest.testNegativeEditProfile(EditProfileTest.java:583)
+	at com.automation.tests.EditProfileTest.runNegativeThenChangePassword(EditProfileTest.java:26)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeImage[@name=&apos;WELLBEING DASHBOARD HOME&apos;] | //XCUIElementTypeImage[contains(@name, &apos;WELLBEING&apos;)] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;25.0.1&apos;
+Driver info: io.appium.java_client.ios.IOSDriver
+Capabilities {appium:automationName: XCUITest, appium:bundleId: com.houseofepigenetics.abch..., appium:databaseEnabled: false, appium:deviceName: iPhone 13, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: false, appium:newCommandTimeout: 3600, appium:noReset: true, appium:platformVersion: 18.7, appium:takesScreenshot: true, appium:udid: 00008110-001425322E9B601E, appium:useNewWDA: false, appium:usePrebuiltWDA: true, appium:webDriverAgentUrl: http://localhost:8100, appium:webStorageEnabled: false, platformName: IOS}
+Session ID: 4716ea50-0e27-43da-8266-5de4d93b9d23
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at com.automation.tests.EditProfileTest.testNegativeEditProfile(EditProfileTest.java:576)
+	... 32 more
+... Removed 30 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Surefire_suite-class-failed -->
+          <div class="suite-Surefire_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.automation.tests.EditProfileTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...)">
+                  </a> <!-- testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...) -->
+                  <span class="method-name">testChangePassword</span>
+                  <span class="parameters">(Wrong Old Password Validation,Testing@2025,Human@2026,Human@2026,//XCUIElementTypeStaticText[@name='Wrong password. Please enter correct password.'])</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS)">
+                  </a> <!-- testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS) -->
+                  <span class="method-name">testChangePassword</span>
+                  <span class="parameters">(Valid Change Password,Human@2026,Testing@2026,Testing@2026,SUCCESS)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...)">
+                  </a> <!-- testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...) -->
+                  <span class="method-name">testChangePassword</span>
+                  <span class="parameters">(Same Old and New Password Validation,Human@2026,Human@2026,Human@2026,//XCUIElementTypeStaticText[@name='Current and new password cannot be the same.'])</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name=&#039;Use at ...)">
+                  </a> <!-- testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name='Use at ...) -->
+                  <span class="method-name">testChangePassword</span>
+                  <span class="parameters">(Weak Password Validation,Human@2026,test2026,test2026,//XCUIElementTypeStaticText[@name='Use at least 8 characters with uppercase, lowercase, number, and special symbol.'])</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Email Without Domain, John Doe, test@, 123456789)">
+                  </a> <!-- testNegativeEditProfile(Email Without Domain, John Doe, test@, 123456789) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Email Without Domain,John Doe,test@,123456789)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Short Phone Number, John Doe, test@example.com, 12)">
+                  </a> <!-- testNegativeEditProfile(Short Phone Number, John Doe, test@example.com, 12) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Short Phone Number,John Doe,test@example.com,12)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Invalid Phone - Letters, John Doe, test@example.com, abcdefgh)">
+                  </a> <!-- testNegativeEditProfile(Invalid Phone - Letters, John Doe, test@example.com, abcdefgh) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Invalid Phone - Letters,John Doe,test@example.com,abcdefgh)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Empty Phone Number, John Doe, test@example.com, )">
+                  </a> <!-- testNegativeEditProfile(Empty Phone Number, John Doe, test@example.com, ) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Empty Phone Number,John Doe,test@example.com,)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Email Without @, John Doe, testexample.com, 123456789)">
+                  </a> <!-- testNegativeEditProfile(Email Without @, John Doe, testexample.com, 123456789) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Email Without @,John Doe,testexample.com,123456789)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Invalid Email Format, John Doe, invalidemail, 123456789)">
+                  </a> <!-- testNegativeEditProfile(Invalid Email Format, John Doe, invalidemail, 123456789) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Invalid Email Format,John Doe,invalidemail,123456789)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Empty Email Field, John Doe, , 123456789)">
+                  </a> <!-- testNegativeEditProfile(Empty Email Field, John Doe, , 123456789) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Empty Email Field,John Doe,,123456789)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNegativeEditProfile(Empty Name Field, , test@example.com, 123456789)">
+                  </a> <!-- testNegativeEditProfile(Empty Name Field, , test@example.com, 123456789) -->
+                  <span class="method-name">testNegativeEditProfile</span>
+                  <span class="parameters">(Empty Name Field,,test@example.com,123456789)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -144,7 +333,7 @@
 &lt;suite name=&quot;Surefire suite&quot; verbose=&quot;0&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Surefire test&quot; verbose=&quot;0&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.automation.tests.AbChopraHouseTest&quot;/&gt;
+      &lt;class name=&quot;com.automation.tests.EditProfileTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Surefire test --&gt;
 &lt;/suite&gt; &lt;!-- Surefire suite --&gt;
@@ -184,16 +373,64 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(13);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testAbChopraHouse_Case1')
-data.setCell(0, 2, 'com.automation.tests.AbChopraHouseTest')
-data.setCell(0, 3, 133558);
+data.setCell(0, 1, 'testChangePassword')
+data.setCell(0, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(0, 3, 134005);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'testChangePassword')
+data.setCell(1, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(1, 3, 131952);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testChangePassword')
+data.setCell(2, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(2, 3, 131474);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testChangePassword')
+data.setCell(3, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(3, 3, 131366);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'runNegativeThenChangePassword')
+data.setCell(4, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(4, 3, 101618);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'testNegativeEditProfile')
+data.setCell(5, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(5, 3, 82652);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'testNegativeEditProfile')
+data.setCell(6, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(6, 3, 82544);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'testNegativeEditProfile')
+data.setCell(7, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(7, 3, 82184);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'testNegativeEditProfile')
+data.setCell(8, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(8, 3, 81988);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'testNegativeEditProfile')
+data.setCell(9, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(9, 3, 81957);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'testNegativeEditProfile')
+data.setCell(10, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(10, 3, 81542);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'testNegativeEditProfile')
+data.setCell(11, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(11, 3, 81343);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'testNegativeEditProfile')
+data.setCell(12, 2, 'com.automation.tests.EditProfileTest')
+data.setCell(12, 3, 69809);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 21 minutes</span>
               <div id="times-div-Surefire_suite">
               </div> <!-- times-div-Surefire_suite -->
             </div> <!-- times-div -->
@@ -219,26 +456,172 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.automation.tests.AbChopraHouseTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.automation.tests.EditProfileTest</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">setupReport</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
-                <span class="method-name">setup(public void com.automation.tests.AbChopraHouseTest.testAbChopraHouse_Case1() throws java.lang.Interr...)</span>
-                <span class="method-start">85 ms</span>
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.runNegativeThenChangePassword() throws java.lang.In...)</span>
+                <span class="method-start">88 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">testAbChopraHouse_Case1</span>
-                <span class="method-start">9055 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runNegativeThenChangePassword</span>
+                <span class="method-start">2401 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=testAbChopraHouse_Case1 status=SUCCESS method=AbChopraHouseTest.testAbChopraHouse_C...)</span>
-                <span class="method-start">142618 ms</span>
+                <span class="method-name">tearDown([TestResult name=runNegativeThenChangePassword status=FAILURE method=EditProfileTest.runNegativeThen...)</span>
+                <span class="method-start">104028 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">107373 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testNegativeEditProfile(Email Without @, John Doe, testexample.com, 123456789)</span>
+                <span class="method-start">109399 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=SUCCESS method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">191587 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">194728 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testNegativeEditProfile(Email Without Domain, John Doe, test@, 123456789)</span>
+                <span class="method-start">196715 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=SUCCESS method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">278261 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">281332 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testNegativeEditProfile(Invalid Phone - Letters, John Doe, test@example.com, abcdefgh)</span>
+                <span class="method-start">283359 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=SUCCESS method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">365905 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">369025 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testNegativeEditProfile(Short Phone Number, John Doe, test@example.com, 12)</span>
+                <span class="method-start">370999 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=SUCCESS method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">453654 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">456727 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testNegativeEditProfile(Invalid Email Format, John Doe, invalidemail, 123456789)</span>
+                <span class="method-start">458712 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=SUCCESS method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">540702 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">543750 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testNegativeEditProfile(Empty Name Field, , test@example.com, 123456789)</span>
+                <span class="method-start">545827 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=SUCCESS method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">627787 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">630825 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testNegativeEditProfile(Empty Email Field, John Doe, , 123456789)</span>
+                <span class="method-start">632800 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=SUCCESS method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">714145 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testNegativeEditProfile(java.lang.String,java.lang....)</span>
+                <span class="method-start">717253 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testNegativeEditProfile(Empty Phone Number, John Doe, test@example.com, )</span>
+                <span class="method-start">719228 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testNegativeEditProfile status=SUCCESS method=EditProfileTest.testNegativeEditProfi...)</span>
+                <span class="method-start">789040 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testChangePassword(java.lang.String,java.lang.Strin...)</span>
+                <span class="method-start">792113 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testChangePassword(Wrong Old Password Validation, Testing@2025, Human@2026, Human@2026, //XCUIElementTypeStaticText[@na...)</span>
+                <span class="method-start">794087 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testChangePassword status=SUCCESS method=EditProfileTest.testChangePassword(java.la...)</span>
+                <span class="method-start">926042 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testChangePassword(java.lang.String,java.lang.Strin...)</span>
+                <span class="method-start">929091 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testChangePassword(Weak Password Validation, Human@2026, test2026, test2026, //XCUIElementTypeStaticText[@name='Use at ...)</span>
+                <span class="method-start">931054 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testChangePassword status=SUCCESS method=EditProfileTest.testChangePassword(java.la...)</span>
+                <span class="method-start">1062423 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testChangePassword(java.lang.String,java.lang.Strin...)</span>
+                <span class="method-start">1065549 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testChangePassword(Same Old and New Password Validation, Human@2026, Human@2026, Human@2026, //XCUIElementTypeStaticTex...)</span>
+                <span class="method-start">1067567 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testChangePassword status=SUCCESS method=EditProfileTest.testChangePassword(java.la...)</span>
+                <span class="method-start">1199044 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup(public void com.automation.tests.EditProfileTest.testChangePassword(java.lang.String,java.lang.Strin...)</span>
+                <span class="method-start">1202177 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testChangePassword(Valid Change Password, Human@2026, Testing@2026, Testing@2026, SUCCESS)</span>
+                <span class="method-start">1204181 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=testChangePassword status=SUCCESS method=EditProfileTest.testChangePassword(java.la...)</span>
+                <span class="method-start">1338188 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-suite after">
                 <span class="method-name">tearDownReport</span>
-                <span class="method-start">145721 ms</span>
+                <span class="method-start">1341306 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
