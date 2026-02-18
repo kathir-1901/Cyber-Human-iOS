@@ -131,8 +131,8 @@ public class ForgotPasswordTest extends BaseTest {
         Thread.sleep(2000);
 
         // ==================== STEP 5: Enter Valid Email ====================
-        test.log(Status.INFO, "Step 5: Entering valid email (ramesh@navadhiti.com)");
-        forgotPasswordPage.enterValidEmail("ramesh@navadhiti.com");
+        test.log(Status.INFO, "Step 5: Entering valid email (kathirmskgt@gmail.com)");
+        forgotPasswordPage.enterValidEmail("kathirmskgt@gmail.com");
         test.log(Status.PASS, "✓ Step 5: Valid email entered");
         Thread.sleep(1000);
 
